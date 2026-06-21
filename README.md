@@ -54,10 +54,14 @@ DISCORD_WEBHOOK_URL=... dotnet run --project src/EventCollector -- --notify-test
 
 ### Google カレンダー登録（任意）
 
-収集した未来イベントを Google カレンダーへ終日予定として登録できる（サービスアカウント認証）。
-以下の環境変数が**両方**そろっていれば登録、未設定なら自動スキップ（収集は実行される）。
+収集した未来イベントを Google カレンダーへ終日予定として登録できる。`GOOGLE_CALENDAR_ID` が
+設定されていれば登録、未設定なら自動スキップ（収集は実行される）。
+
+- **GitHub Actions（本番）**: 鍵レスの **Workload Identity Federation** で認証（鍵を保存しない）。
+- **ローカル**: 鍵 JSON があれば `GOOGLE_CALENDAR_CREDENTIALS` で、無ければ ADC（`gcloud auth application-default login` 等）で認証。
 
 ```bash
+# ローカルで鍵 JSON を使う例
 GOOGLE_CALENDAR_CREDENTIALS='{...サービスアカウントの鍵JSON...}' \
 GOOGLE_CALENDAR_ID='xxxxx@group.calendar.google.com' \
 ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
@@ -65,12 +69,12 @@ ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
 
 | 変数 | 内容 |
 |------|------|
-| `GOOGLE_CALENDAR_CREDENTIALS` | サービスアカウントの鍵 JSON（中身そのもの） |
-| `GOOGLE_CALENDAR_ID` | 登録先カレンダーの「カレンダー ID」 |
+| `GOOGLE_CALENDAR_ID` | 登録先カレンダーの「カレンダー ID」（これがあれば連携 ON） |
+| `GOOGLE_CALENDAR_CREDENTIALS` | （任意）鍵 JSON。未指定なら ADC で認証 |
 
 - イベントのキーから決定的な ID を作るため、毎回実行しても**重複登録されない**（無ければ作成・あれば更新）。
 - 日付が `TBD` 等で解析できないイベントはスキップされる。
-- GCP サービスアカウント作成・カレンダー共有・Secret 登録の手順は [`knowledge/google-calendar-setup.md`](./knowledge/google-calendar-setup.md)（設計は `research/google-calendar-sync.md`）。
+- GCP（WIF）セットアップ・カレンダー共有・Secret 登録の手順は [`knowledge/google-calendar-setup.md`](./knowledge/google-calendar-setup.md)（設計は `research/google-calendar-sync.md`）。
 
 ## テスト
 

@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write # Workload Identity Federation（OIDC）で GCP に鍵レス認証するため
 
 concurrency:
   group: collect-events
@@ -16,6 +17,9 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
+    env:
+      # secrets は if: で直接参照できないため env に写す（未設定なら空文字）。
+      GCP_WIF_PROVIDER: ${{ secrets.GCP_WIF_PROVIDER }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -25,12 +29,19 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
+      # WIF 設定（Secret）がある時だけ実行。鍵レスで ADC をセットし、後続ステップが認証情報を拾える。
+      - name: Authenticate to Google Cloud
+        if: ${{ env.GCP_WIF_PROVIDER != '' }}
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - name: Collect events
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          # 未登録なら空文字になり NullCalendarSink でスキップされる（収集は完走する）。
-          GOOGLE_CALENDAR_CREDENTIALS: ${{ secrets.GOOGLE_CALENDAR_CREDENTIALS }}
+          # 認証は WIF(ADC)。GOOGLE_CALENDAR_ID があれば連携、無ければ NullCalendarSink でスキップ。
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
         run: dotnet run --project src/EventCollector --configuration Release
 
