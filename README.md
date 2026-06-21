@@ -70,7 +70,7 @@ ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
 
 - イベントのキーから決定的な ID を作るため、毎回実行しても**重複登録されない**（無ければ作成・あれば更新）。
 - 日付が `TBD` 等で解析できないイベントはスキップされる。
-- GCP サービスアカウント作成・カレンダー共有・Secret 登録の手順は別途整備（設計は `research/google-calendar-sync.md`）。
+- GCP サービスアカウント作成・カレンダー共有・Secret 登録の手順は [`knowledge/google-calendar-setup.md`](./knowledge/google-calendar-setup.md)（設計は `research/google-calendar-sync.md`）。
 
 ## テスト
 
