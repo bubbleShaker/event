@@ -5,7 +5,9 @@ GitHub Actions（無人実行）から書き込む前提で、認証方式・冪
 
 ## 採用方針（ユーザー決定）
 
-- **認証**: サービスアカウント（GCP で作成した JSON 鍵）
+- **認証**: ~~サービスアカウント JSON 鍵~~ → **Workload Identity Federation（鍵レス）** に変更。
+  組織ポリシー `iam.disableServiceAccountKeyCreation` で鍵発行が禁止のため。長期鍵を持たず
+  GitHub OIDC を GCP が信頼して短期credentialsに交換する（#29）。コードは鍵 JSON / ADC の両対応。
 - **登録先**: 専用の新規カレンダー
 
 ## なぜサービスアカウントか

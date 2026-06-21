@@ -26,7 +26,7 @@ public sealed class GoogleCalendarSink : ICalendarSink
         _calendarId = calendarId;
     }
 
-    /// <summary>サービスアカウント JSON と登録先カレンダー ID から生成する。</summary>
+    /// <summary>サービスアカウント JSON と登録先カレンダー ID から生成する（鍵あり・ローカル等）。</summary>
     /// <param name="credentialsJson">サービスアカウントの鍵 JSON（中身）。</param>
     /// <param name="calendarId">登録先カレンダーの ID。</param>
     public static GoogleCalendarSink Create(string credentialsJson, string calendarId)
@@ -35,16 +35,32 @@ public sealed class GoogleCalendarSink : ICalendarSink
         // ToGoogleCredential() で共通型に変換し、カレンダー編集スコープを付与する。
         GoogleCredential credential = CredentialFactory
             .FromJson<ServiceAccountCredential>(credentialsJson)
-            .ToGoogleCredential()
-            .CreateScoped(CalendarService.Scope.Calendar);
+            .ToGoogleCredential();
 
-        CalendarService service = new(new BaseClientService.Initializer
+        return new GoogleCalendarSink(BuildService(credential), calendarId);
+    }
+
+    /// <summary>
+    /// Application Default Credentials（ADC）と登録先カレンダー ID から生成する（鍵レス）。
+    /// Workload Identity Federation の auth ステップが実行環境に用意した認証情報を自動で拾う。
+    /// </summary>
+    /// <param name="calendarId">登録先カレンダーの ID。</param>
+    /// <param name="cancellationToken">キャンセル用トークン。</param>
+    public static async Task<GoogleCalendarSink> CreateWithApplicationDefaultAsync(
+        string calendarId, CancellationToken cancellationToken = default)
+    {
+        GoogleCredential credential = await GoogleCredential.GetApplicationDefaultAsync(cancellationToken);
+        return new GoogleCalendarSink(BuildService(credential), calendarId);
+    }
+
+    // 共通: スコープ付与済みの CalendarService を組み立てる。
+    private static CalendarService BuildService(GoogleCredential credential)
+    {
+        return new CalendarService(new BaseClientService.Initializer
         {
-            HttpClientInitializer = credential,
+            HttpClientInitializer = credential.CreateScoped(CalendarService.Scope.Calendar),
             ApplicationName = ApplicationName,
         });
-
-        return new GoogleCalendarSink(service, calendarId);
     }
 
     /// <inheritdoc />

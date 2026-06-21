@@ -45,7 +45,7 @@ SnapshotReconciler reconciler = new();
 EventDiffer differ = new();
 MarkdownRenderer renderer = new();
 IDiffNotifier notifier = BuildNotifier();
-ICalendarSink calendarSink = BuildCalendarSink();
+ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 
 IReadOnlyList<string> themes = themeStore.LoadThemes(themesPath);
 Console.WriteLine($"テーマ {themes.Count} 件を読み込み。収集を開始します。");
@@ -137,13 +137,19 @@ static IDiffNotifier BuildNotifier()
         : new DiscordNotifier(webhookUrl);
 }
 
-// サービスアカウント JSON とカレンダー ID が両方そろっていれば Google 連携、無ければ no-op を返す。
-static ICalendarSink BuildCalendarSink()
+// 登録先カレンダー ID があれば Google 連携を有効化、無ければ no-op を返す。
+// 認証は鍵 JSON（GOOGLE_CALENDAR_CREDENTIALS）があればそれを、無ければ ADC（WIF など）を使う。
+static async Task<ICalendarSink> BuildCalendarSinkAsync()
 {
-    string? credentialsJson = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_CREDENTIALS");
     string? calendarId = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_ID");
-    return string.IsNullOrWhiteSpace(credentialsJson) || string.IsNullOrWhiteSpace(calendarId)
-        ? new NullCalendarSink()
+    if (string.IsNullOrWhiteSpace(calendarId))
+    {
+        return new NullCalendarSink();
+    }
+
+    string? credentialsJson = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_CREDENTIALS");
+    return string.IsNullOrWhiteSpace(credentialsJson)
+        ? await GoogleCalendarSink.CreateWithApplicationDefaultAsync(calendarId)
         : GoogleCalendarSink.Create(credentialsJson, calendarId);
 }
 
