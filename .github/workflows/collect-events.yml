@@ -2,8 +2,8 @@ name: collect-events
 
 on:
   schedule:
-    # 毎日 00:00 UTC（09:00 JST）。頻度はここで調整する。
-    - cron: "0 0 * * *"
+    # コスト優先で週1回（月曜 00:00 UTC = 09:00 JST）。頻度はここで調整する。
+    - cron: "0 0 * * 1"
   workflow_dispatch: {}
 
 permissions:

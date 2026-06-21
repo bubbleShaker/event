@@ -82,8 +82,9 @@ flowchart TD
 
 ## 技術選定メモ
 
-- **モデル：Claude Sonnet 4.6**（`claude-sonnet-4-6`）
-  - `web_search_20260209`（動的フィルタリング）と構造化出力の両方に対応する必要があり、Haiku 4.5 は `_20260209` 非対応のため不可。コストと品質のバランスで Sonnet を採用。
+- **モデル：Claude Haiku 4.5**（`claude-haiku-4-5`）— コスト優先（#7）
+  - basic web search（`web_search_20250305`）と構造化出力の両方に対応し、最も安価。
+  - 動的フィルタリング版 `web_search_20260209` は内部で code execution を回し重く高コストなため不採用。検索回数は `MaxUses=3` に制限。
 - **収集は2フェーズ**（#5 で単一呼び出しのタイムアウトを解消）:
   - Phase1: `web_search`（`MaxUses` で回数制限）+ **ストリーミング**で所見テキストを取得。長時間要求のタイムアウト・キャンセルを回避する。
   - Phase2: ツール無し + **構造化出力（`output_config.format`）** で所見を JSON に整形。`web_search × 構造化出力` の相性問題を回避し、各呼び出しを確実に終わらせる。
