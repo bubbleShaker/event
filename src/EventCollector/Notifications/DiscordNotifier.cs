@@ -26,7 +26,7 @@ public sealed class DiscordNotifier : IDiffNotifier
     }
 
     /// <inheritdoc />
-    public async Task NotifyAsync(
+    public async Task<bool> NotifyAsync(
         DiffResult diff,
         DateTimeOffset generatedAt,
         CancellationToken cancellationToken = default)
@@ -38,5 +38,6 @@ public sealed class DiscordNotifier : IDiffNotifier
         using HttpResponseMessage response =
             await _httpClient.PostAsync(_webhookUrl, body, cancellationToken);
         response.EnsureSuccessStatusCode();
+        return true;
     }
 }

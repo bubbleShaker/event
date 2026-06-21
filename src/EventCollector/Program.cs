@@ -70,8 +70,10 @@ if (diff.HasChanges)
 {
     try
     {
-        await notifier.NotifyAsync(diff, now);
-        Console.WriteLine("差分を通知しました。");
+        bool sent = await notifier.NotifyAsync(diff, now);
+        Console.WriteLine(sent
+            ? "差分を通知しました。"
+            : "通知先（DISCORD_WEBHOOK_URL）が未設定のため通知をスキップしました。");
     }
     catch (Exception ex)
     {

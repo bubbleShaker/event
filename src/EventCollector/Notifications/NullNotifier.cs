@@ -6,11 +6,12 @@ namespace EventCollector.Notifications;
 public sealed class NullNotifier : IDiffNotifier
 {
     /// <inheritdoc />
-    public Task NotifyAsync(
+    public Task<bool> NotifyAsync(
         DiffResult diff,
         DateTimeOffset generatedAt,
         CancellationToken cancellationToken = default)
     {
-        return Task.CompletedTask;
+        // 通知先が未設定なので何も送らない。送信していないことを false で伝える。
+        return Task.FromResult(false);
     }
 }
