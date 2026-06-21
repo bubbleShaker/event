@@ -40,6 +40,7 @@ JsonSerializerOptions jsonOptions = new()
 
 ThemeStore themeStore = new();
 ClaudeEventSource source = new();
+SnapshotReconciler reconciler = new();
 EventDiffer differ = new();
 MarkdownRenderer renderer = new();
 IDiffNotifier notifier = BuildNotifier();
@@ -60,20 +61,25 @@ catch (Exception ex)
     return 1;
 }
 
-DiffResult diff = differ.Diff(previous, current);
 DateTimeOffset now = DateTimeOffset.Now;
+
+// 収集は非決定的なため、前回分と和集合マージし過去日のみ除外した snapshot を真実の源にする。
+// 差分は「置き換え後」ではなくこの merged に対して取り、削除＝開催済みのみとする。
+IReadOnlyList<EventItem> merged =
+    reconciler.Reconcile(previous, current, DateOnly.FromDateTime(now.Date));
+DiffResult diff = differ.Diff(previous, merged);
 
 Directory.CreateDirectory(Path.GetDirectoryName(dataPath)!);
 Directory.CreateDirectory(runsDir);
 
-await File.WriteAllTextAsync(dataPath, JsonSerializer.Serialize(current, jsonOptions));
-await File.WriteAllTextAsync(eventsMdPath, renderer.RenderEventList(current, now));
+await File.WriteAllTextAsync(dataPath, JsonSerializer.Serialize(merged, jsonOptions));
+await File.WriteAllTextAsync(eventsMdPath, renderer.RenderEventList(merged, now));
 
 string runPath = Path.Combine(runsDir, $"{now:yyyy-MM-dd}.md");
 await File.WriteAllTextAsync(runPath, renderer.RenderRunLog(diff, now));
 
 Console.WriteLine(
-    $"収集 {current.Count} 件 / 追加 {diff.Added.Count} 変更 {diff.Changed.Count} 削除 {diff.Removed.Count}");
+    $"収集 {current.Count} 件 / 一覧 {merged.Count} 件 / 追加 {diff.Added.Count} 変更 {diff.Changed.Count} 削除 {diff.Removed.Count}");
 Console.WriteLine($"出力: {eventsMdPath}, {dataPath}, {runPath}");
 
 if (diff.HasChanges)
