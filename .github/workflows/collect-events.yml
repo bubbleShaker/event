@@ -1,0 +1,44 @@
+name: collect-events
+
+on:
+  schedule:
+    # 毎日 00:00 UTC（09:00 JST）。頻度はここで調整する。
+    - cron: "0 0 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect-events
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Collect events
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: dotnet run --project src/EventCollector --configuration Release
+
+      - name: Commit updated events
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add events.md data runs
+          if git diff --cached --quiet; then
+            echo "差分なし。コミットしない。"
+          else
+            git commit -m "chore: update events ($(date -u +%F))"
+            git push
+          fi
