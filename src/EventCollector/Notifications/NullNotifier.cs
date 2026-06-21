@@ -1,0 +1,16 @@
+using EventCollector.Models;
+
+namespace EventCollector.Notifications;
+
+/// <summary>通知先が未設定の場合に使う no-op 実装（Null Object）。</summary>
+public sealed class NullNotifier : IDiffNotifier
+{
+    /// <inheritdoc />
+    public Task NotifyAsync(
+        DiffResult diff,
+        DateTimeOffset generatedAt,
+        CancellationToken cancellationToken = default)
+    {
+        return Task.CompletedTask;
+    }
+}

@@ -17,11 +17,22 @@ Markdown にまとめて差分を記録するプロジェクト。
 ```bash
 # リポジトリ直下から
 ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
+
+# 差分発生時に Discord 通知したい場合は Webhook URL を併せて設定（任意）
+DISCORD_WEBHOOK_URL=... ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
 ```
 
-出力先は `EVENTS_DIR` 環境変数で上書き可（既定はリポジトリ直下）。
+- 出力先は `EVENTS_DIR` 環境変数で上書き可（既定はリポジトリ直下）。
+- `DISCORD_WEBHOOK_URL` 未設定なら通知はスキップされる（収集は実行される）。
+
+## テスト
+
+```bash
+dotnet test tests/EventCollector.Tests
+```
 
 ## 状態
 
-コア収集部分まで実装済み。通知（Discord/Gmail）・GitHub Actions（cron）・自動コミット・
-テーマ自律拡張は今後の Issue で対応する（`DESIGN.md` の TODO 参照）。
+コア収集 + **差分発生時の Discord 通知**まで実装済み。
+Gmail 通知・GitHub Actions（cron）・自動コミット・テーマ自律拡張は今後の Issue で対応する
+（`DESIGN.md` の TODO 参照）。
