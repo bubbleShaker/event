@@ -1,0 +1,74 @@
+[
+  {
+    "Title": "C# Kaigi 2026",
+    "Date": "2026-09-19",
+    "Location": "N/A",
+    "Url": "https://csharpkaigi.connpass.com/event/394163/",
+    "Theme": "C# / .NET \u95A2\u9023",
+    "Summary": "C#\u7279\u5316\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u300C1\u65E5\u4E2DC#\u306B\u3064\u3044\u3066\u8A9E\u3089\u3046\u30A4\u30D9\u30F3\u30C8\u300D",
+    "Key": "C# Kaigi 2026|2026-09-19"
+  },
+  {
+    "Title": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 4th\u30E9\u30A6\u30F3\u30C9",
+    "Date": "2026-06-20",
+    "Location": "Online",
+    "Url": "https://www.aifestival.jp/hackathon",
+    "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "Summary": "AI\u6D3B\u7528\u3057\u305F\u30D0\u30A4\u30D6\u30B3\u30FC\u30C7\u30A3\u30F3\u30B0\u30673\u6642\u9593\u4EE5\u5185\u306B\u4F5C\u54C1\u3092\u5236\u4F5C\u3059\u308B\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 4th\u30E9\u30A6\u30F3\u30C9|2026-06-20"
+  },
+  {
+    "Title": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 5th\u30E9\u30A6\u30F3\u30C9",
+    "Date": "2026-07-25",
+    "Location": "Tokyo",
+    "Url": "https://www.aifestival.jp/hackathon",
+    "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "Summary": "AI\u6280\u8853\u3092\u30C6\u30FC\u30DE\u306B\u3057\u305F\u4E88\u9078\u30CF\u30C3\u30AB\u30BD\u30F3\u3001\u6771\u4EAC\u4F1A\u5834\u3067\u306E\u958B\u50AC",
+    "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 5th\u30E9\u30A6\u30F3\u30C9|2026-07-25"
+  },
+  {
+    "Title": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 6th\u30E9\u30A6\u30F3\u30C9",
+    "Date": "2026-08-22",
+    "Location": "Online",
+    "Url": "https://www.aifestival.jp/hackathon",
+    "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "Summary": "AI\u6280\u8853\u3092\u30C6\u30FC\u30DE\u306B\u3057\u305F\u4E88\u9078\u30CF\u30C3\u30AB\u30BD\u30F3\u306E\u6700\u7D42\u30E9\u30A6\u30F3\u30C9",
+    "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 6th\u30E9\u30A6\u30F3\u30C9|2026-08-22"
+  },
+  {
+    "Title": "OPEN GAME FEST 2026",
+    "Date": "2026-07-11",
+    "Location": "Kyoto",
+    "Url": "https://indiegamesjp.dev/?cat=2",
+    "Theme": "\u500B\u4EBA\u958B\u767A\u30FB\u30A4\u30F3\u30C7\u30A3\u30FC\u958B\u767A\u306B\u95A2\u3059\u308B\u30A4\u30D9\u30F3\u30C8",
+    "Summary": "\u30B2\u30FC\u30E0\u958B\u767A\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u304A\u3088\u3073\u30A4\u30F3\u30C7\u30A3\u30FC\u30B2\u30FC\u30E0\u51FA\u5C55\u30A4\u30D9\u30F3\u30C8",
+    "Key": "OPEN GAME FEST 2026|2026-07-11"
+  },
+  {
+    "Title": "Tornado2026",
+    "Date": "2026-06-20",
+    "Location": "Fukuoka",
+    "Url": "https://techplay.jp/event/tag/hackathon",
+    "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "Summary": "\u5B66\u751F\u5411\u3051\u306E\u5B9F\u8DF5\u578B\u30CF\u30C3\u30AB\u30BD\u30F3\u30D7\u30ED\u30B0\u30E9\u30E0",
+    "Key": "Tornado2026|2026-06-20"
+  },
+  {
+    "Title": "SAPPORO GAME ODYSSEY",
+    "Date": "2026-06-07",
+    "Location": "Sapporo",
+    "Url": "N/A",
+    "Theme": "\u500B\u4EBA\u958B\u767A\u30FB\u30A4\u30F3\u30C7\u30A3\u30FC\u958B\u767A\u306B\u95A2\u3059\u308B\u30A4\u30D9\u30F3\u30C8",
+    "Summary": "\u672D\u5E4C\u521D\u306E\u30A4\u30F3\u30C7\u30A3\u30FC\u30B2\u30FC\u30E0\u5C55\u793A\u30A4\u30D9\u30F3\u30C8",
+    "Key": "SAPPORO GAME ODYSSEY|2026-06-07"
+  },
+  {
+    "Title": "\u30AF\u30ED\u30B9\u30D4\u30B3\u30CA\u30B4\u30E4 vol.3",
+    "Date": "2026-06-13",
+    "Location": "Nagoya",
+    "Url": "N/A",
+    "Theme": "\u500B\u4EBA\u958B\u767A\u30FB\u30A4\u30F3\u30C7\u30A3\u30FC\u958B\u767A\u306B\u95A2\u3059\u308B\u30A4\u30D9\u30F3\u30C8",
+    "Summary": "\u30A4\u30F3\u30C7\u30A3\u30FC\u30B2\u30FC\u30E0\u5C55\u793A\u3068\u30D4\u30AF\u30BB\u30EB\u30A2\u30FC\u30C8\u3092\u30C6\u30FC\u30DE\u306B\u3057\u305F\u30A4\u30D9\u30F3\u30C8",
+    "Key": "\u30AF\u30ED\u30B9\u30D4\u30B3\u30CA\u30B4\u30E4 vol.3|2026-06-13"
+  }
+]
