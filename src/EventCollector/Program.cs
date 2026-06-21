@@ -1,9 +1,10 @@
 using System.Text.Json;
 using EventCollector.Models;
+using EventCollector.Notifications;
 using EventCollector.Services;
 
 // イベント収集プロトタイプのエントリポイント。
-// 収集 → events.json / events.md / runs ログの生成までを行う（通知・commit は次ステップ）。
+// 収集 → events.json / events.md / runs ログの生成 → 差分があれば通知（commit は次ステップ）。
 //
 // 実行例（リポジトリ直下から）:
 //   ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
@@ -31,6 +32,7 @@ ThemeStore themeStore = new();
 ClaudeEventSource source = new();
 EventDiffer differ = new();
 MarkdownRenderer renderer = new();
+IDiffNotifier notifier = BuildNotifier();
 
 IReadOnlyList<string> themes = themeStore.LoadThemes(themesPath);
 Console.WriteLine($"テーマ {themes.Count} 件を読み込み。収集を開始します。");
@@ -64,7 +66,21 @@ Console.WriteLine(
     $"収集 {current.Count} 件 / 追加 {diff.Added.Count} 変更 {diff.Changed.Count} 削除 {diff.Removed.Count}");
 Console.WriteLine($"出力: {eventsMdPath}, {dataPath}, {runPath}");
 
-// TODO（次ステップ）: diff.HasChanges のとき Discord/Gmail へ通知し、git に自動コミットする。
+if (diff.HasChanges)
+{
+    try
+    {
+        await notifier.NotifyAsync(diff, now);
+        Console.WriteLine("差分を通知しました。");
+    }
+    catch (Exception ex)
+    {
+        // 通知失敗は収集自体の失敗にはしない。
+        Console.Error.WriteLine($"通知に失敗: {ex.Message}");
+    }
+}
+
+// TODO（次ステップ）: git への自動コミットを追加する。
 
 return 0;
 
@@ -77,4 +93,13 @@ static IReadOnlyList<EventItem> LoadPrevious(string dataPath, JsonSerializerOpti
 
     string json = File.ReadAllText(dataPath);
     return JsonSerializer.Deserialize<List<EventItem>>(json, options) ?? [];
+}
+
+// DISCORD_WEBHOOK_URL が設定されていれば Discord 通知、未設定なら no-op を返す。
+static IDiffNotifier BuildNotifier()
+{
+    string? webhookUrl = Environment.GetEnvironmentVariable("DISCORD_WEBHOOK_URL");
+    return string.IsNullOrWhiteSpace(webhookUrl)
+        ? new NullNotifier()
+        : new DiscordNotifier(webhookUrl);
 }

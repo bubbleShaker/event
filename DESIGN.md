@@ -5,13 +5,14 @@
 
 ## スコープ
 
-| 含む（本ステップ） | 含まない（次ステップ） |
-|--------------------|------------------------|
-| テーマ設定の読み込み | Discord/Gmail 通知 |
+| 実装済み | 含まない（次ステップ） |
+|----------|------------------------|
+| テーマ設定の読み込み | Gmail 通知 |
 | Claude + web_search による収集 | GitHub Actions(cron) ワークフロー |
 | 構造化出力（JSON）への整形 | テーマの自律拡張ロジック本体 |
 | events.md / events.json 生成 | 自動コミット |
-| 前回との差分抽出・runs ログ | |
+| 前回との差分抽出・runs ログ | web_search の pause_turn 継続ループ |
+| **差分発生時の Discord Webhook 通知** | |
 
 ## データ構造
 
@@ -53,6 +54,23 @@ flowchart TD
 
 ## コンポーネント（C#）
 
+### 通知（Discord）
+
+差分発生時に Discord Webhook へ通知する。責務を分離し、本文整形は HTTP から切り離して単体テスト可能にしている。
+
+```mermaid
+flowchart TD
+    P[Program] --> N{IDiffNotifier}
+    N --> D[DiscordNotifier<br/>HttpClient で POST]
+    N --> Null[NullNotifier<br/>未設定時の no-op]
+    D --> B[DiscordMessageBuilder<br/>DiffResult → 本文（純粋関数）]
+```
+
+- Webhook URL は環境変数 `DISCORD_WEBHOOK_URL`。未設定なら `NullNotifier` でスキップ（収集は完了する）。
+- `DiscordMessageBuilder` は `DiscordMessageBuilderTests` で単体テスト済み（件数・各イベント名・2000字上限）。
+
+### クラス一覧
+
 | クラス | 役割 |
 |--------|------|
 | `Program` | 全体のオーケストレーション（各サービスを順に呼ぶ） |
@@ -69,15 +87,15 @@ flowchart TD
 - **収集：`web_search` サーバーツール** + **構造化出力（`output_config.format`）** で、検索結果を直接 JSON スキーマに整形する。
 - **APIキー**：`ANTHROPIC_API_KEY` 環境変数から読む（コードに埋め込まない）。
 
-## 既知の TODO（スケルトン段階で未完の箇所）
+## 既知の TODO（未完の箇所）
 
 1. **サーバーツールのループ処理**：`web_search` は内部で複数反復し `stop_reason: "pause_turn"` を返すことがある。現状は単発呼び出し。実運用では pause_turn の継続ループを追加する。
-2. **web_search × 構造化出力の相互作用**：この組み合わせは実行時に挙動を確認する。必要なら「検索 → 整形」の2段（ツール利用ループ後に最終整形呼び出し）に分離する。
+2. **web_search × 構造化出力の相互作用**：この組み合わせは実行時に挙動を確認する。必要なら「検索 → 整形」の2段に分離する。
 3. **テーマ自律拡張**：`participated.md` を参照して Claude にテーマを提案・追記させるロジックは次ステップ。
-4. **通知・Actions・自動コミット**：次ステップ。
+4. **Gmail 通知 / GitHub Actions / 自動コミット**：次ステップ。
 
 ## 次ステップの候補
 
 1. 実機で1回動かしてトークン消費・出力品質を計測（精査で示した「1回数円〜数十円」を検証）。
-2. Discord Webhook 通知を追加。
+2. ~~Discord Webhook 通知を追加。~~（実装済み: #1）
 3. GitHub Actions（cron）で定期実行し、差分があれば自動コミット。
