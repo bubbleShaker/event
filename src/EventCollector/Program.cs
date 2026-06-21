@@ -1,4 +1,5 @@
 using System.Text.Json;
+using EventCollector.Calendar;
 using EventCollector.Models;
 using EventCollector.Notifications;
 using EventCollector.Services;
@@ -44,6 +45,7 @@ SnapshotReconciler reconciler = new();
 EventDiffer differ = new();
 MarkdownRenderer renderer = new();
 IDiffNotifier notifier = BuildNotifier();
+ICalendarSink calendarSink = BuildCalendarSink();
 
 IReadOnlyList<string> themes = themeStore.LoadThemes(themesPath);
 Console.WriteLine($"テーマ {themes.Count} 件を読み込み。収集を開始します。");
@@ -98,6 +100,19 @@ if (diff.HasChanges)
     }
 }
 
+// Google カレンダー登録（未設定なら NullCalendarSink でスキップ）。失敗しても収集は成功扱い。
+try
+{
+    int registered = await calendarSink.SyncAsync(merged);
+    Console.WriteLine(registered > 0
+        ? $"Google カレンダーに {registered} 件登録しました。"
+        : "Google カレンダー連携は未設定/対象なしのためスキップしました。");
+}
+catch (Exception ex)
+{
+    Console.Error.WriteLine($"カレンダー登録に失敗: {ex.Message}");
+}
+
 // TODO（次ステップ）: git への自動コミットを追加する。
 
 return 0;
@@ -120,6 +135,16 @@ static IDiffNotifier BuildNotifier()
     return string.IsNullOrWhiteSpace(webhookUrl)
         ? new NullNotifier()
         : new DiscordNotifier(webhookUrl);
+}
+
+// サービスアカウント JSON とカレンダー ID が両方そろっていれば Google 連携、無ければ no-op を返す。
+static ICalendarSink BuildCalendarSink()
+{
+    string? credentialsJson = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_CREDENTIALS");
+    string? calendarId = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_ID");
+    return string.IsNullOrWhiteSpace(credentialsJson) || string.IsNullOrWhiteSpace(calendarId)
+        ? new NullCalendarSink()
+        : GoogleCalendarSink.Create(credentialsJson, calendarId);
 }
 
 // 通知疎通テスト: Claude API を呼ばず、サンプル差分を通知経路へ流す。

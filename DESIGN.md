@@ -79,6 +79,9 @@ flowchart TD
 | `SnapshotReconciler` | 前回分と今回分を和集合マージし、過去日のみ除外した新スナップショットを作る（収集のゆらぎで未来イベントが消えるのを防ぐ） |
 | `EventDiffer` | 前回スナップショットと比較し追加/変更/削除を抽出 |
 | `MarkdownRenderer` | `events.md` と `runs/日付.md` を生成 |
+| `Calendar/GoogleCalendarSink` | サービスアカウント認証で Google カレンダーへ終日イベントを冪等 upsert（未設定時は `NullCalendarSink`） |
+| `Calendar/CalendarEventFactory` | `EventItem` → 終日 `Event` 変換（純粋関数・日付不明はスキップ） |
+| `Calendar/CalendarEventId` | `Key` → base32hex の決定的 ID（冪等性の要） |
 | `Models/Events.cs` | `EventItem` / `CollectionResult` / `DiffResult` |
 
 ## 技術選定メモ

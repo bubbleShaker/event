@@ -52,6 +52,26 @@ DISCORD_WEBHOOK_URL=... dotnet run --project src/EventCollector -- --notify-test
 - 送信できたら「テスト通知を送信しました。」と表示して終了（exit 0）。
 - `DISCORD_WEBHOOK_URL` 未設定なら送信せず exit 1。
 
+### Google カレンダー登録（任意）
+
+収集した未来イベントを Google カレンダーへ終日予定として登録できる（サービスアカウント認証）。
+以下の環境変数が**両方**そろっていれば登録、未設定なら自動スキップ（収集は実行される）。
+
+```bash
+GOOGLE_CALENDAR_CREDENTIALS='{...サービスアカウントの鍵JSON...}' \
+GOOGLE_CALENDAR_ID='xxxxx@group.calendar.google.com' \
+ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
+```
+
+| 変数 | 内容 |
+|------|------|
+| `GOOGLE_CALENDAR_CREDENTIALS` | サービスアカウントの鍵 JSON（中身そのもの） |
+| `GOOGLE_CALENDAR_ID` | 登録先カレンダーの「カレンダー ID」 |
+
+- イベントのキーから決定的な ID を作るため、毎回実行しても**重複登録されない**（無ければ作成・あれば更新）。
+- 日付が `TBD` 等で解析できないイベントはスキップされる。
+- GCP サービスアカウント作成・カレンダー共有・Secret 登録の手順は別途整備（設計は `research/google-calendar-sync.md`）。
+
 ## テスト
 
 ```bash
