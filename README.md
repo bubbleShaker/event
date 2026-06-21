@@ -31,8 +31,23 @@ DISCORD_WEBHOOK_URL=... ANTHROPIC_API_KEY=... dotnet run --project src/EventColl
 dotnet test tests/EventCollector.Tests
 ```
 
+## 定期実行（GitHub Actions）
+
+`.github/workflows/collect-events.yml` が毎日（00:00 UTC = 09:00 JST）収集を実行し、
+生成物（`events.md` / `data/` / `runs/`）に差分があれば自動コミットする。
+手動実行は Actions タブの「Run workflow」（`workflow_dispatch`）から可能。
+
+事前に Secrets を登録する（値はリポジトリにもコードにも置かない）:
+
+```bash
+gh secret set ANTHROPIC_API_KEY --repo bubbleShaker/event       # 必須
+gh secret set DISCORD_WEBHOOK_URL --repo bubbleShaker/event     # 任意（通知する場合）
+```
+
+※ scheduled run は実際に Claude API を呼ぶ（課金が発生する）。頻度は cron 行で調整する。
+
 ## 状態
 
-コア収集 + **差分発生時の Discord 通知**まで実装済み。
-Gmail 通知・GitHub Actions（cron）・自動コミット・テーマ自律拡張は今後の Issue で対応する
+コア収集 + **差分発生時の Discord 通知** + **GitHub Actions による定期実行＆自動コミット**まで実装済み。
+Gmail 通知・テーマ自律拡張・`web_search` の pause_turn 継続ループは今後の Issue で対応する
 （`DESIGN.md` の TODO 参照）。
