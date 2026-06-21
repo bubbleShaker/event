@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -5,7 +6,7 @@ using EventCollector.Models;
 
 namespace EventCollector.Services;
 
-/// <summary>Claude API（web_search + 構造化出力）でイベントを収集する。</summary>
+/// <summary>Claude API でイベントを収集する。検索（ストリーミング）と構造化抽出の2フェーズで行う。</summary>
 public sealed class ClaudeEventSource
 {
     // 構造化出力のスキーマ。全フィールドを required かつ additionalProperties: false にする
@@ -56,28 +57,61 @@ public sealed class ClaudeEventSource
     /// <returns>収集したイベント一覧。</returns>
     public async Task<IReadOnlyList<EventItem>> CollectAsync(IReadOnlyList<string> themes)
     {
-        string prompt = BuildPrompt(themes);
+        // Phase 1: web_search で検索し、所見をプレーンテキストで受け取る。
+        // 長時間化しうるためストリーミングで実行し、タイムアウトによるキャンセルを避ける。
+        string findings = await SearchAsync(themes);
+
+        // Phase 2: ツール無し・構造化出力で所見を JSON へ整形する（高速かつ確実）。
+        return await ExtractAsync(findings);
+    }
+
+    private async Task<string> SearchAsync(IReadOnlyList<string> themes)
+    {
+        MessageCreateParams searchParams = new()
+        {
+            Model = Model.ClaudeSonnet4_6,
+            MaxTokens = 4000,
+            // MaxUses で検索回数を制限し、暴走・長時間化を防ぐ。
+            Tools = [new ToolUnion(new WebSearchTool20260209 { MaxUses = 5 })],
+            Messages = [new() { Role = Role.User, Content = BuildSearchPrompt(themes) }],
+        };
+
+        StringBuilder findings = new();
+        await foreach (RawMessageStreamEvent streamEvent in _client.Messages.CreateStreaming(searchParams))
+        {
+            if (streamEvent.TryPickContentBlockDelta(out var delta) &&
+                delta.Delta.TryPickText(out var text))
+            {
+                findings.Append(text.Text);
+            }
+        }
+
+        return findings.ToString();
+    }
+
+    private async Task<IReadOnlyList<EventItem>> ExtractAsync(string findings)
+    {
+        if (string.IsNullOrWhiteSpace(findings))
+        {
+            return [];
+        }
 
         Dictionary<string, JsonElement> schema =
             JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(SchemaJson)!;
 
-        // TODO: web_search はサーバー側で複数反復し stop_reason "pause_turn" を返すことがある。
-        // 実運用では pause_turn の継続ループを追加する（DESIGN.md の TODO 1）。
-        MessageCreateParams parameters = new()
+        MessageCreateParams extractParams = new()
         {
             Model = Model.ClaudeSonnet4_6,
-            MaxTokens = 8000,
-            Tools = [new ToolUnion(new WebSearchTool20260209())],
+            MaxTokens = 4000,
             OutputConfig = new OutputConfig
             {
                 Format = new JsonOutputFormat { Schema = schema },
             },
-            Messages = [new() { Role = Role.User, Content = prompt }],
+            Messages = [new() { Role = Role.User, Content = BuildExtractPrompt(findings) }],
         };
 
-        Message response = await _client.Messages.Create(parameters);
+        Message response = await _client.Messages.Create(extractParams);
 
-        // web_search を挟むと content に複数ブロックが並ぶため、最終の text ブロックを採用する。
         TextBlock? jsonBlock = response.Content
             .Select(b => b.Value)
             .OfType<TextBlock>()
@@ -94,24 +128,35 @@ public sealed class ClaudeEventSource
         return result?.Events ?? [];
     }
 
-    private static string BuildPrompt(IReadOnlyList<string> themes)
+    private static string BuildSearchPrompt(IReadOnlyList<string> themes)
     {
         string themeList = string.Join("\n", themes.Select(t => $"- {t}"));
         return
             $"""
             次のテーマに合致する、これから開催される（今日以降、おおむね3か月以内の）
-            プログラミング関連イベントを Web 検索で収集してください。
+            プログラミング関連イベントを Web 検索で調べてください。日本国内またはオンライン開催を対象とします。
 
             テーマ:
             {themeList}
 
-            条件:
-            - 日本国内またはオンライン開催を対象とする。
-            - date は可能な限り ISO 8601（YYYY-MM-DD）。未定なら "TBD"。
-            - location 不明は "N/A"、オンラインは "Online"。url 不明は "N/A"。
-            - theme は上記テーマのいずれかを明記する。
-            - 重複は除外し、出典となる公式ページの url を優先する。
-            - 指定された JSON スキーマに厳密に従って出力する。
+            見つかったイベントを、1件1行のプレーンテキストで列挙してください（JSONにはしない）。
+            各行は次の項目を含めます。出典は公式ページの URL を優先してください。
+            - イベント名 / 開催日（分かれば YYYY-MM-DD、未定なら TBD） / 開催地（オンラインは Online、不明は N/A）
+              / 公式URL（不明は N/A） / 該当テーマ / 1文の概要
+            重複は除外してください。
+            """;
+    }
+
+    private static string BuildExtractPrompt(string findings)
+    {
+        return
+            $"""
+            次の「イベント所見」を、指定された JSON スキーマに厳密に従って整形してください。
+            新しい情報は加えず、所見に書かれている内容のみを使ってください。
+            不明な値は date="TBD"、location は不明なら "N/A"・オンラインなら "Online"、url 不明は "N/A" とします。
+
+            イベント所見:
+            {findings}
             """;
     }
 }
