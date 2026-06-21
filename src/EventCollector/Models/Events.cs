@@ -21,8 +21,12 @@ public sealed record EventItem
     /// <summary>1〜2文の概要。</summary>
     public required string Summary { get; init; }
 
-    /// <summary>差分検知に使う一意キー（イベント名 + 開催日）。</summary>
-    public string Key => $"{Title}|{Date}";
+    /// <summary>
+    /// 差分検知に使う一意キー（イベント名 + 正規化した開催日）。
+    /// 日付はモデルが表記を揺らす（例 <c>2026-06-25～26</c> / <c>2026-06-25:2026-06-26</c>）ため、
+    /// 先頭 ISO 日付に正規化して同一イベントの重複を防ぐ。表示用 <see cref="Date"/> は生のまま保持する。
+    /// </summary>
+    public string Key => $"{Title.Trim()}|{EventDate.Normalize(Date)}";
 }
 
 /// <summary>Claude から受け取る収集結果のルート。構造化出力のスキーマに対応する。</summary>

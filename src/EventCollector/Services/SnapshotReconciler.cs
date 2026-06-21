@@ -1,5 +1,3 @@
-using System.Globalization;
-using System.Text.RegularExpressions;
 using EventCollector.Models;
 
 namespace EventCollector.Services;
@@ -8,7 +6,7 @@ namespace EventCollector.Services;
 /// 前回スナップショットと今回の収集結果を和集合マージし、新しいスナップショットを作る。
 /// 収集は非決定的なため「今回未ヒット」だけでは消さず、<b>開催日が過ぎたものだけ</b>を除外する。
 /// </summary>
-public sealed partial class SnapshotReconciler
+public sealed class SnapshotReconciler
 {
     /// <summary>
     /// 前回分と今回分をマージする。同一キーは今回分（<paramref name="current"/>）で上書きし、
@@ -57,19 +55,7 @@ public sealed partial class SnapshotReconciler
     /// </summary>
     internal static bool IsPast(EventItem item, DateOnly today)
     {
-        Match match = LeadingIsoDate().Match(item.Date);
-        if (!match.Success)
-        {
-            // 日付が解析できない（TBD / N/A など）場合は安全側に倒して保持する。
-            return false;
-        }
-
-        return DateOnly.TryParseExact(
-                   match.Value, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly date)
-               && date < today;
+        // 解析できない（TBD / N/A など）場合は安全側に倒して保持する（過去としない）。
+        return EventDate.TryGetStartDate(item.Date, out DateOnly date) && date < today;
     }
-
-    // 文字列の先頭にある ISO 日付（yyyy-MM-dd）を取り出す。範囲表記 "2026-06-25～26" でも先頭日付を拾う。
-    [GeneratedRegex(@"^\d{4}-\d{2}-\d{2}")]
-    private static partial Regex LeadingIsoDate();
 }
