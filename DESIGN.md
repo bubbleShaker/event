@@ -76,6 +76,7 @@ flowchart TD
 | `Program` | 全体のオーケストレーション（各サービスを順に呼ぶ） |
 | `ThemeStore` | `themes.md` からテーマ一覧を読む |
 | `ClaudeEventSource` | Claude API（`web_search` + 構造化出力）でイベントを収集 |
+| `SnapshotReconciler` | 前回分と今回分を和集合マージし、過去日のみ除外した新スナップショットを作る（収集のゆらぎで未来イベントが消えるのを防ぐ） |
 | `EventDiffer` | 前回スナップショットと比較し追加/変更/削除を抽出 |
 | `MarkdownRenderer` | `events.md` と `runs/日付.md` を生成 |
 | `Models/Events.cs` | `EventItem` / `CollectionResult` / `DiffResult` |
