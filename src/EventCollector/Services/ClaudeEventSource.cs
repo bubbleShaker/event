@@ -69,10 +69,12 @@ public sealed class ClaudeEventSource
     {
         MessageCreateParams searchParams = new()
         {
-            Model = Model.ClaudeSonnet4_6,
-            MaxTokens = 4000,
-            // MaxUses で検索回数を制限し、暴走・長時間化を防ぐ。
-            Tools = [new ToolUnion(new WebSearchTool20260209 { MaxUses = 5 })],
+            // コスト優先: Haiku 4.5 + basic web search。動的フィルタリング（内部 code execution）
+            // を伴う _20260209 は重く高コストなため、軽量な _20250305 を使う。
+            Model = "claude-haiku-4-5",
+            MaxTokens = 2000,
+            // MaxUses で検索回数を制限し、暴走・長時間化・課金増を防ぐ。
+            Tools = [new ToolUnion(new WebSearchTool20250305 { MaxUses = 3 })],
             Messages = [new() { Role = Role.User, Content = BuildSearchPrompt(themes) }],
         };
 
@@ -101,8 +103,9 @@ public sealed class ClaudeEventSource
 
         MessageCreateParams extractParams = new()
         {
-            Model = Model.ClaudeSonnet4_6,
-            MaxTokens = 4000,
+            // 抽出はツール無し・構造化出力のみ。Haiku 4.5 は構造化出力に対応し最も安価。
+            Model = "claude-haiku-4-5",
+            MaxTokens = 2000,
             OutputConfig = new OutputConfig
             {
                 Format = new JsonOutputFormat { Schema = schema },
