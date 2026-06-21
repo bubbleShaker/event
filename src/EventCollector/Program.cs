@@ -9,6 +9,16 @@ using EventCollector.Services;
 // 実行例（リポジトリ直下から）:
 //   ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
 // 出力先は EVENTS_DIR 環境変数で上書き可。既定はリポジトリ直下（"."）。
+//
+// --notify-test を渡すと、Claude API 収集をスキップして Discord 通知の疎通だけ確認する
+// （API キー不要・課金なし）:
+//   DISCORD_WEBHOOK_URL=... dotnet run --project src/EventCollector -- --notify-test
+
+// 通知疎通テストモード: API を呼ばず、サンプル差分を既存の通知経路へ流すだけ。
+if (args.Contains("--notify-test"))
+{
+    return await RunNotifyTestAsync();
+}
 
 if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")))
 {
@@ -104,4 +114,45 @@ static IDiffNotifier BuildNotifier()
     return string.IsNullOrWhiteSpace(webhookUrl)
         ? new NullNotifier()
         : new DiscordNotifier(webhookUrl);
+}
+
+// 通知疎通テスト: Claude API を呼ばず、サンプル差分を通知経路へ流す。
+// webhook 未設定なら NullNotifier が false を返すので exit 1 で明示する。
+static async Task<int> RunNotifyTestAsync()
+{
+    DiffResult sample = new()
+    {
+        Added =
+        [
+            new EventItem
+            {
+                Title = "通知テスト",
+                Date = DateTimeOffset.Now.ToString("yyyy-MM-dd"),
+                Location = "Online",
+                Url = "https://github.com/bubbleShaker/event",
+                Theme = "(notify-test)",
+                Summary = "Discord Webhook の疎通確認用テスト通知です。",
+            },
+        ],
+        Changed = [],
+        Removed = [],
+    };
+
+    try
+    {
+        bool sent = await BuildNotifier().NotifyAsync(sample, DateTimeOffset.Now);
+        if (sent)
+        {
+            Console.WriteLine("テスト通知を送信しました。");
+            return 0;
+        }
+
+        Console.Error.WriteLine("DISCORD_WEBHOOK_URL が未設定のため送信できません。");
+        return 1;
+    }
+    catch (Exception ex)
+    {
+        Console.Error.WriteLine($"テスト通知の送信に失敗: {ex.Message}");
+        return 1;
+    }
 }

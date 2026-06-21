@@ -40,6 +40,18 @@ DISCORD_WEBHOOK_URL=... ANTHROPIC_API_KEY=... dotnet run --project src/EventColl
 - 出力先は `EVENTS_DIR` 環境変数で上書き可（既定はリポジトリ直下）。
 - `DISCORD_WEBHOOK_URL` 未設定なら通知はスキップされる（収集は実行される）。
 
+### Discord 通知の疎通確認（API 課金なし）
+
+webhook が正しく届くかだけ確認したい場合は `--notify-test` を使う。
+Claude API による収集をスキップするので `ANTHROPIC_API_KEY` は不要・課金も発生しない。
+
+```bash
+DISCORD_WEBHOOK_URL=... dotnet run --project src/EventCollector -- --notify-test
+```
+
+- 送信できたら「テスト通知を送信しました。」と表示して終了（exit 0）。
+- `DISCORD_WEBHOOK_URL` 未設定なら送信せず exit 1。
+
 ## テスト
 
 ```bash
