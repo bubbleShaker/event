@@ -1,18 +1,27 @@
 # イベント一覧
 
-最終更新: 2026-06-21 07:25 / 8 件
+最終更新: 2026-06-22 05:01 / 10 件
 
 ## AWS 公式イベント
 
-- **AWS Summit Japan 2026**（2026-06-25 / 千葉県幕張メッセ）
-  - 2日間の無料イベントで、基調講演、260以上のセッション、Agentic AIを含むクラウドとAIイノベーションを体験できます。
+- **AWS Summit Japan 2026**（2026-06-25 / 幕張メッセ）
+  - AWSの知識を深める基調講演、260以上のセッション、展示を含む日本最大級の無料クラウド技術イベント。
   - https://aws.amazon.com/jp/events/summits/japan/
 
 ## C#
 
 - **C# Kaigi 2026**（2026-09-19 / N/A）
-  - C#er向けのC#特化カンファレンス
+  - C#er向けのC# 特化カンファレンスで、1日中C#について語り合う。
   - https://csharpkaigi.connpass.com/event/394163/
+
+## JAWS-UGコミュニティ勉強会・AWS Lambda
+
+- **JAWS-UG初心者支部#85 IAMハンズオン勉強会**（2026-06-29 / 東京（麻布台））
+  - IAMの基本概念から実践的な設定までをハンズオン形式で体系的に学ぶ。
+  - https://jawsug-bgnr.connpass.com/event/395420/
+- **JAWS-UG初心者支部#86 関西開催 Amazon Bedrock ハンズオン**（2026-07-17 / 大阪（グランフロント大阪））
+  - Amazon BedrockをAPI経由で操作し、生成AIの活用法をハンズオン形式で学ぶ。
+  - https://jawsug-bgnr.connpass.com/event/396787/
 
 ## プログラミング全般の技術イベント・ハッカソン
 
