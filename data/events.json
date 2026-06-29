@@ -1,14 +1,5 @@
 [
   {
-    "Title": "AWS Summit Japan 2026",
-    "Date": "2026-06-25",
-    "Location": "\u5E55\u5F35\u30E1\u30C3\u30BB",
-    "Url": "https://aws.amazon.com/jp/events/summits/japan/",
-    "Theme": "AWS \u516C\u5F0F\u30A4\u30D9\u30F3\u30C8",
-    "Summary": "AWS\u306E\u77E5\u8B58\u3092\u6DF1\u3081\u308B\u57FA\u8ABF\u8B1B\u6F14\u3001260\u4EE5\u4E0A\u306E\u30BB\u30C3\u30B7\u30E7\u30F3\u3001\u5C55\u793A\u3092\u542B\u3080\u65E5\u672C\u6700\u5927\u7D1A\u306E\u7121\u6599\u30AF\u30E9\u30A6\u30C9\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u3002",
-    "Key": "AWS Summit Japan 2026|2026-06-25"
-  },
-  {
     "Title": "JAWS-UG\u521D\u5FC3\u8005\u652F\u90E8#85 IAM\u30CF\u30F3\u30BA\u30AA\u30F3\u52C9\u5F37\u4F1A",
     "Date": "2026-06-29",
     "Location": "\u6771\u4EAC\uFF08\u9EBB\u5E03\u53F0\uFF09",
@@ -83,10 +74,10 @@
   {
     "Title": "C# Kaigi 2026",
     "Date": "2026-09-19",
-    "Location": "N/A",
+    "Location": "Online",
     "Url": "https://csharpkaigi.connpass.com/event/394163/",
     "Theme": "C#",
-    "Summary": "C#er\u5411\u3051\u306EC# \u7279\u5316\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u3067\u30011\u65E5\u4E2DC#\u306B\u3064\u3044\u3066\u8A9E\u308A\u5408\u3046\u3002",
+    "Summary": ".NET\u95A2\u9023\u306E\u52C9\u5F37\u4F1A\u30FB\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u3002C#\u7279\u5316\u306E\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u3067\u30011\u65E5\u4E2DC#\u306B\u3064\u3044\u3066\u8A9E\u308A\u5408\u3046\u30A4\u30D9\u30F3\u30C8\u3002",
     "Key": "C# Kaigi 2026|2026-09-19"
   }
 ]
