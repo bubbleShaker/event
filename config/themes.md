@@ -9,3 +9,5 @@
 - AWS 公式イベント（re:Invent / AWS Summit / AWS Innovate / Builders.Online など）
 - JAWS-UG をはじめとする AWS コミュニティの勉強会・ハンズオン（日本国内・オンライン）
 - AWS Lambda / サーバーレス・クラウドインフラに関する技術イベント
+- AtCoder のコンテスト（ABC / ARC / AGC / 企業コンテストなど）
+- AtCoder 社・競技プログラミングコミュニティ主催の勉強会・オフライン交流会・解説会
