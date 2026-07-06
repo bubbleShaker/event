@@ -1,0 +1,22 @@
+# 改行コードを LF に統一する（WSL/Windows 混在での揺れを防ぐ）。
+# text=auto でテキストと判定したファイルは、リポジトリ内では常に LF で保存する。
+* text=auto eol=lf
+
+# 明示的にテキスト扱いする主なソース/設定（将来の誤判定を防ぐ）。
+*.cs      text eol=lf
+*.csproj  text eol=lf
+*.md      text eol=lf
+*.json    text eol=lf
+*.yml     text eol=lf
+*.yaml    text eol=lf
+
+# バイナリは絶対に変換しない（追加された場合の保険）。
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.dll  binary
+*.exe  binary
+*.pdb  binary
