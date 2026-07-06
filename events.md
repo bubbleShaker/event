@@ -1,21 +1,24 @@
 # イベント一覧
 
-最終更新: 2026-06-29 04:26 / 9 件
+最終更新: 2026-07-06 04:04 / 9 件
 
 ## C#
 
-- **C# Kaigi 2026**（2026-09-19 / Online）
-  - .NET関連の勉強会・カンファレンス。C#特化のカンファレンスで、1日中C#について語り合うイベント。
+- **C# Kaigi 2026**（2026-09-19 / N/A）
+  - .NET関連のC#特化カンファレンス
   - https://csharpkaigi.connpass.com/event/394163/
 
 ## JAWS-UGコミュニティ勉強会・AWS Lambda
 
-- **JAWS-UG初心者支部#85 IAMハンズオン勉強会**（2026-06-29 / 東京（麻布台））
-  - IAMの基本概念から実践的な設定までをハンズオン形式で体系的に学ぶ。
-  - https://jawsug-bgnr.connpass.com/event/395420/
 - **JAWS-UG初心者支部#86 関西開催 Amazon Bedrock ハンズオン**（2026-07-17 / 大阪（グランフロント大阪））
   - Amazon BedrockをAPI経由で操作し、生成AIの活用法をハンズオン形式で学ぶ。
   - https://jawsug-bgnr.connpass.com/event/396787/
+
+## JAWS-UG関連
+
+- **JAWS SONIC 2026**（2026-09-05,2026-09-06 / N/A）
+  - AWS関連の勉強会・ハンズオン
+  - https://jaws-ug.jp/calendar/
 
 ## プログラミング全般の技術イベント・ハッカソン
 

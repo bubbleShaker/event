@@ -1,14 +1,5 @@
 [
   {
-    "Title": "JAWS-UG\u521D\u5FC3\u8005\u652F\u90E8#85 IAM\u30CF\u30F3\u30BA\u30AA\u30F3\u52C9\u5F37\u4F1A",
-    "Date": "2026-06-29",
-    "Location": "\u6771\u4EAC\uFF08\u9EBB\u5E03\u53F0\uFF09",
-    "Url": "https://jawsug-bgnr.connpass.com/event/395420/",
-    "Theme": "JAWS-UG\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u52C9\u5F37\u4F1A\u30FBAWS Lambda",
-    "Summary": "IAM\u306E\u57FA\u672C\u6982\u5FF5\u304B\u3089\u5B9F\u8DF5\u7684\u306A\u8A2D\u5B9A\u307E\u3067\u3092\u30CF\u30F3\u30BA\u30AA\u30F3\u5F62\u5F0F\u3067\u4F53\u7CFB\u7684\u306B\u5B66\u3076\u3002",
-    "Key": "JAWS-UG\u521D\u5FC3\u8005\u652F\u90E8#85 IAM\u30CF\u30F3\u30BA\u30AA\u30F3\u52C9\u5F37\u4F1A|2026-06-29"
-  },
-  {
     "Title": "OPEN GAME FEST 2026",
     "Date": "2026-07-11",
     "Location": "Kyoto",
@@ -72,12 +63,21 @@
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u6557\u8005\u5FA9\u6D3B\u6226|2026-09"
   },
   {
+    "Title": "JAWS SONIC 2026",
+    "Date": "2026-09-05,2026-09-06",
+    "Location": "N/A",
+    "Url": "https://jaws-ug.jp/calendar/",
+    "Theme": "JAWS-UG\u95A2\u9023",
+    "Summary": "AWS\u95A2\u9023\u306E\u52C9\u5F37\u4F1A\u30FB\u30CF\u30F3\u30BA\u30AA\u30F3",
+    "Key": "JAWS SONIC 2026|2026-09-05"
+  },
+  {
     "Title": "C# Kaigi 2026",
     "Date": "2026-09-19",
-    "Location": "Online",
+    "Location": "N/A",
     "Url": "https://csharpkaigi.connpass.com/event/394163/",
     "Theme": "C#",
-    "Summary": ".NET\u95A2\u9023\u306E\u52C9\u5F37\u4F1A\u30FB\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u3002C#\u7279\u5316\u306E\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u3067\u30011\u65E5\u4E2DC#\u306B\u3064\u3044\u3066\u8A9E\u308A\u5408\u3046\u30A4\u30D9\u30F3\u30C8\u3002",
+    "Summary": ".NET\u95A2\u9023\u306EC#\u7279\u5316\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9",
     "Key": "C# Kaigi 2026|2026-09-19"
   }
 ]
