@@ -16,9 +16,11 @@ public sealed class EventSourceRunnerTests
             new FakeSource("B", [Event("勉強会Y", "2026-08-02")]),
         };
 
-        IReadOnlyList<EventItem> result = await new EventSourceRunner().CollectAllAsync(sources);
+        CollectionRunResult result = await new EventSourceRunner().CollectAllAsync(sources);
 
-        Assert.Equal(2, result.Count);
+        Assert.Equal(2, result.Events.Count);
+        Assert.Equal(2, result.Succeeded);
+        Assert.Equal(0, result.Failed);
     }
 
     [Fact]
@@ -34,11 +36,33 @@ public sealed class EventSourceRunnerTests
         List<string> errors = [];
         var runner = new EventSourceRunner(logError: errors.Add);
 
-        IReadOnlyList<EventItem> result = await runner.CollectAllAsync(sources);
+        CollectionRunResult result = await runner.CollectAllAsync(sources);
 
-        Assert.Equal(2, result.Count); // A と C は生き残る
+        Assert.Equal(2, result.Events.Count); // A と C は生き残る
+        Assert.Equal(2, result.Succeeded);
+        Assert.Equal(1, result.Failed);
         Assert.Single(errors); // B の失敗が1件記録される
         Assert.Contains("[B]", errors[0]);
+    }
+
+    [Fact]
+    public async Task キャンセルは失敗分離せず伝播する()
+    {
+        using var cts = new CancellationTokenSource();
+        await cts.CancelAsync();
+
+        var sources = new IEventSource[]
+        {
+            new CancelObservingSource("A"),
+        };
+
+        List<string> errors = [];
+        var runner = new EventSourceRunner(logError: errors.Add);
+
+        // キャンセル済みトークンでは「収集失敗（スキップ）」にせず例外を伝播する。
+        await Assert.ThrowsAsync<OperationCanceledException>(
+            () => runner.CollectAllAsync(sources, cts.Token));
+        Assert.Empty(errors);
     }
 
     [Fact]
@@ -51,9 +75,9 @@ public sealed class EventSourceRunnerTests
             new FakeSource("B", [Event("合同勉強会", "2026-08-01～02")]),
         };
 
-        IReadOnlyList<EventItem> result = await new EventSourceRunner().CollectAllAsync(sources);
+        CollectionRunResult result = await new EventSourceRunner().CollectAllAsync(sources);
 
-        Assert.Single(result);
+        Assert.Single(result.Events);
     }
 
     private static EventItem Event(string title, string date) => new()
@@ -82,5 +106,17 @@ public sealed class EventSourceRunnerTests
 
         public Task<IReadOnlyList<EventItem>> CollectAsync(CancellationToken cancellationToken = default)
             => throw new InvalidOperationException("収集に失敗");
+    }
+
+    /// <summary>渡されたトークンのキャンセルを尊重する収集源。CT 伝播の検証用。</summary>
+    private sealed class CancelObservingSource(string name) : IEventSource
+    {
+        public string Name => name;
+
+        public Task<IReadOnlyList<EventItem>> CollectAsync(CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult<IReadOnlyList<EventItem>>([]);
+        }
     }
 }

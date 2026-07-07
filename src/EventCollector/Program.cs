@@ -55,14 +55,33 @@ Console.WriteLine(
 
 IReadOnlyList<EventItem> previous = LoadPrevious(dataPath, jsonOptions);
 
+// 収集全体の時間ガード。ストリーミングで各呼び出しはキャンセルされにくいが、
+// グループ数ぶん直列実行するため上限を設けて暴走・ハングを防ぐ。
+using CancellationTokenSource cts = new(TimeSpan.FromMinutes(10));
+
 // 各収集源を独立実行し、1つ失敗しても他は続行して結果をマージ・重複除去する。
 EventSourceRunner runner = new(Console.WriteLine, Console.Error.WriteLine);
-IReadOnlyList<EventItem> current = await runner.CollectAllAsync(sources);
-if (current.Count == 0)
+CollectionRunResult run;
+try
 {
-    Console.Error.WriteLine("全収集源が0件だった。設定・ネットワーク・API キーを確認してください。");
+    run = await runner.CollectAllAsync(sources, cts.Token);
+}
+catch (OperationCanceledException)
+{
+    Console.Error.WriteLine("収集がタイムアウトした。");
     return 1;
 }
+
+// 全収集源が失敗した場合のみエラー終了する。正常に0件（該当イベント無し）は成功扱いで続行し、
+// 前回スナップショットを保持する。
+if (run.Succeeded == 0 && sources.Count > 0)
+{
+    Console.Error.WriteLine("全収集源が失敗した。ネットワーク・API キー・設定を確認してください。");
+    return 1;
+}
+
+IReadOnlyList<EventItem> current = run.Events;
+Console.WriteLine($"収集源 成功 {run.Succeeded} / 失敗 {run.Failed}。");
 
 DateTimeOffset now = DateTimeOffset.Now;
 
