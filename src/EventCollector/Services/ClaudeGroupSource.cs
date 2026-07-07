@@ -6,9 +6,18 @@ using EventCollector.Models;
 
 namespace EventCollector.Services;
 
-/// <summary>Claude API でイベントを収集する。検索（ストリーミング）と構造化抽出の2フェーズで行う。</summary>
-public sealed class ClaudeEventSource
+/// <summary>
+/// 1つのテーマ群を Claude API で収集する <see cref="IEventSource"/>。
+/// 検索（ストリーミング）と構造化抽出の2フェーズで行う。グループごとに独立した
+/// 検索枠（<see cref="WebSearchMaxUses"/>）を持つため、系統の異なるテーマが検索枠を
+/// 食い合って取りこぼす問題が起きない。
+/// </summary>
+public sealed class ClaudeGroupSource : IEventSource
 {
+    // グループ1つあたりの web_search 回数上限。全テーマを1回の呼び出しに詰めていた頃は
+    // 全体で3回だったが、グループごとに独立して3回まで検索できるようにする。
+    private const int WebSearchMaxUses = 3;
+
     // 構造化出力のスキーマ。全フィールドを required かつ additionalProperties: false にする
     // 必要がある（構造化出力の制約）。不明な値はモデルが "TBD" / "N/A" / "Online" を埋める。
     private const string SchemaJson =
@@ -44,28 +53,32 @@ public sealed class ClaudeEventSource
     };
 
     private readonly AnthropicClient _client;
+    private readonly ThemeGroup _group;
 
-    /// <summary>既定では <c>ANTHROPIC_API_KEY</c> 環境変数から認証する。</summary>
+    /// <summary>担当グループと、既定では <c>ANTHROPIC_API_KEY</c> 環境変数で認証するクライアントを渡す。</summary>
+    /// <param name="group">この収集源が担当するテーマ群。</param>
     /// <param name="client">差し替え用のクライアント。省略時は既定クライアント。</param>
-    public ClaudeEventSource(AnthropicClient? client = null)
+    public ClaudeGroupSource(ThemeGroup group, AnthropicClient? client = null)
     {
+        _group = group;
         _client = client ?? new AnthropicClient();
     }
 
-    /// <summary>テーマに合致する直近のイベントを Web 検索して収集する。</summary>
-    /// <param name="themes">収集テーマの一覧。</param>
-    /// <returns>収集したイベント一覧。</returns>
-    public async Task<IReadOnlyList<EventItem>> CollectAsync(IReadOnlyList<string> themes)
+    /// <inheritdoc />
+    public string Name => _group.Name;
+
+    /// <summary>担当グループのテーマに合致する直近のイベントを Web 検索して収集する。</summary>
+    public async Task<IReadOnlyList<EventItem>> CollectAsync(CancellationToken cancellationToken = default)
     {
         // Phase 1: web_search で検索し、所見をプレーンテキストで受け取る。
         // 長時間化しうるためストリーミングで実行し、タイムアウトによるキャンセルを避ける。
-        string findings = await SearchAsync(themes);
+        string findings = await SearchAsync(cancellationToken);
 
         // Phase 2: ツール無し・構造化出力で所見を JSON へ整形する（高速かつ確実）。
-        return await ExtractAsync(findings);
+        return await ExtractAsync(findings, cancellationToken);
     }
 
-    private async Task<string> SearchAsync(IReadOnlyList<string> themes)
+    private async Task<string> SearchAsync(CancellationToken cancellationToken)
     {
         MessageCreateParams searchParams = new()
         {
@@ -74,12 +87,13 @@ public sealed class ClaudeEventSource
             Model = "claude-haiku-4-5",
             MaxTokens = 2000,
             // MaxUses で検索回数を制限し、暴走・長時間化・課金増を防ぐ。
-            Tools = [new ToolUnion(new WebSearchTool20250305 { MaxUses = 3 })],
-            Messages = [new() { Role = Role.User, Content = BuildSearchPrompt(themes) }],
+            Tools = [new ToolUnion(new WebSearchTool20250305 { MaxUses = WebSearchMaxUses })],
+            Messages = [new() { Role = Role.User, Content = BuildSearchPrompt() }],
         };
 
         StringBuilder findings = new();
-        await foreach (RawMessageStreamEvent streamEvent in _client.Messages.CreateStreaming(searchParams))
+        await foreach (RawMessageStreamEvent streamEvent in
+            _client.Messages.CreateStreaming(searchParams, cancellationToken: cancellationToken))
         {
             if (streamEvent.TryPickContentBlockDelta(out var delta) &&
                 delta.Delta.TryPickText(out var text))
@@ -91,7 +105,7 @@ public sealed class ClaudeEventSource
         return findings.ToString();
     }
 
-    private async Task<IReadOnlyList<EventItem>> ExtractAsync(string findings)
+    private async Task<IReadOnlyList<EventItem>> ExtractAsync(string findings, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(findings))
         {
@@ -113,7 +127,7 @@ public sealed class ClaudeEventSource
             Messages = [new() { Role = Role.User, Content = BuildExtractPrompt(findings) }],
         };
 
-        Message response = await _client.Messages.Create(extractParams);
+        Message response = await _client.Messages.Create(extractParams, cancellationToken: cancellationToken);
 
         TextBlock? jsonBlock = response.Content
             .Select(b => b.Value)
@@ -131,12 +145,12 @@ public sealed class ClaudeEventSource
         return result?.Events ?? [];
     }
 
-    private static string BuildSearchPrompt(IReadOnlyList<string> themes)
+    private string BuildSearchPrompt()
     {
-        string themeList = string.Join("\n", themes.Select(t => $"- {t}"));
+        string themeList = string.Join("\n", _group.Themes.Select(t => $"- {t}"));
         return
             $"""
-            次のテーマに合致する、これから開催される（今日以降、おおむね3か月以内の）
+            次のテーマ（分野「{_group.Name}」）に合致する、これから開催される（今日以降、おおむね3か月以内の）
             プログラミング・数学関連イベントを Web 検索で調べてください。日本国内またはオンライン開催を対象とします。
 
             テーマ:

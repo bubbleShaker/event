@@ -40,28 +40,48 @@ JsonSerializerOptions jsonOptions = new()
 };
 
 ThemeStore themeStore = new();
-ClaudeEventSource source = new();
 SnapshotReconciler reconciler = new();
 EventDiffer differ = new();
 MarkdownRenderer renderer = new();
 IDiffNotifier notifier = BuildNotifier();
 ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 
-IReadOnlyList<string> themes = themeStore.LoadThemes(themesPath);
-Console.WriteLine($"テーマ {themes.Count} 件を読み込み。収集を開始します。");
+// テーマ群ごとに独立した収集源を組む。グループを1つ追加/削除するだけで対象が増減する。
+IReadOnlyList<ThemeGroup> groups = themeStore.LoadGroups(themesPath);
+IReadOnlyList<IEventSource> sources =
+    [.. groups.Select(g => (IEventSource)new ClaudeGroupSource(g))];
+Console.WriteLine(
+    $"テーマ群 {groups.Count} 件（テーマ計 {groups.Sum(g => g.Themes.Count)} 件）を読み込み。収集を開始します。");
 
 IReadOnlyList<EventItem> previous = LoadPrevious(dataPath, jsonOptions);
 
-IReadOnlyList<EventItem> current;
+// 収集全体の時間ガード。ストリーミングで各呼び出しはキャンセルされにくいが、
+// グループ数ぶん直列実行するため上限を設けて暴走・ハングを防ぐ。
+using CancellationTokenSource cts = new(TimeSpan.FromMinutes(10));
+
+// 各収集源を独立実行し、1つ失敗しても他は続行して結果をマージ・重複除去する。
+EventSourceRunner runner = new(Console.WriteLine, Console.Error.WriteLine);
+CollectionRunResult run;
 try
 {
-    current = await source.CollectAsync(themes);
+    run = await runner.CollectAllAsync(sources, cts.Token);
 }
-catch (Exception ex)
+catch (OperationCanceledException)
 {
-    Console.Error.WriteLine($"収集に失敗: {ex.Message}");
+    Console.Error.WriteLine("収集がタイムアウトした。");
     return 1;
 }
+
+// 全収集源が失敗した場合のみエラー終了する。正常に0件（該当イベント無し）は成功扱いで続行し、
+// 前回スナップショットを保持する。
+if (run.Succeeded == 0 && sources.Count > 0)
+{
+    Console.Error.WriteLine("全収集源が失敗した。ネットワーク・API キー・設定を確認してください。");
+    return 1;
+}
+
+IReadOnlyList<EventItem> current = run.Events;
+Console.WriteLine($"収集源 成功 {run.Succeeded} / 失敗 {run.Failed}。");
 
 DateTimeOffset now = DateTimeOffset.Now;
 
