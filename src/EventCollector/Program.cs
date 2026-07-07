@@ -47,9 +47,13 @@ IDiffNotifier notifier = BuildNotifier();
 ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 
 // テーマ群ごとに独立した収集源を組む。グループを1つ追加/削除するだけで対象が増減する。
+// AtCoder は日付・URL が確定情報として API から取れるため web_search とは別の収集源として足す。
 IReadOnlyList<ThemeGroup> groups = themeStore.LoadGroups(themesPath);
 IReadOnlyList<IEventSource> sources =
-    [.. groups.Select(g => (IEventSource)new ClaudeGroupSource(g))];
+[
+    .. groups.Select(g => (IEventSource)new ClaudeGroupSource(g)),
+    new AtCoderContestSource(),
+];
 Console.WriteLine(
     $"テーマ群 {groups.Count} 件（テーマ計 {groups.Sum(g => g.Themes.Count)} 件）を読み込み。収集を開始します。");
 
