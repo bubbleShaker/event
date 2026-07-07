@@ -40,26 +40,27 @@ JsonSerializerOptions jsonOptions = new()
 };
 
 ThemeStore themeStore = new();
-ClaudeEventSource source = new();
 SnapshotReconciler reconciler = new();
 EventDiffer differ = new();
 MarkdownRenderer renderer = new();
 IDiffNotifier notifier = BuildNotifier();
 ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 
-IReadOnlyList<string> themes = themeStore.LoadThemes(themesPath);
-Console.WriteLine($"テーマ {themes.Count} 件を読み込み。収集を開始します。");
+// テーマ群ごとに独立した収集源を組む。グループを1つ追加/削除するだけで対象が増減する。
+IReadOnlyList<ThemeGroup> groups = themeStore.LoadGroups(themesPath);
+IReadOnlyList<IEventSource> sources =
+    [.. groups.Select(g => (IEventSource)new ClaudeGroupSource(g))];
+Console.WriteLine(
+    $"テーマ群 {groups.Count} 件（テーマ計 {groups.Sum(g => g.Themes.Count)} 件）を読み込み。収集を開始します。");
 
 IReadOnlyList<EventItem> previous = LoadPrevious(dataPath, jsonOptions);
 
-IReadOnlyList<EventItem> current;
-try
+// 各収集源を独立実行し、1つ失敗しても他は続行して結果をマージ・重複除去する。
+EventSourceRunner runner = new(Console.WriteLine, Console.Error.WriteLine);
+IReadOnlyList<EventItem> current = await runner.CollectAllAsync(sources);
+if (current.Count == 0)
 {
-    current = await source.CollectAsync(themes);
-}
-catch (Exception ex)
-{
-    Console.Error.WriteLine($"収集に失敗: {ex.Message}");
+    Console.Error.WriteLine("全収集源が0件だった。設定・ネットワーク・API キーを確認してください。");
     return 1;
 }
 
