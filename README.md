@@ -10,6 +10,7 @@ Markdown にまとめて差分を記録するプロジェクト。
 - `DESIGN.md` — プロトタイプ設計（スコープ・データ構造・処理フロー・TODO）
 - `config/` — 収集テーマ（`themes.md`）・参加ログ（`participated.md`）
 - `src/EventCollector/` — 収集スクリプト（C# / .NET 8）
+  - web_search によるテーマ収集に加え、AtCoder のコンテストは [Kenkoooo AtCoder Problems](https://kenkoooo.com/atcoder/resources/contests.json) の `contests.json` から確定情報（日付・URL）で収集する
 - `events.md` / `data/events.json` / `runs/` — 実行で生成される出力
 
 ## 収集テーマのカスタマイズ

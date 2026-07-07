@@ -21,7 +21,8 @@
 
 ## AtCoder / 競技プログラミング
 
-- AtCoder のコンテスト（ABC / ARC / AGC / 企業コンテストなど）
+<!-- AtCoder のコンテスト自体は AtCoderContestSource が API から確定情報で収集するため、
+     ここでは web_search で重複しないよう、コミュニティイベント・他コンテストのみを対象にする。 -->
 - AtCoder 社・競技プログラミングコミュニティ主催の勉強会・オフライン交流会・解説会
 - Online Math Contest (OMC) のコンテスト・解説会
 
