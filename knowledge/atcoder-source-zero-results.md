@@ -60,3 +60,45 @@ PY
 
 実行時点で `contests.json` の最新開催が `2026-07-07`（`awc0107`）で、実行時刻（JST 2026-07-08 朝）には
 既に過去だったため、未来コンテストは 0 件。API 源も 0 件で、挙動は一致していた。
+
+## 公式サイト源の追加（Issue #43）
+
+Kenkoooo のラグで JSON 源が 0 件になる期間を埋めるため、公式サイト
+`https://atcoder.jp/contests/?lang=ja` の「予定されたコンテスト」表(`id="contest-table-upcoming"`)を
+直接 fetch する `AtCoderOfficialContestSource` を **JSON 源と併用**で追加した（依存追加なし・正規表現パース）。
+2026-07-08 時点で JSON 源が拾えない `awtf2026algo` `abc466〜469` `arc224〜226` `ahc068/069` を公式源は取得できた。
+
+### 併用時に「公式源だけ 0 件が続く」ときの切り分け
+
+JSON 源とは失敗要因が違う（HTML 構造変化・アクセス遮断）。次を確認する。
+
+```bash
+# 1) そもそも 200 で取れているか（UA 無しでも現状 200。CDN が弾き始めると 403/503）
+curl -s -o /tmp/ac.html -w "HTTP %{http_code}\n" "https://atcoder.jp/contests/?lang=ja"
+# 2) 予定表に行があるか（0 なら告知済み未来が本当に無いだけ＝正常）
+grep -c 'fixtime-full' /tmp/ac.html
+```
+
+- HTTP が 200 でなければアクセス遮断側。`AtCoderOfficialContestSource` の User-Agent 明示で復旧するか試す。
+- 200 かつ `fixtime-full` が出るのにパース 0 件なら、表の HTML 構造が変わった可能性。正規表現
+  （`fixtime-full'>`・`href="/contests/..."`・`</tbody>` 前提）を疑う。
+
+### JSON 源との重複はなぜ起きない（実測）
+
+`EventItem.Key` は「タイトル完全一致 + 正規化日付」。公式源はアンカーテキストを `HtmlDecode` し連続空白を
+1つに畳むため、Kenkoooo の `title` と表記が揃う。装飾付きを含む実コンテストで突き合わせ済み：
+
+| slug | 公式（正規化後）＝ Kenkoooo |
+|---|---|
+| arc222 | `第七回日本最強プログラマー学生選手権-予選-（AtCoder Regular Contest 222）` |
+| abc462 | `CodeQUEEN 2026 予選 (AtCoder Beginner Contest 462)` |
+| abc464 | `第七回日本最強プログラマー学生選手権～Advance～ -予選- （AtCoder Beginner Contest 464）` |
+
+`Program.cs` で Kenkoooo を先、公式を後に並べているため、両方にあるコンテストは JSON 側が採用される。
+
+### 残存エッジ
+
+公式の予定表が一時的に崩れた表記を出すことがある（2026-07-08 時点で `arc224` が
+`AtCoder Regular Contest-- 224` と `--` 付きで表示。Kenkoooo 反映後の正規表記と食い違えば
+そのコンテストだけ重複表示されうる）。差分通知は自己修復するため実害は軽微だが、
+継続的に片方だけ重複が出るなら、この表記揺れを疑う。
