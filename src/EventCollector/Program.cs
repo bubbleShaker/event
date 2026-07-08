@@ -47,12 +47,17 @@ IDiffNotifier notifier = BuildNotifier();
 ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 
 // テーマ群ごとに独立した収集源を組む。グループを1つ追加/削除するだけで対象が増減する。
-// AtCoder は日付・URL が確定情報として API から取れるため web_search とは別の収集源として足す。
+// AtCoder は日付・URL が確定情報として取れるため web_search とは別の収集源として足す。
+// JSON(Kenkoooo)は堅牢だが告知反映にラグがあるため、告知直後も拾える公式サイト源を併用する。
+// 両源が同一コンテストを返した場合、公式源はタイトルを Kenkoooo と同じ表記へ正規化するため
+// EventItem.Key（名称＋開催日）が一致し重複排除される（実データ突き合わせ済み）。
+// Kenkoooo を先に置くことで、両方にある確定コンテストは JSON 側が採用される。
 IReadOnlyList<ThemeGroup> groups = themeStore.LoadGroups(themesPath);
 IReadOnlyList<IEventSource> sources =
 [
     .. groups.Select(g => (IEventSource)new ClaudeGroupSource(g)),
     new AtCoderContestSource(),
+    new AtCoderOfficialContestSource(),
 ];
 Console.WriteLine(
     $"テーマ群 {groups.Count} 件（テーマ計 {groups.Sum(g => g.Themes.Count)} 件）を読み込み。収集を開始します。");
