@@ -82,6 +82,10 @@ public sealed class AtCoderOfficialContestSourceTests
         Assert.Equal("競技プログラミング（AtCoder）", abc.Theme);
         Assert.Contains("2026-07-11 21:00 JST", abc.Summary);
         Assert.Contains("100 分", abc.Summary); // 01:40 = 100 分
+        // 時刻付きカレンダー登録用に JST の開始・終了を持つ（終了 = 開始 + 100 分）。
+        var jst = TimeSpan.FromHours(9);
+        Assert.Equal(new DateTimeOffset(2026, 7, 11, 21, 0, 0, jst), abc.StartsAt);
+        Assert.Equal(new DateTimeOffset(2026, 7, 11, 22, 40, 0, jst), abc.EndsAt);
     }
 
     [Fact]

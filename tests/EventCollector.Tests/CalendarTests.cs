@@ -56,6 +56,33 @@ public sealed class CalendarTests
     }
 
     [Fact]
+    public void Factory_StartsAtがあれば時刻付きイベントにする()
+    {
+        var starts = new DateTimeOffset(2026, 7, 11, 21, 0, 0, TimeSpan.FromHours(9));
+        var ends = starts.AddMinutes(100);
+        EventItem item = MakeEvent("ABC466", "2026-07-11") with { StartsAt = starts, EndsAt = ends };
+
+        Event? ev = CalendarEventFactory.TryCreate(item);
+
+        Assert.NotNull(ev);
+        // 終日イベントの Date は使わず、時刻付きの DateTime を持つ。
+        Assert.Null(ev!.Start.Date);
+        Assert.Equal(starts, ev.Start.DateTimeDateTimeOffset);
+        Assert.Equal(ends, ev.End.DateTimeDateTimeOffset);
+    }
+
+    [Fact]
+    public void Factory_EndsAt無しの時刻付きは1時間後を終了にする()
+    {
+        var starts = new DateTimeOffset(2026, 7, 11, 21, 0, 0, TimeSpan.FromHours(9));
+        EventItem item = MakeEvent("開始のみ", "2026-07-11") with { StartsAt = starts };
+
+        Event? ev = CalendarEventFactory.TryCreate(item);
+
+        Assert.Equal(starts.AddHours(1), ev!.End.DateTimeDateTimeOffset);
+    }
+
+    [Fact]
     public async Task NullCalendarSink_何も登録せず0を返す()
     {
         int registered = await new NullCalendarSink().SyncAsync([MakeEvent("勉強会", "2026-06-25")]);
