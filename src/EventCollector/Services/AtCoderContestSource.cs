@@ -79,8 +79,9 @@ public sealed class AtCoderContestSource : IEventSource
             Theme = "競技プログラミング（AtCoder）",
             Summary = $"{startJst:yyyy-MM-dd HH:mm} JST 開催（約 {durationMinutes} 分）。",
             // 開始時刻・所要時間が確定しているため、カレンダーには時刻付きイベントとして載せる。
+            // 所要時間不明（0 分）のときは終了を空にし、Factory 側の既定（1 時間）に委ねる（公式源と対称）。
             StartsAt = startJst,
-            EndsAt = startJst.AddMinutes(durationMinutes),
+            EndsAt = durationMinutes > 0 ? startJst.AddMinutes(durationMinutes) : null,
         };
     }
 }
