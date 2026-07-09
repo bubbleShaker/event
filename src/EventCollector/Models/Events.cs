@@ -22,6 +22,15 @@ public sealed record EventItem
     public required string Summary { get; init; }
 
     /// <summary>
+    /// 開催開始日時（タイムゾーン付き）。分単位まで確定している源（AtCoder 等）だけが設定する。
+    /// null のイベントは日付のみ（web_search 系）で、カレンダーには終日イベントとして登録される。
+    /// </summary>
+    public DateTimeOffset? StartsAt { get; init; }
+
+    /// <summary>開催終了日時（タイムゾーン付き）。<see cref="StartsAt"/> とセットで設定する。</summary>
+    public DateTimeOffset? EndsAt { get; init; }
+
+    /// <summary>
     /// 差分検知に使う一意キー（イベント名 + 正規化した開催日）。
     /// 日付はモデルが表記を揺らす（例 <c>2026-06-25～26</c> / <c>2026-06-25:2026-06-26</c>）ため、
     /// 先頭 ISO 日付に正規化して同一イベントの重複を防ぐ。表示用 <see cref="Date"/> は生のまま保持する。

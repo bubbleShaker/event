@@ -135,6 +135,10 @@ public sealed partial class AtCoderOfficialContestSource : IEventSource
             Url = $"https://atcoder.jp/contests/{c.Slug}",
             Theme = "競技プログラミング（AtCoder）",
             Summary = $"{c.Start:yyyy-MM-dd HH:mm} JST 開催{duration}。",
+            // 開始時刻・所要時間が確定しているため、カレンダーには時刻付きイベントとして載せる。
+            // 所要時間不明（0 分）のときは終了を空にし、Factory 側の既定（1 時間）に委ねる。
+            StartsAt = c.Start,
+            EndsAt = c.DurationMinutes > 0 ? c.Start.AddMinutes(c.DurationMinutes) : null,
         };
     }
 
