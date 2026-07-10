@@ -1,48 +1,69 @@
 [
   {
-    "Title": "World Tour Finals 2026 Heuristic",
-    "Date": "2026-07-07 to 2026-07-08",
-    "Location": "Online",
-    "Url": "https://atcoder.jp/contests/awtf2026heuristic",
-    "Theme": "AtCoder Heuristic Contest",
-    "Summary": "2\u65E5\u9593\u306E\u30D2\u30E5\u30FC\u30EA\u30B9\u30C6\u30A3\u30C3\u30AF\u30B3\u30F3\u30C6\u30B9\u30C8\u3002",
-    "Key": "World Tour Finals 2026 Heuristic|2026-07-07"
-  },
-  {
-    "Title": "World Tour Finals 2026 Algorithm",
-    "Date": "2026-07-09",
-    "Location": "Online",
-    "Url": "https://atcoder.jp/contests/awtf2026algo",
-    "Theme": "AGC",
-    "Summary": "420\u5206\u9593\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u30B3\u30F3\u30C6\u30B9\u30C8\u3002",
-    "Key": "World Tour Finals 2026 Algorithm|2026-07-09"
-  },
-  {
     "Title": "\u7B2C11\u56DE\u5E83\u5CF6\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7",
     "Date": "2026-07-10",
-    "Location": "\u5E83\u5CF6",
-    "Url": "N/A",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u5E83\u5CF6\u5E02",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C11\u56DE\u5E83\u5CF6\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7|2026-07-10"
   },
   {
     "Title": "\u7B2C23\u56DE\u5FA1\u5F92\u753A\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7",
     "Date": "2026-07-10",
-    "Location": "\u6771\u4EAC\u90FD\u53F0\u6771\u533A",
-    "Url": "https://www.mineralstone.info",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u6771\u4EAC\u90FD",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u9695\u77F3\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C23\u56DE\u5FA1\u5F92\u753A\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7|2026-07-10"
+  },
+  {
+    "Title": "AtCoder Beginner Contest 466",
+    "Date": "2026-07-11",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/abc466",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-11 21:00 JST \u958B\u50AC\uFF08\u7D04 100 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-11T21:00:00+09:00",
+    "EndsAt": "2026-07-11T22:40:00+09:00",
+    "Key": "AtCoder Beginner Contest 466|2026-07-11"
   },
   {
     "Title": "OPEN GAME FEST 2026",
     "Date": "2026-07-11",
     "Location": "Kyoto",
-    "Url": "https://indiegamesjp.dev/",
+    "Url": "https://opengamefest.jp/",
     "Theme": "\u500B\u4EBA\u958B\u767A\u30FB\u30A4\u30F3\u30C7\u30A3\u30FC\u958B\u767A\u306B\u95A2\u3059\u308B\u30A4\u30D9\u30F3\u30C8",
-    "Summary": "\u30A4\u30F3\u30C7\u30A3\u30FC\u30B2\u30FC\u30E0\u958B\u767A\u8005\u5411\u3051\u306E\u5C55\u793A\u30A4\u30D9\u30F3\u30C8\u3068\u30B2\u30FC\u30E0\u958B\u767A\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9",
+    "Summary": "2026\u5E747\u670811\u65E5\u306B\u4EAC\u90FD\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u5B66\u9662\u3067\u958B\u50AC\u3055\u308C\u308B\u30A4\u30F3\u30C7\u30A3\u30FC\u30B2\u30FC\u30E0\u30A4\u30D9\u30F3\u30C8",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "OPEN GAME FEST 2026|2026-07-11"
+  },
+  {
+    "Title": "AtCoder Regular Contest-- 224",
+    "Date": "2026-07-12",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/arc224",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-12 21:00 JST \u958B\u50AC\uFF08\u7D04 120 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-12T21:00:00+09:00",
+    "EndsAt": "2026-07-12T23:00:00+09:00",
+    "Key": "AtCoder Regular Contest-- 224|2026-07-12"
+  },
+  {
+    "Title": "\u754C\u9762\u30B3\u30ED\u30A4\u30C9\u30E9\u30FC\u30CB\u30F3\u30B0\uFF08\u7B2C42\u56DE\u73FE\u4EE3\u30B3\u30ED\u30A4\u30C9\u30FB\u754C\u9762\u5316\u5B66\u57FA\u790E\u8B1B\u5EA7\uFF09",
+    "Date": "2026-07-16",
+    "Location": "\u5927\u962A",
+    "Url": "https://www.chemistry.or.jp/",
+    "Theme": "\u5316\u5B66\uFF08\u30B3\u30ED\u30A4\u30C9\u30FB\u754C\u9762\u5316\u5B66\uFF09",
+    "Summary": "\u5927\u962A\u4F1A\u5834\u3067\u958B\u50AC\u3055\u308C\u308B\u754C\u9762\u5316\u5B66\u306E\u57FA\u790E\u8B1B\u5EA7",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u754C\u9762\u30B3\u30ED\u30A4\u30C9\u30E9\u30FC\u30CB\u30F3\u30B0\uFF08\u7B2C42\u56DE\u73FE\u4EE3\u30B3\u30ED\u30A4\u30C9\u30FB\u754C\u9762\u5316\u5B66\u57FA\u790E\u8B1B\u5EA7\uFF09|2026-07-16"
   },
   {
     "Title": "JAWS-UG\u521D\u5FC3\u8005\u652F\u90E8#86 \u95A2\u897F\u958B\u50AC Amazon Bedrock \u30CF\u30F3\u30BA\u30AA\u30F3",
@@ -51,34 +72,97 @@
     "Url": "https://jawsug-bgnr.connpass.com/event/396787/",
     "Theme": "JAWS-UG\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u52C9\u5F37\u4F1A\u30FBAWS Lambda",
     "Summary": "Amazon Bedrock\u3092API\u7D4C\u7531\u3067\u64CD\u4F5C\u3057\u3001\u751F\u6210AI\u306E\u6D3B\u7528\u6CD5\u3092\u30CF\u30F3\u30BA\u30AA\u30F3\u5F62\u5F0F\u3067\u5B66\u3076\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "JAWS-UG\u521D\u5FC3\u8005\u652F\u90E8#86 \u95A2\u897F\u958B\u50AC Amazon Bedrock \u30CF\u30F3\u30BA\u30AA\u30F3|2026-07-17"
   },
   {
     "Title": "\u7B2C10\u56DE\u718A\u672C\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7 Summer",
     "Date": "2026-07-17",
-    "Location": "\u718A\u672C",
-    "Url": "N/A",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u718A\u672C\u5E02",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C10\u56DE\u718A\u672C\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7 Summer|2026-07-17"
+  },
+  {
+    "Title": "AtCoder Beginner Contest 467",
+    "Date": "2026-07-18",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/abc467",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-18 21:00 JST \u958B\u50AC\uFF08\u7D04 100 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-18T21:00:00+09:00",
+    "EndsAt": "2026-07-18T22:40:00+09:00",
+    "Key": "AtCoder Beginner Contest 467|2026-07-18"
+  },
+  {
+    "Title": "estie \u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30B3\u30F3\u30C6\u30B9\u30C82026 \uFF08AtCoder Heuristic Contest 068\uFF09",
+    "Date": "2026-07-18",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/ahc068",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-18 15:00 JST \u958B\u50AC\uFF08\u7D04 240 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-18T15:00:00+09:00",
+    "EndsAt": "2026-07-18T19:00:00+09:00",
+    "Key": "estie \u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30B3\u30F3\u30C6\u30B9\u30C82026 \uFF08AtCoder Heuristic Contest 068\uFF09|2026-07-18"
+  },
+  {
+    "Title": "\u65E5\u672C\u5316\u5B66\u4F1A\u5317\u6D77\u9053\u652F\u90E82026\u5E74\u590F\u5B63\u7814\u7A76\u767A\u8868\u4F1A",
+    "Date": "2026-07-18",
+    "Location": "\u5317\u6D77\u9053",
+    "Url": "https://www.chemistry.or.jp/",
+    "Theme": "\u5316\u5B66",
+    "Summary": "\u5317\u6D77\u9053\u652F\u90E8\u306B\u3088\u308B\u590F\u5B63\u7814\u7A76\u767A\u8868\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u65E5\u672C\u5316\u5B66\u4F1A\u5317\u6D77\u9053\u652F\u90E82026\u5E74\u590F\u5B63\u7814\u7A76\u767A\u8868\u4F1A|2026-07-18"
+  },
+  {
+    "Title": "AtCoder Regular Contest 225",
+    "Date": "2026-07-19",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/arc225",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-19 21:00 JST \u958B\u50AC\uFF08\u7D04 120 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-19T21:00:00+09:00",
+    "EndsAt": "2026-07-19T23:00:00+09:00",
+    "Key": "AtCoder Regular Contest 225|2026-07-19"
   },
   {
     "Title": "\u7B2C7\u56DE\u8239\u6A4B\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7",
     "Date": "2026-07-23",
-    "Location": "\u8239\u6A4B",
-    "Url": "N/A",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u5343\u8449\u770C\u8239\u6A4B\u5E02",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C7\u56DE\u8239\u6A4B\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7|2026-07-23"
   },
   {
     "Title": "\u7B2C4\u56DE\u5C71\u5F62\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7",
     "Date": "2026-07-24",
-    "Location": "\u5C71\u5F62",
-    "Url": "N/A",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u5C71\u5F62\u770C",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C4\u56DE\u5C71\u5F62\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7|2026-07-24"
+  },
+  {
+    "Title": "AtCoder Beginner Contest 468",
+    "Date": "2026-07-25",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/abc468",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-25 21:00 JST \u958B\u50AC\uFF08\u7D04 100 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-25T21:00:00+09:00",
+    "EndsAt": "2026-07-25T22:40:00+09:00",
+    "Key": "AtCoder Beginner Contest 468|2026-07-25"
   },
   {
     "Title": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 5th\u30E9\u30A6\u30F3\u30C9",
@@ -87,6 +171,8 @@
     "Url": "https://www.aifestival.jp/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "3\u6642\u9593\u5236\u9650\u6642\u9593\u30672\u4EBA1\u30C1\u30FC\u30E0\u5BFE\u6297\u6226\u306B\u3088\u308BAI\u30CF\u30C3\u30AB\u30BD\u30F3\u4E88\u9078\u4F1A\uFF08\u6771\u4EAC\u4F1A\u5834\uFF09",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 5th\u30E9\u30A6\u30F3\u30C9|2026-07-25"
   },
   {
@@ -96,6 +182,8 @@
     "Url": "https://www.aifestival.jp/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "3\u6642\u9593\u306E\u5236\u9650\u6642\u9593\u5185\u306B\u30C6\u30FC\u30DE\u306B\u6CBF\u3063\u305F\u4F5C\u54C1\u3092\u5236\u4F5C\u3059\u308B\u30CF\u30C3\u30AB\u30BD\u30F3\u5927\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u4E88\u90785th\u30E9\u30A6\u30F3\u30C9|2026-07-25"
   },
   {
@@ -105,7 +193,20 @@
     "Url": "https://thirdwave.dospara.co.jp/",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "2\u4EBA1\u7D44\u30C1\u30FC\u30E0\u5BFE\u6297\u30673\u6642\u9593\u306E\u5236\u9650\u6642\u9593\u5185\u306BWeb\u30D6\u30E9\u30A6\u30B6\u304B\u3089\u4F53\u9A13\u3067\u304D\u308B\u4F5C\u54C1\u3092\u5236\u4F5C\u3059\u308BAI\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u4E88\u90785th\u30E9\u30A6\u30F3\u30C9\uFF08\u30AA\u30D5\u30E9\u30A4\u30F3\u6771\u4EAC\u4F1A\u5834\uFF09|2026-07-25"
+  },
+  {
+    "Title": "\u5316\u5B66\u3078\u306E\u62DB\u5F85\uFF08\u6771\u5317\u652F\u90E8\u7B2C358\u56DE\u5F18\u524D\u5927\u5B661\u65E5\u4F53\u9A13\u5316\u5B66\u6559\u5BA4\uFF09",
+    "Date": "2026-07-25",
+    "Location": "\u5F18\u524D",
+    "Url": "https://www.chemistry.or.jp/",
+    "Theme": "\u5316\u5B66\uFF08\u4E00\u822C\u5411\u3051\uFF09",
+    "Summary": "\u5F18\u524D\u5927\u5B66\u3067\u958B\u50AC\u3055\u308C\u308B\u4F53\u9A13\u5316\u5B66\u6559\u5BA4",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u5316\u5B66\u3078\u306E\u62DB\u5F85\uFF08\u6771\u5317\u652F\u90E8\u7B2C358\u56DE\u5F18\u524D\u5927\u5B661\u65E5\u4F53\u9A13\u5316\u5B66\u6559\u5BA4\uFF09|2026-07-25"
   },
   {
     "Title": "\u7B2C52\u56DE \u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7 in \u4E0A\u5317\u6CA2\u300C\u30BF\u30F3\u30D1\u30AF\u8CEA\u306E \u304B\u305F\u3061 \u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u300D",
@@ -114,6 +215,8 @@
     "Url": "https://cafesci-portal.seesaa.net/category/867419-1.html",
     "Theme": "\u751F\u5316\u5B66\u30FB\u4E00\u822C\u79D1\u5B66",
     "Summary": "\u6771\u4EAC\u90FD\u533B\u5B66\u7DCF\u5408\u7814\u7A76\u6240\u306B\u3088\u308B\u4E2D\u5B66\u751F\u30FB\u9AD8\u6821\u751F\u5BFE\u8C61\u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C52\u56DE \u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7 in \u4E0A\u5317\u6CA2\u300C\u30BF\u30F3\u30D1\u30AF\u8CEA\u306E \u304B\u305F\u3061 \u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u300D|2026-07-25"
   },
   {
@@ -123,16 +226,53 @@
     "Url": "N/A",
     "Theme": "\u79D1\u5B66\u5168\u822C",
     "Summary": "\u7406\u5316\u5B66\u7814\u7A76\u6240\u306B\u3088\u308B\u4E00\u822C\u5411\u3051\u79D1\u5B66\u4F53\u9A13\u30A4\u30D9\u30F3\u30C8",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7406\u5316\u5B66\u7814\u7A76\u6240 \u6700\u5148\u7AEF\u7814\u7A76\u7D39\u4ECB\u3068\u5B9F\u9A13\u4F53\u9A13\u4F1A|2026-07-30"
+  },
+  {
+    "Title": "RECRUIT \u65E5\u672C\u6A4B\u30CF\u30FC\u30D5\u30DE\u30E9\u30BD\u30F3 2026\u590F\uFF08AtCoder Heuristic Contest 069\uFF09",
+    "Date": "2026-07-31",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/ahc069",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-07-31 19:00 JST \u958B\u50AC\uFF08\u7D04 14400 \u5206\uFF09\u3002",
+    "StartsAt": "2026-07-31T19:00:00+09:00",
+    "EndsAt": "2026-08-10T19:00:00+09:00",
+    "Key": "RECRUIT \u65E5\u672C\u6A4B\u30CF\u30FC\u30D5\u30DE\u30E9\u30BD\u30F3 2026\u590F\uFF08AtCoder Heuristic Contest 069\uFF09|2026-07-31"
   },
   {
     "Title": "\u7B2C1\u56DE\u3064\u304F\u3070\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7",
     "Date": "2026-07-31",
-    "Location": "\u3064\u304F\u3070",
-    "Url": "N/A",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u8328\u57CE\u770C\u3064\u304F\u3070\u5E02",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C1\u56DE\u3064\u304F\u3070\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A7|2026-07-31"
+  },
+  {
+    "Title": "AtCoder Beginner Contest 469",
+    "Date": "2026-08-01",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/abc469",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-08-01 21:00 JST \u958B\u50AC\uFF08\u7D04 100 \u5206\uFF09\u3002",
+    "StartsAt": "2026-08-01T21:00:00+09:00",
+    "EndsAt": "2026-08-01T22:40:00+09:00",
+    "Key": "AtCoder Beginner Contest 469|2026-08-01"
+  },
+  {
+    "Title": "JMO\u590F\u5B63\u30BB\u30DF\u30CA\u30FC",
+    "Date": "2026-08-02",
+    "Location": "\u5C71\u68A8\u770C\u5317\u675C\u5E02",
+    "Url": "https://jmoss.jp/",
+    "Theme": "\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u30FB\u6570\u5B66\u30BB\u30DF\u30CA\u30FC",
+    "Summary": "\u4E2D\u9AD8\u751F\u304C\u6570\u5B66\u306E\u672C\u3092\u8F2A\u8AAD\u30FB\u8B70\u8AD6\u3059\u308B1\u9031\u9593\u306E\u5408\u5BBF\u5F62\u5F0F\u30BB\u30DF\u30CA\u30FC",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "JMO\u590F\u5B63\u30BB\u30DF\u30CA\u30FC|2026-08-02"
   },
   {
     "Title": "JMO\u590F\u5B63\u30BB\u30DF\u30CA\u30FC 2026",
@@ -141,6 +281,8 @@
     "Url": "https://jmoss.jp/index.php?type=2026",
     "Theme": "\u6570\u5B66\u7CFB\u30BB\u30DF\u30CA\u30FC\u30FB\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF",
     "Summary": "\u4E2D\u9AD8\u751F\u5411\u3051\u306E\u6570\u5B66\u30BB\u30DF\u30CA\u30FC\u3067\u3001\u73ED\u5206\u3051\u3057\u3066\u66F8\u7C4D\u8AAD\u307F\u767A\u8868\u30FB\u8B70\u8AD6\u3092\u884C\u3044\u3001\u5B66\u6821\u306E\u52C9\u5F37\u3068\u306F\u7570\u306A\u308B\u6570\u5B66\u3092\u4F53\u9A13\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "JMO\u590F\u5B63\u30BB\u30DF\u30CA\u30FC 2026|2026-08-02"
   },
   {
@@ -150,6 +292,8 @@
     "Url": "https://mineralfesta.info/tokyo/",
     "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
     "Summary": "\u5929\u7136\u77F3\u3001\u9271\u7269\u3001\u5B9D\u77F3\u3001\u5316\u77F3\u3001\u30D3\u30FC\u30BA\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C18\u56DE\u30DF\u30CD\u30E9\u30EB\u30D5\u30A7\u30B9\u30BF in \u6771\u4EAC|2026-08-07"
   },
   {
@@ -159,16 +303,42 @@
     "Url": "https://www.craftstadium.com/en/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "\u30AA\u30F3\u30E9\u30A4\u30F3\u958B\u50AC\u306E\u4F01\u696D\u8CDE\u3042\u308A\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "Findy \u30CF\u30C3\u30AB\u30BD\u30F3|2026-08-08"
+  },
+  {
+    "Title": "\u56FD\u7ACB\u79D1\u5B66\u535A\u7269\u9928\u4E0A\u91CE\u672C\u9928\u3067\u306E\u5B9F\u9A13\u5B9F\u7FD2\uFF088\u67088\u65E5\uFF09",
+    "Date": "2026-08-08",
+    "Location": "\u6771\u4EAC",
+    "Url": "https://kanto.csj.jp/",
+    "Theme": "\u79D1\u5B66\uFF08\u4E00\u822C\u5411\u3051\uFF09",
+    "Summary": "\u56FD\u7ACB\u79D1\u5B66\u535A\u7269\u9928\u3067\u958B\u50AC\u3055\u308C\u308B\u5B9F\u9A13\u5B9F\u7FD2",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u56FD\u7ACB\u79D1\u5B66\u535A\u7269\u9928\u4E0A\u91CE\u672C\u9928\u3067\u306E\u5B9F\u9A13\u5B9F\u7FD2\uFF088\u67088\u65E5\uFF09|2026-08-08"
   },
   {
     "Title": "AI HACKATHON 2026",
     "Date": "2026-08-08 to 2026-08-16",
-    "Location": "Tokyo",
+    "Location": "Tokyo (On-site and Online hybrid)",
     "Url": "https://aihackathon.jp/",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
-    "Summary": "\u8CDE\u91D1\u7DCF\u984D100\u4E07\u5186\u306EAI\u30CF\u30C3\u30AB\u30BD\u30F3\u3001\u500B\u4EBA\u307E\u305F\u306F\u30C1\u30FC\u30E0\u53C2\u52A0\u53EF\u3001\u4E2D\u9593\u671F\u9593\u306F\u30AA\u30F3\u30E9\u30A4\u30F3\u5236\u4F5C",
+    "Summary": "2026\u5E748\u67088\u65E5(\u571F)\u301C16\u65E5(\u65E5)\u958B\u50AC\u3001\u8CDE\u91D1\u7DCF\u984D100\u4E07\u5186\u306EAI\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "AI HACKATHON 2026|2026-08-08"
+  },
+  {
+    "Title": "\u30E6\u30CB\u30FC\u30AF\u30D3\u30B8\u30E7\u30F3\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30B3\u30F3\u30C6\u30B9\u30C82026 \u590F\uFF08AtCoder Regular Contest 226\uFF09",
+    "Date": "2026-08-09",
+    "Location": "Online",
+    "Url": "https://atcoder.jp/contests/arc226",
+    "Theme": "\u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\uFF08AtCoder\uFF09",
+    "Summary": "2026-08-09 21:00 JST \u958B\u50AC\uFF08\u7D04 120 \u5206\uFF09\u3002",
+    "StartsAt": "2026-08-09T21:00:00+09:00",
+    "EndsAt": "2026-08-09T23:00:00+09:00",
+    "Key": "\u30E6\u30CB\u30FC\u30AF\u30D3\u30B8\u30E7\u30F3\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30B3\u30F3\u30C6\u30B9\u30C82026 \u590F\uFF08AtCoder Regular Contest 226\uFF09|2026-08-09"
   },
   {
     "Title": "Tornado2026",
@@ -177,6 +347,8 @@
     "Url": "https://www.craftstadium.com/en/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "\u4EA4\u901A\u8CBB\u88DC\u52A9\u3042\u308A\u3001\u8CDE\u91D1\u7DCF\u984D60\u4E07\u5186\u8D85\u306E\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "Tornado2026|2026-08-17"
   },
   {
@@ -186,6 +358,8 @@
     "Url": "https://techplay.jp/event/tag/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "\u5B66\u751F\u5411\u3051\u306E\u30AA\u30F3\u30E9\u30A4\u30F3\u30CF\u30C3\u30AB\u30BD\u30F3\u30D7\u30ED\u30B0\u30E9\u30E0\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5B66\u751F\u306E\u305F\u3081\u306E\u5B9F\u8DF5\u578B\u30CF\u30C3\u30AB\u30BD\u30F3\u30D7\u30ED\u30B0\u30E9\u30E0\u300ETornado2026\u300F|2026-08-17"
   },
   {
@@ -195,6 +369,8 @@
     "Url": "https://cafesci-portal.seesaa.net/category/867419-1.html",
     "Theme": "\u5730\u5B66\u30FB\u5730\u7403\u74B0\u5883",
     "Summary": "\u56FD\u7ACB\u6975\u5730\u7814\u7A76\u6240\u306B\u3088\u308B\u5C0F\u5B664-6\u5E74\u751F\u5BFE\u8C61\u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u6975\u5730\u7814\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7\u300C\u3082\u3063\u3068\u77E5\u308A\u305F\u3044\uFF01\u5317\u6975\uFF01\u300D|2026-08-21"
   },
   {
@@ -204,6 +380,8 @@
     "Url": "https://www.aifestival.jp/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "3\u6642\u9593\u5236\u9650\u6642\u9593\u30672\u4EBA1\u30C1\u30FC\u30E0\u5BFE\u6297\u6226\u306B\u3088\u308BAI\u30CF\u30C3\u30AB\u30BD\u30F3\u4E88\u9078\u4F1A\uFF08\u30AA\u30F3\u30E9\u30A4\u30F3\u4F1A\u5834\uFF09",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 6th\u30E9\u30A6\u30F3\u30C9|2026-08-22"
   },
   {
@@ -212,7 +390,9 @@
     "Location": "Online",
     "Url": "https://www.aifestival.jp/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
-    "Summary": "AI\u30CF\u30C3\u30AB\u30BD\u30F3\u306E\u6700\u5F8C\u306E\u4E88\u9078\u3067\u30012\u4EBA1\u7D44\u306E\u30C1\u30FC\u30E0\u5BFE\u6297\u6226\u30013\u6642\u9593\u306E\u5236\u9650\u6642\u9593\u5185\u306BWeb\u30D6\u30E9\u30A6\u30B6\u30FC\u304B\u3089\u4F53\u9A13\u3067\u304D\u308B\u4F5C\u54C1\u3092\u5236\u5236\u3059\u308B",
+    "Summary": "\u6700\u5F8C\u306E\u4E88\u9078\u3068\u306A\u308B\u4E88\u90786th\u30E9\u30A6\u30F3\u30C9\u300C\u30AA\u30F3\u30E9\u30A4\u30F3\u4F1A\u5834\u300D\u306E\u53C2\u52A0\u30A8\u30F3\u30C8\u30EA\u30FC\u53D7\u4ED8\u304C7\u670815\u65E5\u307E\u3067\u5B9F\u65BD\u3055\u308C\u30016th\u30E9\u30A6\u30F3\u30C9\u306E\u958B\u50AC\u65E5\u306F8\u670822\u65E5\u3092\u4E88\u5B9A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u4E88\u90786th\u30E9\u30A6\u30F3\u30C9|2026-08-22"
   },
   {
@@ -222,6 +402,8 @@
     "Url": "https://www.craftstadium.com/en/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "Web\u958B\u767A\u3068\u30E2\u30D0\u30A4\u30EB\u958B\u767A\u3092\u5BFE\u8C61\u3068\u3057\u305F\u521D\u5FC3\u8005\u5411\u3051\u30CF\u30C3\u30AB\u30BD\u30F3",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u95A2\u897F\u30D3\u30AE\u30CA\u30FC\u30BA\u30CF\u30C3\u30AB\u30BD\u30F3|2026-08-28"
   },
   {
@@ -231,15 +413,30 @@
     "Url": "https://www.aifestival.jp/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "AI\u30CF\u30C3\u30AB\u30BD\u30F3\u306E\u6557\u8005\u5FA9\u6D3B\u6226\u30012026\u5E749\u6708\u306B\u30AA\u30F3\u30E9\u30A4\u30F3\u3067\u5B9F\u65BD\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u6557\u8005\u5FA9\u6D3B\u6226|2026-09"
   },
   {
+    "Title": "\u7B2C27\u56DE\u300C\u77F3\u306E\u796D\u5178\u300D\u3055\u3063\u307D\u308D\u30DF\u30CD\u30E9\u30EB\u30B7\u30E7\u30FC",
+    "Date": "2026-09",
+    "Location": "\u672D\u5E4C\u5E02",
+    "Url": "https://www.blackopal.co.jp/page/8",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u7B2C27\u56DE\u300C\u77F3\u306E\u796D\u5178\u300D\u3055\u3063\u307D\u308D\u30DF\u30CD\u30E9\u30EB\u30B7\u30E7\u30FC|2026-09"
+  },
+  {
     "Title": "\u30DF\u30CD\u30E9\u30EB\u30B6\u30EF\u30FC\u30EB\u30C9in\u65E5\u672C\u6A4B2026",
-    "Date": "2026-09-04 to 2026-09-06",
-    "Location": "\u6771\u4EAC\uFF08\u65E5\u672C\u6A4B\u30D7\u30E9\u30B6\uFF09",
-    "Url": "N/A",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u306B\u95A2\u3059\u308B\u5C55\u793A\u4F1A\u30FB\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3001\u5316\u77F3\u306A\u3069\u3092\u8CA9\u58F2\u3059\u308B\u5C55\u793A\u5373\u58F2\u4F1A\u3002",
+    "Date": "2026-09-04",
+    "Location": "\u6771\u4EAC\u90FD",
+    "Url": "https://www.blackopal.co.jp/page/8",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u9271\u7269\u30FB\u5316\u77F3\u30FB\u30B8\u30E5\u30A8\u30EA\u30FC\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u30DF\u30CD\u30E9\u30EB\u30B6\u30EF\u30FC\u30EB\u30C9in\u65E5\u672C\u6A4B2026|2026-09-04"
   },
   {
@@ -249,16 +446,31 @@
     "Url": "https://jawssonic2026.jaws-ug.jp/",
     "Theme": "JAWS-UG\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u30A4\u30D9\u30F3\u30C8",
     "Summary": "JAWS-UG\u306B\u3088\u308B24\u6642\u9593\u30AA\u30F3\u30E9\u30A4\u30F3\u30EA\u30EC\u30FC\u30A4\u30D9\u30F3\u30C8\u3001\u5168\u56FD\u7D048\u5272\u306E\u652F\u90E8\u304C\u53C2\u52A0\u3057\u3001\u521D\u5FC3\u8005\u304B\u3089\u30D9\u30C6\u30E9\u30F3\u307E\u3067\u5BFE\u8C61\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "JAWS SONIC \u0026 MIDNIGHT JAWS 2026|2026-09-05"
   },
   {
     "Title": "JAWS SONIC 2026",
-    "Date": "2026-09-05:2026-09-06",
+    "Date": "2026-09-05\uFF5E06",
     "Location": "N/A",
     "Url": "https://jaws-ug.jp/calendar/",
-    "Theme": "JAWS-UG\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u30A4\u30D9\u30F3\u30C8",
-    "Summary": "JAWS-UG\u304C\u958B\u50AC\u3059\u308B\u5168\u56FD\u898F\u6A21\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8",
+    "Theme": "JAWS-UG\u4E3B\u50AC\u30A4\u30D9\u30F3\u30C8",
+    "Summary": "JAWS-UG\u306E\u5168\u56FD\u898F\u6A21\u30A4\u30D9\u30F3\u30C8",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "JAWS SONIC 2026|2026-09-05"
+  },
+  {
+    "Title": "\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7 in \u6850\u751F3\u300C\u30DE\u30A4\u30AF\u30ED\u30D0\u30D6\u30EB\u3092\u4F7F\u3063\u305F\u6D17\u6D44\u300D",
+    "Date": "2026-09-12",
+    "Location": "\u6850\u751F\u5E02",
+    "Url": "https://cafesci-portal.seesaa.net/",
+    "Theme": "\u79D1\u5B66\uFF08\u5FDC\u7528\u7269\u7406\uFF09",
+    "Summary": "\u30DE\u30A4\u30AF\u30ED\u30D0\u30D6\u30EB\u306B\u3088\u308B\u6D17\u6D44\u6280\u8853\u306B\u3064\u3044\u3066\u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7 in \u6850\u751F3\u300C\u30DE\u30A4\u30AF\u30ED\u30D0\u30D6\u30EB\u3092\u4F7F\u3063\u305F\u6D17\u6D44\u300D|2026-09-12"
   },
   {
     "Title": "\u7B2C133\u5E74\u5B66\u8853\u5927\u4F1A\uFF082026\u5E74\u91D1\u6CA2\uFF09",
@@ -267,7 +479,20 @@
     "Url": "https://geosociety.jp/%E7%AC%AC133%E5%B9%B4%E5%AD%A6%E8%A1%93%E5%A4%A7%E4%BC%9A%EF%BC%882026%E5%B9%B4%E9%87%91%E6%B2%A2%EF%BC%89/",
     "Theme": "\u5730\u8CEA\u5B66\u5B66\u4F1A\u30FB\u7814\u7A76\u767A\u8868\u4F1A",
     "Summary": "\u65E5\u672C\u5730\u8CEA\u5B66\u4F1A\u306E\u5B66\u8853\u5927\u4F1A\u3067\u3001\u91D1\u6CA2\u5927\u5B66\u89D2\u9593\u30AD\u30E3\u30F3\u30D1\u30B9\u3067\u5BFE\u9762\u958B\u50AC",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C133\u5E74\u5B66\u8853\u5927\u4F1A\uFF082026\u5E74\u91D1\u6CA2\uFF09|2026-09-13"
+  },
+  {
+    "Title": "\u7B2C133\u5E74\u5B66\u8853\u5927\u4F1A\uFF082026\u91D1\u6CA2\u5927\u4F1A\uFF09",
+    "Date": "2026-09-13",
+    "Location": "\u91D1\u6CA2\u5E02",
+    "Url": "https://geosociety.jp/",
+    "Theme": "\u5730\u8CEA\u5B66\u4F1A\u5B66\u8853\u5927\u4F1A",
+    "Summary": "\u65E5\u672C\u5730\u8CEA\u5B66\u4F1A\u306E\u5E74\u6B21\u5B66\u8853\u5927\u4F1A\u3067\u3001\u91D1\u6CA2\u5927\u5B66\u3067\u958B\u50AC\u3055\u308C\u308B\u5730\u8CEA\u5B66\u7814\u7A76\u767A\u8868\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u7B2C133\u5E74\u5B66\u8853\u5927\u4F1A\uFF082026\u91D1\u6CA2\u5927\u4F1A\uFF09|2026-09-13"
   },
   {
     "Title": "\u65E5\u672C\u5206\u6790\u5316\u5B66\u4F1A \u7B2C72\u5E74\u4F1A",
@@ -276,7 +501,20 @@
     "Url": "https://conference.jsac.jp/",
     "Theme": "\u5206\u6790\u5316\u5B66",
     "Summary": "\u6771\u5317\u5927\u5B66\u3067\u958B\u50AC\u3055\u308C\u308B\u65E5\u672C\u5206\u6790\u5316\u5B66\u4F1A\u306E\u5E74\u4F1A\u30FB\u8A0E\u8AD6\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u65E5\u672C\u5206\u6790\u5316\u5B66\u4F1A \u7B2C72\u5E74\u4F1A|2026-09-15"
+  },
+  {
+    "Title": "\u65E5\u672C\u5206\u6790\u5316\u5B66\u4F1A\u5E74\u4F1A\u30FB\u8A0E\u8AD6\u4F1A",
+    "Date": "2026-09-15",
+    "Location": "\u4ED9\u53F0\u5E02",
+    "Url": "https://conference.jsac.jp/",
+    "Theme": "\u5206\u6790\u5316\u5B66",
+    "Summary": "\u6771\u5317\u5927\u5B66\u3067\u958B\u50AC\u3055\u308C\u308B\u5206\u6790\u5316\u5B66\u306E\u5E74\u4F1A\u30FB\u8A0E\u8AD6\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u65E5\u672C\u5206\u6790\u5316\u5B66\u4F1A\u5E74\u4F1A\u30FB\u8A0E\u8AD6\u4F1A|2026-09-15"
   },
   {
     "Title": "\u7B2C88\u56DE\u5206\u6790\u5316\u5B66\u5E74\u4F1A",
@@ -285,25 +523,42 @@
     "Url": "https://www.jsac.or.jp/~cs-jsac/meetings.html",
     "Theme": "\u5206\u6790\u5316\u5B66",
     "Summary": "\u65E5\u672C\u5206\u6790\u5316\u5B66\u4F1A\u306B\u3088\u308B\u5206\u6790\u5316\u5B66\u5206\u91CE\u306E\u5E74\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C88\u56DE\u5206\u6790\u5316\u5B66\u5E74\u4F1A|2026-09-15"
   },
   {
     "Title": "\u7B2C5\u56DE\u4EAC\u90FD\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A72026",
     "Date": "2026-09-18",
-    "Location": "\u4EAC\u90FD",
-    "Url": "https://www.mineralstone.info",
-    "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
-    "Summary": "\u5929\u7136\u77F3\u3084\u9271\u7269\u3001\u5B9D\u77F3\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Location": "\u4EAC\u90FD\u5E02",
+    "Url": "https://www.mineralstone.info/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u5929\u7136\u77F3\u30FB\u9271\u7269\u30FB\u5316\u77F3\u306A\u3069\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C5\u56DE\u4EAC\u90FD\u30DF\u30CD\u30E9\u30EB\u30DE\u30EB\u30B7\u30A72026|2026-09-18"
   },
   {
     "Title": "C# Kaigi 2026",
     "Date": "2026-09-19",
-    "Location": "Tokyo",
-    "Url": "https://csharpkaigi.connpass.com/event/394163/",
+    "Location": "\u6771\u4EAC",
+    "Url": "https://csharpkaigi.net/",
     "Theme": "C# / .NET \u95A2\u9023\u306E\u52C9\u5F37\u4F1A\u30FB\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9",
-    "Summary": "C#\u7279\u5316\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u3067\u3001C#er\u5411\u3051\u306B1\u65E5\u4E2DC#\u306B\u3064\u3044\u3066\u8A9E\u308A\u5408\u3046\u30A4\u30D9\u30F3\u30C8",
+    "Summary": "C#er \u306E\u305F\u3081\u306E C# \u7279\u5316\u578B\u30AB\u30F3\u30D5\u30A1\u30EC\u30F3\u30B9\u30012026\u5E749\u670819\u65E5 (\u571F) docomo R\u0026D OPEN LAB ODAIBA \u3067\u958B\u50AC",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "C# Kaigi 2026|2026-09-19"
+  },
+  {
+    "Title": "\u81EA\u9589\u75C7\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7",
+    "Date": "2026-09-22",
+    "Location": "\u91D1\u6CA2\u5E02",
+    "Url": "https://cafesci-portal.seesaa.net/",
+    "Theme": "\u79D1\u5B66\uFF08\u767A\u9054\u795E\u7D4C\u79D1\u5B66\uFF09",
+    "Summary": "\u91D1\u6CA2\u5927\u5B66\u5B50\u3069\u3082\u306E\u3053\u3053\u308D\u306E\u767A\u9054\u7814\u7A76\u30BB\u30F3\u30BF\u30FC\u4E3B\u50AC\u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u81EA\u9589\u75C7\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7|2026-09-22"
   },
   {
     "Title": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u6557\u8005\u5FA9\u6D3B\u6226",
@@ -312,7 +567,42 @@
     "Url": "https://www.aifestival.jp/hackathon",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "\u5404\u30D6\u30ED\u30C3\u30AF\u306E2\u4F4D\u30C1\u30FC\u30E0\u304C\u53C2\u52A0\u3059\u308B\u30CF\u30C3\u30AB\u30BD\u30F3\u6557\u8005\u5FA9\u6D3B\u6226",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u5168\u65E5\u672CAI\u30CF\u30C3\u30AB\u30BD\u30F3 2026 \u6557\u8005\u5FA9\u6D3B\u6226|2026-09-26"
+  },
+  {
+    "Title": "\u30C6\u30AF\u30CE\u30ED\u30B8\u30FC\u30AB\u30D5\u30A7\u300C\u6280\u8853\u958B\u767A\u306B\u3088\u308B\u74B0\u5883\u554F\u984C\u300D\u3092\u8003\u3048\u308B\uFF01",
+    "Date": "2026-09-27",
+    "Location": "\u540D\u53E4\u5C4B\u5E02",
+    "Url": "https://cafesci-portal.seesaa.net/",
+    "Theme": "\u79D1\u5B66\uFF08\u74B0\u5883\uFF09",
+    "Summary": "\u74B0\u5883\u554F\u984C\u306B\u3064\u3044\u3066\u8B70\u8AD6\u3059\u308B\u30C6\u30AF\u30CE\u30ED\u30B8\u30FC\u30AB\u30D5\u30A7",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u30C6\u30AF\u30CE\u30ED\u30B8\u30FC\u30AB\u30D5\u30A7\u300C\u6280\u8853\u958B\u767A\u306B\u3088\u308B\u74B0\u5883\u554F\u984C\u300D\u3092\u8003\u3048\u308B\uFF01|2026-09-27"
+  },
+  {
+    "Title": "\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7 in \u6850\u751F4\u300C\u81EA\u52D5\u8ECA\u7528\u30A8\u30F3\u30B8\u30F3\u306E\u7814\u7A76\u958B\u767A\u306F\u307E\u3060\u5FC5\u8981\u304B\uFF1F\u300D",
+    "Date": "2026-10-10",
+    "Location": "\u6850\u751F\u5E02",
+    "Url": "https://cafesci-portal.seesaa.net/",
+    "Theme": "\u79D1\u5B66\uFF08\u5DE5\u5B66\uFF09",
+    "Summary": "\u81EA\u52D5\u8ECA\u7528\u30A8\u30F3\u30B8\u30F3\u7814\u7A76\u958B\u767A\u306B\u3064\u3044\u3066\u306E\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u30B5\u30A4\u30A8\u30F3\u30B9\u30AB\u30D5\u30A7 in \u6850\u751F4\u300C\u81EA\u52D5\u8ECA\u7528\u30A8\u30F3\u30B8\u30F3\u306E\u7814\u7A76\u958B\u767A\u306F\u307E\u3060\u5FC5\u8981\u304B\uFF1F\u300D|2026-10-10"
+  },
+  {
+    "Title": "\u77F3\u3075\u3057\u304E\u5927\u767A\u898B\u5C55\uFF08\u7B2C38\u56DE\u4EAC\u90FD\u30DF\u30CD\u30E9\u30EB\u30B7\u30E7\u30FC\uFF09",
+    "Date": "2026-10-10",
+    "Location": "\u4EAC\u90FD\u5E02",
+    "Url": "https://mineralshow.jp/",
+    "Theme": "\u9271\u7269\u30FB\u5B9D\u77F3\u5C55\u793A\u5373\u58F2\u4F1A",
+    "Summary": "\u4E16\u754C\u4E2D\u304B\u3089\u96C6\u3081\u3089\u308C\u305F\u9271\u7269\u30FB\u5316\u77F3\u30FB\u77F3\u88FD\u54C1\u306E\u5C55\u793A\u5373\u58F2\u4F1A",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u77F3\u3075\u3057\u304E\u5927\u767A\u898B\u5C55\uFF08\u7B2C38\u56DE\u4EAC\u90FD\u30DF\u30CD\u30E9\u30EB\u30B7\u30E7\u30FC\uFF09|2026-10-10"
   },
   {
     "Title": "JAWS FESTA 2026",
@@ -321,6 +611,8 @@
     "Url": "https://jaws-ug.jp/calendar/",
     "Theme": "JAWS-UG\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u30A4\u30D9\u30F3\u30C8",
     "Summary": "JAWS-UG\u306E\u79CB\u306E\u5927\u898F\u6A21\u30A4\u30D9\u30F3\u30C8\uFF08\u8A73\u7D30\u60C5\u5831\u306F\u9650\u5B9A\u7684\uFF09\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "JAWS FESTA 2026|2026-11-07"
   },
   {
@@ -330,6 +622,8 @@
     "Url": "https://www.jseg.or.jp/",
     "Theme": "\u5730\u8CEA\u5B66\u30FB\u9271\u7269\u5B66\u95A2\u9023\u306E\u5B66\u4F1A\u30FB\u7814\u7A76\u767A\u8868\u4F1A",
     "Summary": "\u5FDC\u7528\u5730\u8CEA\u5B66\u306E\u7814\u7A76\u767A\u8868\u4F1A\u3068\u898B\u5B66\u4F1A\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "2026\u5E74\u5EA6\u65E5\u672C\u5FDC\u7528\u5730\u8CEA\u5B66\u4F1A\u7814\u7A76\u767A\u8868\u4F1A|2026-11-10"
   },
   {
@@ -339,6 +633,8 @@
     "Url": "https://www.imojp.org/domestic/jjmo_overview.html",
     "Theme": "\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF",
     "Summary": "\u4E2D\u5B66\u751F\u4EE5\u4E0B\u306E\u751F\u5F92\u3092\u5BFE\u8C61\u3068\u3057\u305F\u6570\u5B66\u30B3\u30F3\u30C6\u30B9\u30C8\u3067\u3001\u30AA\u30F3\u30E9\u30A4\u30F3\u3067\u5B9F\u65BD\u3055\u308C\u308B",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C25\u56DE\u65E5\u672C\u30B8\u30E5\u30CB\u30A2\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u4E88\u9078|2026-11-15"
   },
   {
@@ -348,7 +644,20 @@
     "Url": "https://www.imojp.org/domestic/jmo_overview.html",
     "Theme": "\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF",
     "Summary": "\u9AD8\u6821\u751F\u4EE5\u4E0B\u3092\u5BFE\u8C61\u3068\u3057\u305F\u6570\u5B66\u30B3\u30F3\u30C6\u30B9\u30C8\u3067\u3001\u4E88\u9078\u306F11\u6708\u7B2C3\u65E5\u66DC\u65E5\u306B\u5404\u90FD\u9053\u5E9C\u770C\u3067\u5B9F\u65BD\u3055\u308C\u308B",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C37\u56DE\u65E5\u672C\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u4E88\u9078|2026-11-15"
+  },
+  {
+    "Title": "\u7B2C37\u56DE\u65E5\u672C\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\uFF08JMO\uFF09\u4E88\u9078",
+    "Date": "2026-11-15",
+    "Location": "\u5404\u90FD\u9053\u5E9C\u770C",
+    "Url": "https://www.imojp.org/",
+    "Theme": "\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF",
+    "Summary": "\u9AD8\u6821\u751F\u4EE5\u4E0B\u5BFE\u8C61\u306711\u6708\u306B\u5B9F\u65BD\u3055\u308C\u308B\u6570\u5B66\u30B3\u30F3\u30C6\u30B9\u30C8\u4E88\u9078",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u7B2C37\u56DE\u65E5\u672C\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\uFF08JMO\uFF09\u4E88\u9078|2026-11-15"
   },
   {
     "Title": "\u7B2C25\u56DE\u798F\u5CA1\u30DF\u30CD\u30E9\u30EB\u30B7\u30E7\u30FC",
@@ -357,7 +666,20 @@
     "Url": "mineralshow.info",
     "Theme": "\u9271\u7269\u30FB\u9271\u77F3\u30FB\u5B9D\u77F3\u306B\u95A2\u3059\u308B\u5C55\u793A\u4F1A\u30FB\u5373\u58F2\u4F1A",
     "Summary": "\u5929\u7136\u77F3\u30FB\u30D1\u30EF\u30FC\u30B9\u30C8\u30FC\u30F3\u30FB\u9271\u7269\u30FB\u5B9D\u77F3\u30FB\u5316\u77F3\u306A\u3069\u306E\u5378\u30FB\u5C0F\u58F2\u696D\u8005\u304C\u96C6\u3046\u5C55\u793A\u5373\u58F2\u4F1A\u3002",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "\u7B2C25\u56DE\u798F\u5CA1\u30DF\u30CD\u30E9\u30EB\u30B7\u30E7\u30FC|2026-11-20"
+  },
+  {
+    "Title": "U-22 \u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30FB\u30B3\u30F3\u30C6\u30B9\u30C82026",
+    "Date": "2026-11-29",
+    "Location": "\u662D\u548C\u533B\u79D1\u5927\u5B66\u4E0A\u689D\u8A18\u5FF5\u9928",
+    "Url": "https://u22procon.com/",
+    "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30B3\u30F3\u30C6\u30B9\u30C8",
+    "Summary": "22\u6B73\u4EE5\u4E0B\u307E\u305F\u306F\u5B66\u751F28\u6B73\u4EE5\u4E0B\u304C\u5BFE\u8C61\u306E\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u4F5C\u54C1\u30B3\u30F3\u30C6\u30B9\u30C8",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "U-22 \u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30FB\u30B3\u30F3\u30C6\u30B9\u30C82026|2026-11-29"
   },
   {
     "Title": "AtCoder Conference 2026",
@@ -366,6 +688,8 @@
     "Url": "https://atcoder.jp",
     "Theme": "AtCoder Conference",
     "Summary": "AtCoder Conference 2026\u306F2026\u5E7412\u670819\u65E5\uFF08\u571F\uFF09\u958B\u50AC\u4E88\u5B9A",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "AtCoder Conference 2026|2026-12-19"
   },
   {
@@ -375,6 +699,8 @@
     "Url": "https://58hackathon.connpass.com/event/388565/",
     "Theme": "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u5168\u822C\u306E\u6280\u8853\u30A4\u30D9\u30F3\u30C8\u30FB\u30CF\u30C3\u30AB\u30BD\u30F3",
     "Summary": "\u95A2\u897F\u5B66\u751F\u30A8\u30F3\u30B8\u30CB\u30A2\u5411\u3051\u306E\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u30CF\u30C3\u30AB\u30BD\u30F3\uFF08\u30AA\u30F3\u30E9\u30A4\u30F3\uFF09",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "58\u30CF\u30C3\u30AB\u30BD\u30F32026|TBD"
   },
   {
@@ -384,6 +710,30 @@
     "Url": "https://onlinemathcontest.com",
     "Theme": "Online Math Contest",
     "Summary": "\u9031\u306B2\u56DE\u307B\u3069\u5E73\u65E5\u306E\u5348\u5F8C9\u6642\u304B\u3089\u958B\u304B\u308C\u3066\u3044\u308B\u6570\u5B66\u306E\u30B3\u30F3\u30C6\u30B9\u30C8",
+    "StartsAt": null,
+    "EndsAt": null,
     "Key": "Online Math Contest (OMC)|TBD"
+  },
+  {
+    "Title": "\u65E5\u672C\u30B8\u30E5\u30CB\u30A2\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\uFF08JJMO\uFF092026",
+    "Date": "TBD",
+    "Location": "\u5404\u90FD\u9053\u5E9C\u770C",
+    "Url": "https://www.imojp.org/",
+    "Theme": "\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF",
+    "Summary": "\u4E2D\u5B66\u751F\u4EE5\u4E0B\u5BFE\u8C61\u306E\u6570\u5B66\u30B3\u30F3\u30C6\u30B9\u30C8\u4E88\u9078\uFF08\u52DF\u96C6\u958B\u59CB7\u67081\u65E5\u3001\u7DE0\u52079\u670810\u65E5\uFF09",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u65E5\u672C\u30B8\u30E5\u30CB\u30A2\u6570\u5B66\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\uFF08JJMO\uFF092026|TBD"
+  },
+  {
+    "Title": "\u7B2C81\u56DE\u4E2D\u56FD\u56DB\u56FD\u7523\u5B66\u9023\u643A\u5316\u5B66\u30D5\u30A9\u30FC\u30E9\u30E0",
+    "Date": "TBD",
+    "Location": "N/A",
+    "Url": "https://www.chemistry.or.jp/",
+    "Theme": "\u5316\u5B66",
+    "Summary": "\u65E5\u672C\u5316\u5B66\u4F1A\u304C\u4E3B\u50AC\u3059\u308B\u7523\u5B66\u9023\u643A\u30D5\u30A9\u30FC\u30E9\u30E0",
+    "StartsAt": null,
+    "EndsAt": null,
+    "Key": "\u7B2C81\u56DE\u4E2D\u56FD\u56DB\u56FD\u7523\u5B66\u9023\u643A\u5316\u5B66\u30D5\u30A9\u30FC\u30E9\u30E0|TBD"
   }
 ]
