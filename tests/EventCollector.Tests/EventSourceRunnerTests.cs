@@ -80,7 +80,57 @@ public sealed class EventSourceRunnerTests
         Assert.Single(result.Events);
     }
 
-    private static EventItem Event(string title, string date) => new()
+    [Fact]
+    public async Task キー衝突時は時刻を持つ方を採用する()
+    {
+        var startsAt = new DateTimeOffset(2026, 8, 1, 21, 0, 0, TimeSpan.FromHours(9));
+        var sources = new IEventSource[]
+        {
+            // web_search（時刻なし）が先。dedup は本来先勝ちだが、時刻付きを優先すべき。
+            new FakeSource("web_search", [Event("ABC 400", "2026-08-01")]),
+            new FakeSource("AtCoder", [Event("ABC 400", "2026-08-01", startsAt)]),
+        };
+
+        CollectionRunResult result = await new EventSourceRunner().CollectAllAsync(sources);
+
+        EventItem only = Assert.Single(result.Events);
+        Assert.Equal(startsAt, only.StartsAt); // 時刻付きの API 版が残る
+    }
+
+    [Fact]
+    public async Task 時刻を持つ方が先に来た場合は時刻なしで上書きされない()
+    {
+        var startsAt = new DateTimeOffset(2026, 8, 1, 21, 0, 0, TimeSpan.FromHours(9));
+        var sources = new IEventSource[]
+        {
+            new FakeSource("AtCoder", [Event("ABC 400", "2026-08-01", startsAt)]),
+            new FakeSource("web_search", [Event("ABC 400", "2026-08-01")]),
+        };
+
+        CollectionRunResult result = await new EventSourceRunner().CollectAllAsync(sources);
+
+        EventItem only = Assert.Single(result.Events);
+        Assert.Equal(startsAt, only.StartsAt); // 後続の時刻なし版に負けない
+    }
+
+    [Fact]
+    public async Task 時刻ありに差し替わった後は後続の時刻なしで戻らない()
+    {
+        var startsAt = new DateTimeOffset(2026, 8, 1, 21, 0, 0, TimeSpan.FromHours(9));
+        var sources = new IEventSource[]
+        {
+            new FakeSource("web_search1", [Event("ABC 400", "2026-08-01")]),
+            new FakeSource("AtCoder", [Event("ABC 400", "2026-08-01", startsAt)]),
+            new FakeSource("web_search2", [Event("ABC 400", "2026-08-01")]),
+        };
+
+        CollectionRunResult result = await new EventSourceRunner().CollectAllAsync(sources);
+
+        EventItem only = Assert.Single(result.Events);
+        Assert.Equal(startsAt, only.StartsAt); // 差し替え後は時刻なしに戻らない
+    }
+
+    private static EventItem Event(string title, string date, DateTimeOffset? startsAt = null) => new()
     {
         Title = title,
         Date = date,
@@ -88,6 +138,7 @@ public sealed class EventSourceRunnerTests
         Url = "N/A",
         Theme = "test",
         Summary = "テスト用イベント",
+        StartsAt = startsAt,
     };
 
     /// <summary>固定のイベントを返す収集源。</summary>
