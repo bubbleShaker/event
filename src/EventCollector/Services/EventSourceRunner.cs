@@ -64,18 +64,34 @@ public sealed class EventSourceRunner
 
     /// <summary>
     /// <see cref="EventItem.Key"/>（イベント名＋正規化日付）で重複を除去する。
-    /// 先に現れたものを採用し、収集源をまたいだ同一イベントの重複を防ぐ。
+    /// 基本は先に現れたものを採用するが、キーが衝突したとき後続が
+    /// <see cref="EventItem.StartsAt"/>（確定した開始時刻）を持ち既存が持たない場合は差し替える。
+    /// これにより web_search（時刻なし）と AtCoder API（時刻あり）が同一コンテストを返しても、
+    /// 収集源の並び順に依存せず時刻付きイベントとしてカレンダーに載る。
+    /// 出現順は最初に採用した位置を保ち、差し替え時は中身だけ入れ替える。
     /// </summary>
     private static IReadOnlyList<EventItem> Deduplicate(IReadOnlyList<EventItem> items)
     {
-        HashSet<string> seen = [];
+        Dictionary<string, int> indexByKey = [];
         List<EventItem> unique = [];
         foreach (EventItem item in items)
         {
-            if (seen.Add(item.Key))
+            if (indexByKey.TryGetValue(item.Key, out int existingIndex))
             {
-                unique.Add(item);
+                // 既存が時刻を持たず、今回が時刻を持つなら、確定情報を持つ側へレコードごと差し替える
+                // （時刻だけの移植ではなく、URL・概要も確定源の値を採用する）。
+                // 逆向き（時刻あり→なし）と、両方が時刻を持つ衝突は先勝ちのまま。確定情報同士は
+                // 最初に採った源を信頼し、後続の揺らぎで上書きしない。
+                if (unique[existingIndex].StartsAt is null && item.StartsAt is not null)
+                {
+                    unique[existingIndex] = item;
+                }
+
+                continue;
             }
+
+            indexByKey[item.Key] = unique.Count;
+            unique.Add(item);
         }
 
         return unique;
