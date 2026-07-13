@@ -1,6 +1,21 @@
 # イベント一覧
 
-最終更新: 2026-07-10 12:26 / 67 件
+最終更新: 2026-07-13 03:32 / 82 件
+
+## AWS
+
+- **JAWS-UG東京 ランチタイムLT会 #37**（2026-07-22 / N/A）
+  - JAWS-UG東京 ランチタイムLT会 #37
+  - https://jaws-ug.jp/calendar/
+- **JAWS-UG朝会 #83**（2026-07-27 / N/A）
+  - JAWS-UG朝会 #83
+  - https://jaws-ug.jp/calendar/
+- **JAWS-UG朝会 #84**（2026-08-25 / N/A）
+  - JAWS-UG朝会 #84
+  - https://jaws-ug.jp/calendar/
+- **JAWS SONIC 2026**（2026-09-05 / N/A）
+  - JAWS SONIC 2026
+  - https://jaws-ug.jp/calendar/
 
 ## AtCoder Conference
 
@@ -8,10 +23,10 @@
   - AtCoder Conference 2026は2026年12月19日（土）開催予定
   - https://atcoder.jp
 
-## C# / .NET 関連の勉強会・カンファレンス
+## C# / .NET関連
 
-- **C# Kaigi 2026**（2026-09-19 / 東京）
-  - C#er のための C# 特化型カンファレンス、2026年9月19日 (土) docomo R&D OPEN LAB ODAIBA で開催
+- **C# Kaigi 2026**（2026-09-19 / 東京都(お台場)）
+  - C#er向けのC#特化型カンファレンス
   - https://csharpkaigi.net/
 
 ## JAWS-UGコミュニティイベント
@@ -28,12 +43,6 @@
 - **JAWS-UG初心者支部#86 関西開催 Amazon Bedrock ハンズオン**（2026-07-17 / 大阪（グランフロント大阪））
   - Amazon BedrockをAPI経由で操作し、生成AIの活用法をハンズオン形式で学ぶ。
   - https://jawsug-bgnr.connpass.com/event/396787/
-
-## JAWS-UG主催イベント
-
-- **JAWS SONIC 2026**（2026-09-05～06 / N/A）
-  - JAWS-UGの全国規模イベント
-  - https://jaws-ug.jp/calendar/
 
 ## Online Math Contest
 
@@ -61,9 +70,6 @@
 - **Findy ハッカソン**（2026-08-08 / Online）
   - オンライン開催の企業賞ありプログラミングハッカソン
   - https://www.craftstadium.com/en/hackathon
-- **AI HACKATHON 2026**（2026-08-08 to 2026-08-16 / Tokyo (On-site and Online hybrid)）
-  - 2026年8月8日(土)〜16日(日)開催、賞金総額100万円のAIハッカソン
-  - https://aihackathon.jp/
 - **Tornado2026**（2026-08-17 to 2026-09-05 / Tokyo, Osaka, Fukuoka, Sapporo）
   - 交通費補助あり、賞金総額60万円超のプログラミングハッカソン
   - https://www.craftstadium.com/en/hackathon
@@ -72,9 +78,6 @@
   - https://techplay.jp/event/tag/hackathon
 - **全日本AIハッカソン 2026 6thラウンド**（2026-08-22 / Online）
   - 3時間制限時間で2人1チーム対抗戦によるAIハッカソン予選会（オンライン会場）
-  - https://www.aifestival.jp/hackathon
-- **全日本AIハッカソン 2026 予選6thラウンド**（2026-08-22 / Online）
-  - 最後の予選となる予選6thラウンド「オンライン会場」の参加エントリー受付が7月15日まで実施され、6thラウンドの開催日は8月22日を予定
   - https://www.aifestival.jp/hackathon
 - **関西ビギナーズハッカソン**（2026-08-28 to 2026-08-30 / N/A）
   - Web開発とモバイル開発を対象とした初心者向けハッカソン
@@ -89,11 +92,20 @@
   - 関西学生エンジニア向けのプログラミングハッカソン（オンライン）
   - https://58hackathon.connpass.com/event/388565/
 
-## 個人開発・インディー開発に関するイベント
+## プログラミング全般・AI・ハッカソン
 
-- **OPEN GAME FEST 2026**（2026-07-11 / Kyoto）
-  - 2026年7月11日に京都コンピュータ学院で開催されるインディーゲームイベント
-  - https://opengamefest.jp/
+- **全日本AIハッカソン 2026 予選6thラウンド**（2026-08-22 / Online）
+  - オンライン開催の最終予選ハッカソン
+  - https://www.aifestadium.jp/hackathon
+
+## プログラミング全般・ハッカソン
+
+- **AI HACKATHON 2026**（2026-08-08 / 東京都）
+  - 9日間の集中開発でAIプロダクトを制作するハッカソン
+  - https://aihackathon.jp/
+- **都知事杯オープンデータ・ハッカソン 2026**（TBD / 東京都）
+  - 社会課題解決に向けたオープンデータ活用ハッカソン
+  - https://odhackathon.metro.tokyo.lg.jp/
 
 ## 分析化学
 
@@ -110,11 +122,32 @@
 ## 化学
 
 - **日本化学会北海道支部2026年夏季研究発表会**（2026-07-18 / 北海道）
-  - 北海道支部による夏季研究発表会
-  - https://www.chemistry.or.jp/
+  - 北海道地域の化学研究発表会
+  - https://www.chemistry.or.jp/event/calendar/index.html
+- **化学への招待-山形大学実験講義体験**（2026-07-25 / 山形県）
+  - 一般向け化学実験講義体験
+  - https://www.chemistry.or.jp/event/calendar/index.html
+- **化学への招待-弘前大学1日体験化学教室**（2026-07-25 / 青森県）
+  - 一般向け化学体験教室
+  - https://www.chemistry.or.jp/event/calendar/index.html
+- **夢・化学-21夏休み子ども化学実験ショー2026**（2026-08-01 / N/A）
+  - 子ども向け化学実験の実演とワークショップ
+  - https://www.chemistry.or.jp/event/calendar/index.html
 - **第81回中国四国産学連携化学フォーラム**（TBD / N/A）
   - 日本化学会が主催する産学連携フォーラム
   - https://www.chemistry.or.jp/
+
+## 化学・科学全般
+
+- **理化学研究所最先端研究紹介と実験体験会**（2026-07-30 / 埼玉県）
+  - 理化学研究所による最先端研究の紹介と実験体験
+  - https://www.chemistry.or.jp/event/calendar/index.html
+- **サイエンス・フェスタ2026大阪大会**（2026-08-15,16 / 大阪市天王寺区）
+  - 青少年向け科学実験と工作教室の祭典
+  - https://www.pesj-bkk.jp/OSF/
+- **サイエンスカフェin桐生3「マイクロバブルを使った洗浄」**（2026-09-12 / 群馬県桐生市）
+  - マイクロバブル技術についての科学カフェ
+  - https://cafesci-portal.seesaa.net/
 
 ## 化学（コロイド・界面化学）
 
@@ -128,11 +161,35 @@
   - 弘前大学で開催される体験化学教室
   - https://www.chemistry.or.jp/
 
+## 化学（分析化学）
+
+- **日本分析化学会第75年会**（2026-09-15,17 / 宮城県仙台市）
+  - 分析化学の年会で研究発表会
+  - https://www.jsac.or.jp/~cs-jsac/meetings.html
+
+## 化学（界面・コロイド化学）
+
+- **界面コロイドラーニング第42回**（2026-07-16 / 大阪）
+  - 現代コロイド・界面化学の基礎講座
+  - https://www.chemistry.or.jp/event/calendar/index.html
+
 ## 地学・地球環境
 
 - **極地研サイエンスカフェ「もっと知りたい！北極！」**（2026-08-21 / 立川市）
   - 国立極地研究所による小学4-6年生対象のサイエンスカフェ
   - https://cafesci-portal.seesaa.net/category/867419-1.html
+
+## 地質学・鉱物学の学会・市民セミナー
+
+- **日本地質学会第11回ショートコース（微化石）**（2026-07-21 / Online）
+  - 微化石に関するショートコース講座。
+  - https://geosociety.jp
+
+## 地質学・鉱物学の学会・研究発表会
+
+- **日本地質学会第133年学術大会（2026金沢大会）**（2026-09-13～09-15 / 金沢市）
+  - 地質学の学術大会で、シンポジウム・一般発表・巡検を実施。
+  - https://pub.confit.atlas.jp/ja/event/geosocjp133
 
 ## 地質学・鉱物学関連の学会・研究発表会
 
@@ -167,11 +224,11 @@
   - 中学生以下対象の数学コンテスト予選（募集開始7月1日、締切9月10日）
   - https://www.imojp.org/
 
-## 数学オリンピック・数学セミナー
+## 数学セミナー
 
-- **JMO夏季セミナー**（2026-08-02 / 山梨県北杜市）
-  - 中高生が数学の本を輪読・議論する1週間の合宿形式セミナー
-  - https://jmoss.jp/
+- **JMO夏季セミナー**（2026-08-02～2026-08-08 / ヴィラ千ヶ滝（山梨県北杜市））
+  - 数学好きの中高生を対象とした数学のセミナーで、班ごとに本を読んで発表・議論する。
+  - https://jmoss.jp/index.php?type=2026
 
 ## 数学系セミナー・数学オリンピック
 
@@ -190,6 +247,9 @@
 - **理化学研究所 最先端研究紹介と実験体験会**（2026-07-30 / N/A）
   - 理化学研究所による一般向け科学体験イベント
   - N/A
+- **テクノロジーカフェ「技術開発による環境問題」**（2026-09-27 / 名古屋市）
+  - 技術開発と環境問題についての意見交換カフェ
+  - https://cafesci-portal.seesaa.net/
 
 ## 科学（一般向け）
 
@@ -201,6 +261,12 @@
 
 - **サイエンスカフェ in 桐生4「自動車用エンジンの研究開発はまだ必要か？」**（2026-10-10 / 桐生市）
   - 自動車用エンジン研究開発についてのサイエンスカフェ
+  - https://cafesci-portal.seesaa.net/
+
+## 科学（心理・脳科学）
+
+- **カフェで語ろう自閉症（自閉症サイエンスカフェ）**（2026-09-22 / 石川県金沢市）
+  - 自閉症に関する科学について専門家と語り合うカフェ
   - https://cafesci-portal.seesaa.net/
 
 ## 科学（応用物理）
@@ -221,14 +287,14 @@
   - 金沢大学子どものこころの発達研究センター主催のサイエンスカフェ
   - https://cafesci-portal.seesaa.net/
 
+## 競技プログラミング
+
+- **AtCoder World Tour Finals 2026**（2026-07 / 東京）
+  - 世界トップクラスの競技プログラマーが参加する大規模な世界大会
+  - https://atcoder.jp/
+
 ## 競技プログラミング（AtCoder）
 
-- **AtCoder Beginner Contest 466**（2026-07-11 / Online）
-  - 2026-07-11 21:00 JST 開催（約 100 分）。
-  - https://atcoder.jp/contests/abc466
-- **AtCoder Regular Contest-- 224**（2026-07-12 / Online）
-  - 2026-07-12 21:00 JST 開催（約 120 分）。
-  - https://atcoder.jp/contests/arc224
 - **AtCoder Beginner Contest 467**（2026-07-18 / Online）
   - 2026-07-18 21:00 JST 開催（約 100 分）。
   - https://atcoder.jp/contests/abc467
@@ -251,14 +317,14 @@
   - 2026-08-09 21:00 JST 開催（約 120 分）。
   - https://atcoder.jp/contests/arc226
 
+## 競技数学
+
+- **Online Math Contest（OMC）**（TBD / Online）
+  - 毎週2回程度開催される競技数学のコンテスト
+  - https://onlinemathcontest.com/
+
 ## 鉱物・宝石展示即売会
 
-- **第11回広島ミネラルマルシェ**（2026-07-10 / 広島市）
-  - 天然石・鉱物・化石などの展示即売会
-  - https://www.mineralstone.info/
-- **第23回御徒町ミネラルマルシェ**（2026-07-10 / 東京都）
-  - 天然石・鉱物・隕石・化石などの展示即売会
-  - https://www.mineralstone.info/
 - **第10回熊本ミネラルマルシェ Summer**（2026-07-17 / 熊本市）
   - 天然石・鉱物・化石などの展示即売会
   - https://www.mineralstone.info/
@@ -274,9 +340,6 @@
 - **第27回「石の祭典」さっぽろミネラルショー**（2026-09 / 札幌市）
   - 天然石・鉱物の展示即売会
   - https://www.blackopal.co.jp/page/8
-- **ミネラルザワールドin日本橋2026**（2026-09-04 / 東京都）
-  - 鉱物・化石・ジュエリーなどの展示即売会
-  - https://www.blackopal.co.jp/page/8
 - **第5回京都ミネラルマルシェ2026**（2026-09-18 / 京都市）
   - 天然石・鉱物・化石などの展示即売会
   - https://www.mineralstone.info/
@@ -286,13 +349,19 @@
 
 ## 鉱物・鉱石・宝石に関する展示会・即売会
 
+- **ミネラルザワールド仙台石祭り2026**（2026-07-31～08-02 / 仙台市）
+  - 宝石や鉱物、化石、ジュエリー、アクセサリーなどの展示即売会。
+  - https://www.mineraltheworld.com/
+- **第18回ミネラルフェスタ in 東京**（2026-08-07～08-09 / 東京都中央区）
+  - 天然石・鉱物・宝石・化石・ビーズなどの卸・小売業者による展示即売会。
+  - https://mineralfesta.info/tokyo/index.html
+- **ミネラルザワールドin日本橋2026**（2026-09-04～09-06 / 日本橋プラザ）
+  - 宝石や鉱物、化石、ジュエリー等の展示即売会。
+  - https://www.blackopal.co.jp/page/8
+- **石ふしぎ大発見展2026（第38回京都ミネラルショー）**（2026-10-10～10-12 / 京都市）
+  - 世界中から鉱物、化石、石製品が集合するミネラルショー。
+  - https://mineralshow.jp/
 - **第25回福岡ミネラルショー**（2026-11-20 to 2026-11-22 / 福岡県福岡市）
   - 天然石・パワーストーン・鉱物・宝石・化石などの卸・小売業者が集う展示即売会。
   - mineralshow.info
-
-## 鉱物・鉱石・宝石展示即売会
-
-- **第18回ミネラルフェスタ in 東京**（2026-08-07 / 東京都）
-  - 天然石、鉱物、宝石、化石、ビーズなどの展示即売会
-  - https://mineralfesta.info/tokyo/
 
