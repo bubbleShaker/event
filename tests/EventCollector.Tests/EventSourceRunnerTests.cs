@@ -130,6 +130,81 @@ public sealed class EventSourceRunnerTests
         Assert.Equal(startsAt, only.StartsAt); // 差し替え後は時刻なしに戻らない
     }
 
+    [Fact]
+    public void Dedup_別URLの同一キー衝突は警告する()
+    {
+        // 同じ Key（タイトル＋日付）だが URL が食い違う＝別イベントの可能性。後者は破棄されるが警告に残す。
+        var items = new[]
+        {
+            EventUrl("数学コンテスト", "2026-08-01", "https://a.example/contest"),
+            EventUrl("数学コンテスト", "2026-08-01", "https://b.example/other"),
+        };
+        List<string> warnings = [];
+
+        var unique = EventSourceRunner.Deduplicate(items, warnings.Add);
+
+        Assert.Single(unique);                    // 挙動は先勝ちのまま
+        Assert.Single(warnings);
+        Assert.Contains("別イベントの可能性", warnings[0]);
+    }
+
+    [Fact]
+    public void Dedup_URLが一致する表記ゆれは警告しない()
+    {
+        // 同一イベントの表記ゆれ（括弧の全角半角差など）は通常 URL が一致するため誤検知しない。
+        var items = new[]
+        {
+            EventUrl("Online Math Contest (OMC)", "2026-08-01", "https://onlinemathcontest.com"),
+            EventUrl("Online Math Contest（OMC）", "2026-08-01", "https://onlinemathcontest.com"),
+        };
+        List<string> warnings = [];
+
+        var unique = EventSourceRunner.Deduplicate(items, warnings.Add);
+
+        Assert.Single(unique);
+        Assert.Empty(warnings);
+    }
+
+    [Fact]
+    public void Dedup_片方だけ時刻ありの衝突はURLが違っても警告しない()
+    {
+        // AtCoder 確定情報の二重取得（web_search 時刻なし × API 時刻あり）は正当な衝突。URL 差でも警告しない。
+        var startsAt = new DateTimeOffset(2026, 8, 1, 21, 0, 0, TimeSpan.FromHours(9));
+        var items = new[]
+        {
+            EventUrl("ABC 400", "2026-08-01", "https://kenkoooo.example/abc400"),
+            EventUrl("ABC 400", "2026-08-01", "https://atcoder.jp/abc400") with { StartsAt = startsAt },
+        };
+        List<string> warnings = [];
+
+        var unique = EventSourceRunner.Deduplicate(items, warnings.Add);
+
+        Assert.Single(unique);
+        Assert.Empty(warnings);
+    }
+
+    [Fact]
+    public void Dedup_両方時刻ありの衝突はURLが違っても警告しない()
+    {
+        // AtCoder の確定情報を二重取得（Kenkoooo × 公式）した同一コンテスト。両方時刻ありで URL だけ違っても
+        // 正当な衝突なので警告しない（時刻ありが絡む衝突は既知の二重取得として扱う）。
+        var startsAt = new DateTimeOffset(2026, 8, 1, 21, 0, 0, TimeSpan.FromHours(9));
+        var items = new[]
+        {
+            EventUrl("ABC 400", "2026-08-01", "https://kenkoooo.example/abc400") with { StartsAt = startsAt },
+            EventUrl("ABC 400", "2026-08-01", "https://atcoder.jp/abc400") with { StartsAt = startsAt },
+        };
+        List<string> warnings = [];
+
+        var unique = EventSourceRunner.Deduplicate(items, warnings.Add);
+
+        Assert.Single(unique);
+        Assert.Empty(warnings);
+    }
+
+    private static EventItem EventUrl(string title, string date, string url) =>
+        Event(title, date) with { Url = url };
+
     private static EventItem Event(string title, string date, DateTimeOffset? startsAt = null) => new()
     {
         Title = title,
