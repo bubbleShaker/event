@@ -90,6 +90,84 @@ public sealed class CalendarTests
         Assert.Equal(0, registered);
     }
 
+    [Fact]
+    public async Task SyncCore_1件失敗しても残りを登録し成功件数を返す()
+    {
+        // 2件目の upsert だけ失敗させる（レート制限などの一時エラーを模擬）。
+        var attempted = new List<string>();
+        Task Upsert(Event ev, CancellationToken _)
+        {
+            attempted.Add(ev.Summary);
+            if (ev.Summary == "B")
+            {
+                throw new InvalidOperationException("一時エラー");
+            }
+
+            return Task.CompletedTask;
+        }
+
+        int synced = await GoogleCalendarSink.SyncCoreAsync(
+            [MakeEvent("A", "2026-06-25"), MakeEvent("B", "2026-06-26"), MakeEvent("C", "2026-06-27")],
+            Upsert, _ => { }, CancellationToken.None);
+
+        // 失敗した B で止まらず C まで試行し、成功は A・C の 2 件。
+        Assert.Equal(["A", "B", "C"], attempted);
+        Assert.Equal(2, synced);
+    }
+
+    [Fact]
+    public async Task SyncCore_日付不明はupsertせずスキップする()
+    {
+        var attempted = new List<string>();
+        Task Upsert(Event ev, CancellationToken _)
+        {
+            attempted.Add(ev.Summary);
+            return Task.CompletedTask;
+        }
+
+        int synced = await GoogleCalendarSink.SyncCoreAsync(
+            [MakeEvent("A", "2026-06-25"), MakeEvent("未定", "TBD")],
+            Upsert, _ => { }, CancellationToken.None);
+
+        Assert.Equal(["A"], attempted);
+        Assert.Equal(1, synced);
+    }
+
+    [Fact]
+    public async Task SyncCore_トークンがキャンセル済みならバッチごと中断する()
+    {
+        // 本物のキャンセル（全体時間ガード）は1件スキップではなくバッチ全体を止める。
+        using var cts = new CancellationTokenSource();
+        cts.Cancel();
+        Task Upsert(Event _, CancellationToken __) => throw new OperationCanceledException();
+
+        await Assert.ThrowsAsync<OperationCanceledException>(() =>
+            GoogleCalendarSink.SyncCoreAsync(
+                [MakeEvent("A", "2026-06-25")], Upsert, _ => { }, cts.Token));
+    }
+
+    [Fact]
+    public async Task SyncCore_未キャンセルのOperationCanceledは1件スキップして継続する()
+    {
+        // SDK 内部の I/O タイムアウトはトークン未キャンセルでも OperationCanceledException を投げうる。
+        // これはバッチ中断ではなく、そのイベントだけスキップして残りを続行する。
+        var attempted = new List<string>();
+        Task Upsert(Event ev, CancellationToken _)
+        {
+            attempted.Add(ev.Summary);
+            return ev.Summary == "A"
+                ? throw new TaskCanceledException("I/O timeout")
+                : Task.CompletedTask;
+        }
+
+        int synced = await GoogleCalendarSink.SyncCoreAsync(
+            [MakeEvent("A", "2026-06-25"), MakeEvent("B", "2026-06-26")],
+            Upsert, _ => { }, CancellationToken.None);
+
+        Assert.Equal(["A", "B"], attempted);
+        Assert.Equal(1, synced);
+    }
+
     private static EventItem MakeEvent(string title, string date)
     {
         return new EventItem
