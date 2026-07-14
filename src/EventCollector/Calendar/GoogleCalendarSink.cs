@@ -64,10 +64,24 @@ public sealed class GoogleCalendarSink : ICalendarSink
     }
 
     /// <inheritdoc />
-    public async Task<int> SyncAsync(
-        IReadOnlyList<EventItem> events, CancellationToken cancellationToken = default)
+    public Task<int> SyncAsync(
+        IReadOnlyList<EventItem> events, CancellationToken cancellationToken = default) =>
+        SyncCoreAsync(events, UpsertAsync, Console.Error.WriteLine, cancellationToken);
+
+    /// <summary>
+    /// バッチ登録の本体。1件の upsert が失敗しても残りを登録し続ける（1件の一時エラーで
+    /// 以降が全滅するのを防ぐ）。実際の Google 呼び出し（<paramref name="upsert"/>）と
+    /// 警告出力（<paramref name="warn"/>）を差し替え可能にして単体テストできるようにしている。
+    /// </summary>
+    /// <returns>登録に成功した件数。</returns>
+    internal static async Task<int> SyncCoreAsync(
+        IReadOnlyList<EventItem> events,
+        Func<Event, CancellationToken, Task> upsert,
+        Action<string> warn,
+        CancellationToken cancellationToken)
     {
         int synced = 0;
+        int failed = 0;
         foreach (EventItem item in events)
         {
             Event? calendarEvent = CalendarEventFactory.TryCreate(item);
@@ -77,8 +91,30 @@ public sealed class GoogleCalendarSink : ICalendarSink
                 continue;
             }
 
-            await UpsertAsync(calendarEvent, cancellationToken);
-            synced++;
+            try
+            {
+                await upsert(calendarEvent, cancellationToken);
+                synced++;
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                // 全体時間ガードによる本物のキャンセルだけバッチごと止める（残りを試しても無駄）。
+                // SDK 内部の I/O タイムアウトも OperationCanceledException を投げうるが、
+                // それはこちらのトークンが未キャンセルなので下の catch で 1 件スキップ扱いにする。
+                throw;
+            }
+            catch (Exception ex)
+            {
+                // 1件の失敗（429/5xx/ネットワーク断/個別 400/I-O タイムアウト等）で以降を巻き添えにしない。
+                // 残りの登録は継続し、失敗は警告として記録する。
+                failed++;
+                warn($"カレンダー登録に失敗（このイベントのみスキップ）: {item.Title} — {ex.GetType().Name}: {ex.Message}");
+            }
+        }
+
+        if (failed > 0)
+        {
+            warn($"カレンダー登録: {synced} 件成功 / {failed} 件失敗（失敗分は次回以降に再試行される）。");
         }
 
         return synced;

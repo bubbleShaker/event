@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- 内部ロジック（SyncCoreAsync 等）を単体テストへ公開する。 -->
+    <InternalsVisibleTo Include="EventCollector.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Anthropic 公式 .NET SDK。初回は `dotnet add package Anthropic` で最新版を解決してよい。 -->
     <PackageReference Include="Anthropic" Version="*" />
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.74.0.4154" />
