@@ -151,7 +151,7 @@ public sealed class ClaudeGroupSource : IEventSource
         return
             $"""
             次のテーマ（分野「{_group.Name}」）に合致する、これから開催される（今日以降、おおむね3か月以内の）
-            プログラミング・数学関連イベントを Web 検索で調べてください。日本国内またはオンライン開催を対象とします。
+            イベントを Web 検索で調べてください。日本国内またはオンライン開催を対象とします。
 
             テーマ:
             {themeList}
