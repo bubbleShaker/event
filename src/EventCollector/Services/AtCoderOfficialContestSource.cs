@@ -134,6 +134,8 @@ public sealed partial class AtCoderOfficialContestSource : IEventSource
             Location = "Online",
             Url = $"https://atcoder.jp/contests/{c.Slug}",
             Theme = "競技プログラミング（AtCoder）",
+            // themes.md の見出しと一致させ、AtCoder テーマ群のイベントと同じ色でカレンダーに載せる。
+            Group = "AtCoder / 競技プログラミング",
             Summary = $"{c.Start:yyyy-MM-dd HH:mm} JST 開催{duration}。",
             // 開始時刻・所要時間が確定しているため、カレンダーには時刻付きイベントとして載せる。
             // 所要時間不明（0 分）のときは終了を空にし、Factory 側の既定（1 時間）に委ねる。

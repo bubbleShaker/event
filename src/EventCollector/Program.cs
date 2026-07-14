@@ -53,6 +53,11 @@ ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 // EventItem.Key（名称＋開催日）が一致し重複排除される（実データ突き合わせ済み）。
 // Kenkoooo を先に置くことで、両方にある確定コンテストは JSON 側が採用される。
 IReadOnlyList<ThemeGroup> groups = themeStore.LoadGroups(themesPath);
+
+// テーマグループ（themes.md の ## 見出し）ごとにカレンダーの色を決める。母集合を登録イベントではなく
+// テーマ定義そのものにすることで、その回に 0 件のグループがあっても色がずれず安定する。
+ThemeColorPalette calendarPalette = ThemeColorPalette.FromGroupNames(groups.Select(g => g.Name));
+
 IReadOnlyList<IEventSource> sources =
 [
     .. groups.Select(g => (IEventSource)new ClaudeGroupSource(g)),
@@ -132,7 +137,7 @@ if (diff.HasChanges)
 // Google カレンダー登録（未設定なら NullCalendarSink でスキップ）。失敗しても収集は成功扱い。
 try
 {
-    int registered = await calendarSink.SyncAsync(merged);
+    int registered = await calendarSink.SyncAsync(merged, calendarPalette);
     Console.WriteLine(registered > 0
         ? $"Google カレンダーに {registered} 件登録しました。"
         : "Google カレンダー連携は未設定/対象なしのためスキップしました。");
