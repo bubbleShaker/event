@@ -22,7 +22,8 @@ public sealed record EventItem
     /// このイベントが属する収集グループ名（<c>themes.md</c> の <c>## 見出し</c>）。
     /// カレンダー登録時の色分けの軸に使う。<see cref="Theme"/> は web_search が表記を揺らす自由記述だが、
     /// こちらは人間が管理する安定した単位なので色の割り当てキーに向く。未設定なら既定色になる。
-    /// <see cref="Key"/> には含めないため、差分検知・カレンダー冪等 upsert には影響しない。
+    /// <see cref="Key"/> には含めないため冪等 upsert には影響しない。差分検知は record の値等価で行うが、
+    /// <c>EventDiffer</c> が Group を比較から除外するため、色分けメタデータの差だけでは変更通知は出ない。
     /// </summary>
     public string? Group { get; init; }
 

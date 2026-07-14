@@ -241,6 +241,19 @@ public sealed class CalendarTests
     }
 
     [Fact]
+    public void Palette_11色を超えるグループは先頭色へ巡回する()
+    {
+        // グループ名を序数ソートした index で色を配るので、12 番目("l")は 1 番目("a")と同色に戻る。
+        EventItem[] events = [.. "abcdefghijkl".Select(c =>
+            MakeEvent(c.ToString(), "2026-06-25") with { Group = c.ToString() })];
+        ThemeColorPalette palette = ThemeColorPalette.FromEvents(events);
+
+        Assert.Equal("1", palette.ColorIdFor("a"));
+        Assert.Equal("11", palette.ColorIdFor("k"));
+        Assert.Equal("1", palette.ColorIdFor("l")); // 12 番目は先頭色へ巡回
+    }
+
+    [Fact]
     public void Palette_未知グループとnullは色なし()
     {
         ThemeColorPalette palette = ThemeColorPalette.FromEvents(

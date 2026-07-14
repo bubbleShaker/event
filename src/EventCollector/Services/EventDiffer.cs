@@ -27,9 +27,12 @@ public sealed class EventDiffer
             {
                 added.Add(item);
             }
-            else if (before != item)
+            else if (before with { Group = item.Group } != item)
             {
                 // レコードの値等価で、同一キーでも内容差があれば変更扱い。
+                // Group はカレンダー色分け用の表示メタデータで、ユーザーへ通知すべき「変更」ではない。
+                // 比較前に before の Group を今回値へ揃え、Group 差だけでは変更扱いにしない
+                // （旧スナップショットに Group が無くても、色付与だけで通知が誤爆するのを防ぐ）。
                 changed.Add(item);
             }
         }

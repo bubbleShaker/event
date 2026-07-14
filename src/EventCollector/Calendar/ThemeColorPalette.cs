@@ -48,7 +48,9 @@ public sealed class ThemeColorPalette
     /// グループ名に対応する colorId を返す。未知・<c>null</c> のグループは <c>null</c>（＝カレンダー既定色）。
     /// </summary>
     public string? ColorIdFor(string? group) =>
-        group is not null && _colorIdByGroup.TryGetValue(group, out string? colorId) ? colorId : null;
+        !string.IsNullOrWhiteSpace(group) && _colorIdByGroup.TryGetValue(group, out string? colorId)
+            ? colorId
+            : null;
 
     // 11 色を超えるグループ数では色を巡回させる（12 番目以降は先頭色へ戻る）。
     private static string ToColorId(int index) =>
