@@ -16,19 +16,20 @@ public static class CalendarEventFactory
     /// </summary>
     public static Event? TryCreate(EventItem item)
     {
-        // 分単位の開始時刻が確定していれば、時刻付き（start–end）イベントにする。
+        // 分単位の開始時刻が確定していれば、時刻付き（start–end）イベントにする（常に日精度＝概算でない）。
         if (item.StartsAt is { } startsAt)
         {
-            return BuildEvent(item, TimedSchedule(startsAt, item.EndsAt));
+            return BuildEvent(item, TimedSchedule(startsAt, item.EndsAt), approximate: false);
         }
 
-        // それ以外は日付のみ。開始日が解析できなければカレンダーに置けない。
-        if (!EventDate.TryGetStartDate(item.Date, out DateOnly start))
+        // それ以外は日付のみ。日精度が無ければ月精度（その月の1日）で概算登録する。
+        // どちらも取れなければ（TBD/N/A）カレンダーに置けない。
+        if (!EventDate.TryGetCalendarStartDate(item.Date, out DateOnly start, out bool approximate))
         {
             return null;
         }
 
-        return BuildEvent(item, AllDaySchedule(start));
+        return BuildEvent(item, AllDaySchedule(start), approximate);
     }
 
     // 時刻付きの開始・終了。終了が無ければ 1 時間後を仮に置き、長さ 0 の予定を避ける。
@@ -43,20 +44,23 @@ public static class CalendarEventFactory
          new EventDateTime { Date = start.AddDays(1).ToString("yyyy-MM-dd") });
 
     // 開始・終了以外は時刻付き/終日で共通。冪等 upsert のため ID はキーから決定的に作る。
-    private static Event BuildEvent(EventItem item, (EventDateTime Start, EventDateTime End) schedule) =>
+    private static Event BuildEvent(
+        EventItem item, (EventDateTime Start, EventDateTime End) schedule, bool approximate) =>
         new()
         {
             Id = CalendarEventId.FromKey(item.Key),
             Summary = item.Title,
             Location = item.Location,
-            Description = BuildDescription(item),
+            Description = BuildDescription(item, approximate),
             Start = schedule.Start,
             End = schedule.End,
         };
 
-    private static string BuildDescription(EventItem item)
+    private static string BuildDescription(EventItem item, bool approximate)
     {
         // 概要・URL・収集テーマをカレンダーの説明欄にまとめる。
-        return $"{item.Summary}\n\n{item.Url}\n\n[テーマ] {item.Theme}";
+        // 月精度で概算登録した場合は、開催日が確定でない旨を先頭に明示する。
+        string note = approximate ? "※開催日は月のみ判明（概算で月初に配置）。公式情報で要確認。\n\n" : "";
+        return $"{note}{item.Summary}\n\n{item.Url}\n\n[テーマ] {item.Theme}";
     }
 }

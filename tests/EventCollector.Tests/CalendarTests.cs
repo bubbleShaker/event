@@ -56,6 +56,36 @@ public sealed class CalendarTests
     }
 
     [Fact]
+    public void Factory_月のみ表記は月初で登録し概算注記を付ける()
+    {
+        Event? ev = CalendarEventFactory.TryCreate(MakeEvent("月だけ判明イベント", "2026-07"));
+
+        Assert.NotNull(ev);
+        Assert.Equal("2026-07-01", ev!.Start.Date);   // 月初で概算配置
+        Assert.Equal("2026-07-02", ev.End.Date);      // end は排他的（翌日）
+        Assert.Contains("概算", ev.Description);        // 説明欄に概算の旨を明示
+    }
+
+    [Fact]
+    public void Factory_年月とTBDの混在表記でも月初で登録する()
+    {
+        Event? ev = CalendarEventFactory.TryCreate(MakeEvent("技育CAMPハッカソン", "2026-04-TBD"));
+
+        Assert.NotNull(ev);
+        Assert.Equal("2026-04-01", ev!.Start.Date);
+        Assert.Contains("概算", ev.Description);   // 月精度なので概算注記が付く
+    }
+
+    [Fact]
+    public void Factory_日精度なら概算注記を付けない()
+    {
+        Event? ev = CalendarEventFactory.TryCreate(MakeEvent("確定イベント", "2026-06-25"));
+
+        Assert.NotNull(ev);
+        Assert.DoesNotContain("概算", ev!.Description);
+    }
+
+    [Fact]
     public void Factory_StartsAtがあれば時刻付きイベントにする()
     {
         var starts = new DateTimeOffset(2026, 7, 11, 21, 0, 0, TimeSpan.FromHours(9));
@@ -116,9 +146,10 @@ public sealed class CalendarTests
     }
 
     [Fact]
-    public async Task SyncCore_日付不明はupsertせずスキップする()
+    public async Task SyncCore_日付不明はupsertせず警告を出してスキップする()
     {
         var attempted = new List<string>();
+        var warnings = new List<string>();
         Task Upsert(Event ev, CancellationToken _)
         {
             attempted.Add(ev.Summary);
@@ -127,10 +158,12 @@ public sealed class CalendarTests
 
         int synced = await GoogleCalendarSink.SyncCoreAsync(
             [MakeEvent("A", "2026-06-25"), MakeEvent("未定", "TBD")],
-            Upsert, _ => { }, CancellationToken.None);
+            Upsert, warnings.Add, CancellationToken.None);
 
         Assert.Equal(["A"], attempted);
         Assert.Equal(1, synced);
+        // スキップは黙殺せず警告に残す（対象イベント名を含む）。
+        Assert.Contains(warnings, w => w.Contains("未定") && w.Contains("スキップ"));
     }
 
     [Fact]

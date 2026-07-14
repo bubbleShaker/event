@@ -87,7 +87,9 @@ public sealed class GoogleCalendarSink : ICalendarSink
             Event? calendarEvent = CalendarEventFactory.TryCreate(item);
             if (calendarEvent is null)
             {
-                // 日付不明（TBD 等）はカレンダーに置けないのでスキップ。
+                // 日付が月精度すら取れない（TBD/N/A 等）とカレンダーに置けない。
+                // 黙って消えると気づけないため、スキップした旨を警告に残す。
+                warn($"カレンダー登録をスキップ（日付不明）: {item.Title} — Date=\"{item.Date}\"");
                 continue;
             }
 
