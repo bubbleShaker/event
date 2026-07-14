@@ -59,7 +59,7 @@ public sealed class EventSourceRunner
             }
         }
 
-        return new CollectionRunResult(Deduplicate(collected), succeeded, failed);
+        return new CollectionRunResult(Deduplicate(collected, _logError), succeeded, failed);
     }
 
     /// <summary>
@@ -69,8 +69,11 @@ public sealed class EventSourceRunner
     /// これにより web_search（時刻なし）と AtCoder API（時刻あり）が同一コンテストを返しても、
     /// 収集源の並び順に依存せず時刻付きイベントとしてカレンダーに載る。
     /// 出現順は最初に採用した位置を保ち、差し替え時は中身だけ入れ替える。
+    /// キーは正規化が強く、まれに<b>別イベントが同一キーに衝突</b>して一方が消えうる。
+    /// その兆候（確定情報の二重取得ではないのに URL が食い違う衝突）を <paramref name="warn"/> に記録する。
     /// </summary>
-    private static IReadOnlyList<EventItem> Deduplicate(IReadOnlyList<EventItem> items)
+    internal static IReadOnlyList<EventItem> Deduplicate(
+        IReadOnlyList<EventItem> items, Action<string>? warn = null)
     {
         Dictionary<string, int> indexByKey = [];
         List<EventItem> unique = [];
@@ -78,13 +81,22 @@ public sealed class EventSourceRunner
         {
             if (indexByKey.TryGetValue(item.Key, out int existingIndex))
             {
-                // 既存が時刻を持たず、今回が時刻を持つなら、確定情報を持つ側へレコードごと差し替える
-                // （時刻だけの移植ではなく、URL・概要も確定源の値を採用する）。
-                // 逆向き（時刻あり→なし）と、両方が時刻を持つ衝突は先勝ちのまま。確定情報同士は
-                // 最初に採った源を信頼し、後続の揺らぎで上書きしない。
-                if (unique[existingIndex].StartsAt is null && item.StartsAt is not null)
+                EventItem existing = unique[existingIndex];
+                if (existing.StartsAt is null && item.StartsAt is not null)
                 {
+                    // 既存が時刻を持たず、今回が時刻を持つなら、確定情報を持つ側へレコードごと差し替える
+                    // （時刻だけの移植ではなく、URL・概要も確定源の値を採用する）。
                     unique[existingIndex] = item;
+                }
+                else if (existing.StartsAt is null && item.StartsAt is null
+                         && LooksLikeDifferentEvent(existing, item))
+                {
+                    // 両方とも時刻なし（web_search 同士）なのに URL が食い違う＝別イベントの可能性。
+                    // 重複排除で後者が消えるため、実害が出た時に気づけるよう観測ログに残す（挙動は先勝ちのまま）。
+                    // 時刻ありが絡む衝突（AtCoder 確定情報の二重取得）は正当なので、ここには入れず警告しない。
+                    warn?.Invoke(
+                        $"同一キーに異なる URL のイベントが衝突（別イベントの可能性・後者を破棄）: key=\"{item.Key}\" "
+                        + $"A=\"{existing.Title}\"<{existing.Url}> / B=\"{item.Title}\"<{item.Url}>");
                 }
 
                 continue;
@@ -96,6 +108,15 @@ public sealed class EventSourceRunner
 
         return unique;
     }
+
+    // 同一キーの2件が「別イベントの疑い」か。両方の URL が具体的（N/A でない）で食い違うかで判定する。
+    // 表記ゆれ（同一イベント）は通常 URL が一致するため、この条件では誤検知しにくい。
+    private static bool LooksLikeDifferentEvent(EventItem a, EventItem b) =>
+        HasConcreteUrl(a.Url) && HasConcreteUrl(b.Url)
+        && !string.Equals(a.Url, b.Url, StringComparison.OrdinalIgnoreCase);
+
+    private static bool HasConcreteUrl(string url) =>
+        !string.IsNullOrWhiteSpace(url) && !string.Equals(url.Trim(), "N/A", StringComparison.OrdinalIgnoreCase);
 }
 
 /// <summary>複数収集源の実行結果。イベント本体と成功/失敗した収集源数を持つ。</summary>
