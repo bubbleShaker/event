@@ -47,6 +47,46 @@ public sealed class EventKeyTests
     }
 
     [Fact]
+    public void 全角半角の括弧違いは同じキーになる()
+    {
+        // 実データで観測: "Online Math Contest（OMC）" ↔ "Online Math Contest (OMC)"。
+        EventItem full = MakeEvent("Online Math Contest（OMC）", "2026-06-25");
+        EventItem half = MakeEvent("Online Math Contest (OMC)", "2026-06-25");
+
+        Assert.Equal(full.Key, half.Key);
+    }
+
+    [Fact]
+    public void タイトル中の空白の有無は同じキーになる()
+    {
+        // 実データで観測: "サイエンスカフェ in 桐生3" ↔ "サイエンスカフェin桐生3"。
+        EventItem spaced = MakeEvent("サイエンスカフェ in 桐生3", "2026-06-25");
+        EventItem packed = MakeEvent("サイエンスカフェin桐生3", "2026-06-25");
+
+        Assert.Equal(spaced.Key, packed.Key);
+    }
+
+    [Fact]
+    public void 年号の有無は同じキーになる()
+    {
+        // 実データで観測: "JMO夏季セミナー 2026" ↔ "JMO夏季セミナー"。
+        EventItem withYear = MakeEvent("JMO夏季セミナー 2026", "2026-06-25");
+        EventItem without = MakeEvent("JMO夏季セミナー", "2026-06-25");
+
+        Assert.Equal(withYear.Key, without.Key);
+    }
+
+    [Fact]
+    public void 別イベントは正規化しても別キーのまま()
+    {
+        // 同じ日でも都市が違えば別イベント。過剰マージしないことを保証する。
+        EventItem otemachi = MakeEvent("第23回御徒町ミネラルマルシェ", "2026-06-25");
+        EventItem hiroshima = MakeEvent("第11回広島ミネラルマルシェ", "2026-06-25");
+
+        Assert.NotEqual(otemachi.Key, hiroshima.Key);
+    }
+
+    [Fact]
     public void 表記違いの重複はマージで1件にまとまる()
     {
         DateOnly today = new(2026, 6, 21);
