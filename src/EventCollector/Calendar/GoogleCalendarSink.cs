@@ -80,11 +80,14 @@ public sealed class GoogleCalendarSink : ICalendarSink
         Action<string> warn,
         CancellationToken cancellationToken)
     {
+        // 今回登録するイベント群のグループ名から、テーマごとに別色になる決定的パレットを作る。
+        ThemeColorPalette palette = ThemeColorPalette.FromEvents(events);
+
         int synced = 0;
         int failed = 0;
         foreach (EventItem item in events)
         {
-            Event? calendarEvent = CalendarEventFactory.TryCreate(item);
+            Event? calendarEvent = CalendarEventFactory.TryCreate(item, palette);
             if (calendarEvent is null)
             {
                 // 日付が月精度すら取れない（TBD/N/A 等）とカレンダーに置けない。

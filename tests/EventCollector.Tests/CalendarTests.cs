@@ -201,6 +201,76 @@ public sealed class CalendarTests
         Assert.Equal(1, synced);
     }
 
+    [Fact]
+    public void Palette_異なるグループには異なる色を割り当てる()
+    {
+        ThemeColorPalette palette = ThemeColorPalette.FromEvents(
+        [
+            MakeEvent("a", "2026-06-25") with { Group = "C# / .NET" },
+            MakeEvent("b", "2026-06-25") with { Group = "AWS / クラウド" },
+            MakeEvent("c", "2026-06-25") with { Group = "数学 / 数理科学" },
+        ]);
+
+        string?[] colors =
+        [
+            palette.ColorIdFor("C# / .NET"),
+            palette.ColorIdFor("AWS / クラウド"),
+            palette.ColorIdFor("数学 / 数理科学"),
+        ];
+
+        Assert.All(colors, c => Assert.NotNull(c));
+        // 11 グループ以内なので互いに重複しない（＝色でテーマを分けられる）。
+        Assert.Equal(colors.Length, colors.Distinct().Count());
+    }
+
+    [Fact]
+    public void Palette_同じグループ集合なら毎回同じ色になる()
+    {
+        EventItem[] events =
+        [
+            MakeEvent("a", "2026-06-25") with { Group = "AWS / クラウド" },
+            MakeEvent("b", "2026-06-25") with { Group = "C# / .NET" },
+        ];
+
+        // イベントの並び順が変わっても、グループ名でソートするため割り当ては安定する。
+        ThemeColorPalette p1 = ThemeColorPalette.FromEvents(events);
+        ThemeColorPalette p2 = ThemeColorPalette.FromEvents(events.Reverse().ToArray());
+
+        Assert.Equal(p1.ColorIdFor("C# / .NET"), p2.ColorIdFor("C# / .NET"));
+        Assert.Equal(p1.ColorIdFor("AWS / クラウド"), p2.ColorIdFor("AWS / クラウド"));
+    }
+
+    [Fact]
+    public void Palette_未知グループとnullは色なし()
+    {
+        ThemeColorPalette palette = ThemeColorPalette.FromEvents(
+            [MakeEvent("a", "2026-06-25") with { Group = "C# / .NET" }]);
+
+        Assert.Null(palette.ColorIdFor("知らないグループ"));
+        Assert.Null(palette.ColorIdFor(null));
+    }
+
+    [Fact]
+    public void Factory_paletteを渡すとグループに応じたColorIdが付く()
+    {
+        EventItem item = MakeEvent("勉強会", "2026-06-25") with { Group = "C# / .NET" };
+        ThemeColorPalette palette = ThemeColorPalette.FromEvents([item]);
+
+        Event? ev = CalendarEventFactory.TryCreate(item, palette);
+
+        Assert.NotNull(ev);
+        Assert.Equal(palette.ColorIdFor("C# / .NET"), ev!.ColorId);
+    }
+
+    [Fact]
+    public void Factory_palette無しならColorIdは付かない()
+    {
+        Event? ev = CalendarEventFactory.TryCreate(MakeEvent("勉強会", "2026-06-25") with { Group = "C# / .NET" });
+
+        Assert.NotNull(ev);
+        Assert.Null(ev!.ColorId);
+    }
+
     private static EventItem MakeEvent(string title, string date)
     {
         return new EventItem

@@ -142,7 +142,11 @@ public sealed class ClaudeGroupSource : IEventSource
         CollectionResult? result =
             JsonSerializer.Deserialize<CollectionResult>(jsonBlock.Text, DeserializeOptions);
 
-        return result?.Events ?? [];
+        // 自分の担当グループ名を刻む。カレンダー登録時、テーマグループ単位で色分けする軸になる
+        // （Theme は Claude が埋める自由記述で表記が揺れるため、色のキーには安定したグループ名を使う）。
+        return (result?.Events ?? [])
+            .Select(e => e with { Group = _group.Name })
+            .ToList();
     }
 
     private string BuildSearchPrompt()
