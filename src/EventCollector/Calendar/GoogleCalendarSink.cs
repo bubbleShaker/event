@@ -65,8 +65,10 @@ public sealed class GoogleCalendarSink : ICalendarSink
 
     /// <inheritdoc />
     public Task<int> SyncAsync(
-        IReadOnlyList<EventItem> events, CancellationToken cancellationToken = default) =>
-        SyncCoreAsync(events, UpsertAsync, Console.Error.WriteLine, cancellationToken);
+        IReadOnlyList<EventItem> events,
+        ThemeColorPalette palette,
+        CancellationToken cancellationToken = default) =>
+        SyncCoreAsync(events, palette, UpsertAsync, Console.Error.WriteLine, cancellationToken);
 
     /// <summary>
     /// バッチ登録の本体。1件の upsert が失敗しても残りを登録し続ける（1件の一時エラーで
@@ -76,13 +78,11 @@ public sealed class GoogleCalendarSink : ICalendarSink
     /// <returns>登録に成功した件数。</returns>
     internal static async Task<int> SyncCoreAsync(
         IReadOnlyList<EventItem> events,
+        ThemeColorPalette palette,
         Func<Event, CancellationToken, Task> upsert,
         Action<string> warn,
         CancellationToken cancellationToken)
     {
-        // 今回登録するイベント群のグループ名から、テーマごとに別色になる決定的パレットを作る。
-        ThemeColorPalette palette = ThemeColorPalette.FromEvents(events);
-
         int synced = 0;
         int failed = 0;
         foreach (EventItem item in events)

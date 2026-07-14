@@ -8,6 +8,9 @@ namespace EventCollector.Tests;
 /// <summary>カレンダー連携の純粋ロジック（ID 生成・イベント変換・Null 実装）のテスト。</summary>
 public sealed class CalendarTests
 {
+    // 色分けの検証をしない sync テスト用の空パレット（どのグループも色なし）。
+    private static readonly ThemeColorPalette EmptyPalette = ThemeColorPalette.FromGroupNames([]);
+
     [Fact]
     public void CalendarEventId_同じキーなら同じIDになる()
     {
@@ -115,7 +118,7 @@ public sealed class CalendarTests
     [Fact]
     public async Task NullCalendarSink_何も登録せず0を返す()
     {
-        int registered = await new NullCalendarSink().SyncAsync([MakeEvent("勉強会", "2026-06-25")]);
+        int registered = await new NullCalendarSink().SyncAsync([MakeEvent("勉強会", "2026-06-25")], EmptyPalette);
 
         Assert.Equal(0, registered);
     }
@@ -138,7 +141,7 @@ public sealed class CalendarTests
 
         int synced = await GoogleCalendarSink.SyncCoreAsync(
             [MakeEvent("A", "2026-06-25"), MakeEvent("B", "2026-06-26"), MakeEvent("C", "2026-06-27")],
-            Upsert, _ => { }, CancellationToken.None);
+            EmptyPalette, Upsert, _ => { }, CancellationToken.None);
 
         // 失敗した B で止まらず C まで試行し、成功は A・C の 2 件。
         Assert.Equal(["A", "B", "C"], attempted);
@@ -158,7 +161,7 @@ public sealed class CalendarTests
 
         int synced = await GoogleCalendarSink.SyncCoreAsync(
             [MakeEvent("A", "2026-06-25"), MakeEvent("未定", "TBD")],
-            Upsert, warnings.Add, CancellationToken.None);
+            EmptyPalette, Upsert, warnings.Add, CancellationToken.None);
 
         Assert.Equal(["A"], attempted);
         Assert.Equal(1, synced);
@@ -176,7 +179,7 @@ public sealed class CalendarTests
 
         await Assert.ThrowsAsync<OperationCanceledException>(() =>
             GoogleCalendarSink.SyncCoreAsync(
-                [MakeEvent("A", "2026-06-25")], Upsert, _ => { }, cts.Token));
+                [MakeEvent("A", "2026-06-25")], EmptyPalette, Upsert, _ => { }, cts.Token));
     }
 
     [Fact]
@@ -195,7 +198,7 @@ public sealed class CalendarTests
 
         int synced = await GoogleCalendarSink.SyncCoreAsync(
             [MakeEvent("A", "2026-06-25"), MakeEvent("B", "2026-06-26")],
-            Upsert, _ => { }, CancellationToken.None);
+            EmptyPalette, Upsert, _ => { }, CancellationToken.None);
 
         Assert.Equal(["A", "B"], attempted);
         Assert.Equal(1, synced);
@@ -204,12 +207,8 @@ public sealed class CalendarTests
     [Fact]
     public void Palette_異なるグループには異なる色を割り当てる()
     {
-        ThemeColorPalette palette = ThemeColorPalette.FromEvents(
-        [
-            MakeEvent("a", "2026-06-25") with { Group = "C# / .NET" },
-            MakeEvent("b", "2026-06-25") with { Group = "AWS / クラウド" },
-            MakeEvent("c", "2026-06-25") with { Group = "数学 / 数理科学" },
-        ]);
+        ThemeColorPalette palette = ThemeColorPalette.FromGroupNames(
+            ["C# / .NET", "AWS / クラウド", "数学 / 数理科学"]);
 
         string?[] colors =
         [
@@ -224,17 +223,11 @@ public sealed class CalendarTests
     }
 
     [Fact]
-    public void Palette_同じグループ集合なら毎回同じ色になる()
+    public void Palette_入力順が違っても同じグループ集合なら同じ色になる()
     {
-        EventItem[] events =
-        [
-            MakeEvent("a", "2026-06-25") with { Group = "AWS / クラウド" },
-            MakeEvent("b", "2026-06-25") with { Group = "C# / .NET" },
-        ];
-
-        // イベントの並び順が変わっても、グループ名でソートするため割り当ては安定する。
-        ThemeColorPalette p1 = ThemeColorPalette.FromEvents(events);
-        ThemeColorPalette p2 = ThemeColorPalette.FromEvents(events.Reverse().ToArray());
+        // 入力の並び順が変わっても、グループ名でソートするため割り当ては安定する。
+        ThemeColorPalette p1 = ThemeColorPalette.FromGroupNames(["AWS / クラウド", "C# / .NET"]);
+        ThemeColorPalette p2 = ThemeColorPalette.FromGroupNames(["C# / .NET", "AWS / クラウド"]);
 
         Assert.Equal(p1.ColorIdFor("C# / .NET"), p2.ColorIdFor("C# / .NET"));
         Assert.Equal(p1.ColorIdFor("AWS / クラウド"), p2.ColorIdFor("AWS / クラウド"));
@@ -244,9 +237,8 @@ public sealed class CalendarTests
     public void Palette_11色を超えるグループは先頭色へ巡回する()
     {
         // グループ名を序数ソートした index で色を配るので、12 番目("l")は 1 番目("a")と同色に戻る。
-        EventItem[] events = [.. "abcdefghijkl".Select(c =>
-            MakeEvent(c.ToString(), "2026-06-25") with { Group = c.ToString() })];
-        ThemeColorPalette palette = ThemeColorPalette.FromEvents(events);
+        ThemeColorPalette palette = ThemeColorPalette.FromGroupNames(
+            "abcdefghijkl".Select(c => c.ToString()));
 
         Assert.Equal("1", palette.ColorIdFor("a"));
         Assert.Equal("11", palette.ColorIdFor("k"));
@@ -256,8 +248,7 @@ public sealed class CalendarTests
     [Fact]
     public void Palette_未知グループとnullは色なし()
     {
-        ThemeColorPalette palette = ThemeColorPalette.FromEvents(
-            [MakeEvent("a", "2026-06-25") with { Group = "C# / .NET" }]);
+        ThemeColorPalette palette = ThemeColorPalette.FromGroupNames(["C# / .NET"]);
 
         Assert.Null(palette.ColorIdFor("知らないグループ"));
         Assert.Null(palette.ColorIdFor(null));
@@ -267,7 +258,7 @@ public sealed class CalendarTests
     public void Factory_paletteを渡すとグループに応じたColorIdが付く()
     {
         EventItem item = MakeEvent("勉強会", "2026-06-25") with { Group = "C# / .NET" };
-        ThemeColorPalette palette = ThemeColorPalette.FromEvents([item]);
+        ThemeColorPalette palette = ThemeColorPalette.FromGroupNames(["C# / .NET"]);
 
         Event? ev = CalendarEventFactory.TryCreate(item, palette);
 

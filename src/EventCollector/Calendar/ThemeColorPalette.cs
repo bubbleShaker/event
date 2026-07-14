@@ -1,5 +1,4 @@
 using System.Globalization;
-using EventCollector.Models;
 
 namespace EventCollector.Calendar;
 
@@ -12,8 +11,10 @@ namespace EventCollector.Calendar;
 /// になり「テーマごとに色を分ける」目的を確実に満たせる。
 /// 単純なハッシュ（グループ名 → 1〜11）だと、9 グループ程度でも約 99% の確率でどこかが衝突し
 /// 同色になってしまうため採らない。
-/// 割り当てはグループ名の集合が同じである限り決定的（毎回同じ色）だが、集合や名前が変われば
-/// ソート順の変化に伴い色がずれうる点は許容する（色の固定指定は行わない方針）。
+/// 母集合は <c>themes.md</c> の全グループ（固定の並び）を想定する。登録するイベント集合ではなく
+/// テーマ定義そのものを母集合にすることで、ある回にそのグループのイベントが 0 件でも色がずれず、
+/// 実行ごとに既存イベントの色がちらつくのを防ぐ。グループの追加・改名でソート順が変われば
+/// 色はずれうるが、それは意図的な設定変更時に限られる（色の固定指定は行わない方針）。
 /// </remarks>
 public sealed class ThemeColorPalette
 {
@@ -26,14 +27,13 @@ public sealed class ThemeColorPalette
         _colorIdByGroup = colorIdByGroup;
 
     /// <summary>
-    /// イベント群に現れるグループ名から決定的なパレットを作る。
+    /// テーマグループ名の集合（<c>themes.md</c> の <c>## 見出し</c>一覧）から決定的なパレットを作る。
     /// グループ名を序数ソートし、<c>i</c> 番目に <c>colorId = (i % 11) + 1</c> を割り当てる。
-    /// <see cref="EventItem.Group"/> を持たないイベントは既定色にするため対象外。
+    /// 空・空白のグループ名は無視する。
     /// </summary>
-    public static ThemeColorPalette FromEvents(IEnumerable<EventItem> events)
+    public static ThemeColorPalette FromGroupNames(IEnumerable<string?> groupNames)
     {
-        Dictionary<string, string> map = events
-            .Select(e => e.Group)
+        Dictionary<string, string> map = groupNames
             .Where(g => !string.IsNullOrWhiteSpace(g))
             .Select(g => g!)
             .Distinct(StringComparer.Ordinal)
