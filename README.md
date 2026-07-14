@@ -73,7 +73,9 @@ ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
 | `GOOGLE_CALENDAR_ID` | 登録先カレンダーの「カレンダー ID」（これがあれば連携 ON） |
 | `GOOGLE_CALENDAR_CREDENTIALS` | （任意）鍵 JSON。未指定なら ADC で認証 |
 
-- イベントのキーから決定的な ID を作るため、毎回実行しても**重複登録されない**（無ければ作成・あれば更新）。
+- イベントのキー（**正規化したイベント名 + 開催日**）から決定的な ID を作り、無ければ作成・あれば更新する。
+  タイトルは web_search が表記を揺らす（全角/半角・空白・年号・記号）ため正規化して吸収し、**重複登録を防ぐ**。
+  ただしイベント名が意味的に改名された場合（語の追加など）は別イベント扱いになり重複しうる（原理的限界）。
 - 日付が `TBD` 等で解析できないイベントはスキップされる。
 - GCP（WIF）セットアップ・カレンダー共有・Secret 登録の手順は [`knowledge/google-calendar-setup.md`](./knowledge/google-calendar-setup.md)（設計は `research/google-calendar-sync.md`）。
 

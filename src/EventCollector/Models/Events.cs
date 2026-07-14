@@ -31,11 +31,13 @@ public sealed record EventItem
     public DateTimeOffset? EndsAt { get; init; }
 
     /// <summary>
-    /// 差分検知に使う一意キー（イベント名 + 正規化した開催日）。
-    /// 日付はモデルが表記を揺らす（例 <c>2026-06-25～26</c> / <c>2026-06-25:2026-06-26</c>）ため、
-    /// 先頭 ISO 日付に正規化して同一イベントの重複を防ぐ。表示用 <see cref="Date"/> は生のまま保持する。
+    /// 差分検知・カレンダー冪等 upsert に使う一意キー（正規化したイベント名 + 正規化した開催日）。
+    /// <see cref="Title"/> は web_search が表記を揺らす（全角/半角・空白・年号・記号の差）ため、
+    /// そのままキーにするとカレンダーが重複登録される。<see cref="EventTitle.Normalize"/> で表記差を畳む。
+    /// 日付もモデルが表記を揺らす（例 <c>2026-06-25～26</c> / <c>2026-06-25:2026-06-26</c>）ため、
+    /// 先頭 ISO 日付に正規化する。表示用の <see cref="Title"/> / <see cref="Date"/> は生のまま保持する。
     /// </summary>
-    public string Key => $"{Title.Trim()}|{EventDate.Normalize(Date)}";
+    public string Key => $"{EventTitle.Normalize(Title)}|{EventDate.Normalize(Date)}";
 }
 
 /// <summary>Claude から受け取る収集結果のルート。構造化出力のスキーマに対応する。</summary>

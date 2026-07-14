@@ -11,14 +11,17 @@ public sealed class EventDiffer
     /// <returns>差分結果。</returns>
     public DiffResult Diff(IReadOnlyList<EventItem> previous, IReadOnlyList<EventItem> current)
     {
-        Dictionary<string, EventItem> previousByKey = previous.ToDictionary(e => e.Key);
-        Dictionary<string, EventItem> currentByKey = current.ToDictionary(e => e.Key);
+        // ToDictionary は同一キーが並ぶと例外を投げる。タイトル正規化で稀に別表記が同一キーへ
+        // 畳まれるため、後勝ちで重複を吸収する（過去スナップショットにも同一キーが混在しうる）。
+        Dictionary<string, EventItem> previousByKey = ToLastWins(previous);
+        Dictionary<string, EventItem> currentByKey = ToLastWins(current);
 
         List<EventItem> added = [];
         List<EventItem> changed = [];
         List<EventItem> removed = [];
 
-        foreach (EventItem item in current)
+        // キー単位で 1 度だけ処理するため、生リストではなく畳んだ値を走査する。
+        foreach (EventItem item in currentByKey.Values)
         {
             if (!previousByKey.TryGetValue(item.Key, out EventItem? before))
             {
@@ -31,7 +34,7 @@ public sealed class EventDiffer
             }
         }
 
-        foreach (EventItem item in previous)
+        foreach (EventItem item in previousByKey.Values)
         {
             if (!currentByKey.ContainsKey(item.Key))
             {
@@ -45,5 +48,17 @@ public sealed class EventDiffer
             Changed = changed,
             Removed = removed,
         };
+    }
+
+    // キーで畳んだ辞書を作る。同一キーは後勝ちで上書きし、重複キー例外を避ける。
+    private static Dictionary<string, EventItem> ToLastWins(IReadOnlyList<EventItem> items)
+    {
+        Dictionary<string, EventItem> map = [];
+        foreach (EventItem item in items)
+        {
+            map[item.Key] = item;
+        }
+
+        return map;
     }
 }
