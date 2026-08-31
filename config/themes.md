@@ -21,10 +21,12 @@
 
 ## AtCoder / 競技プログラミング
 
-<!-- AtCoder のコンテスト自体は AtCoderContestSource が API から確定情報で収集するため、
-     ここでは web_search で重複しないよう、コミュニティイベント・他コンテストのみを対象にする。 -->
+<!-- AtCoder のコンテスト自体は AtCoderContestSource（JSON API）と
+     AtCoderOfficialContestSource（公式サイト）が確定情報で収集するため、
+     ここでは web_search で重複しないよう、コミュニティイベント・他コンテストのみを対象にする。
+     Online Math Contest (OMC) のコンテストも同様に OmcContestSource が公式サイトから収集する。 -->
 - AtCoder 社・競技プログラミングコミュニティ主催の勉強会・オフライン交流会・解説会
-- Online Math Contest (OMC) のコンテスト・解説会
+- Online Math Contest (OMC) の解説会・コミュニティイベント（コンテスト本体を除く）
 
 ## 数学 / 数理科学
 

@@ -1,5 +1,4 @@
 using System.Net;
-using System.Text;
 using EventCollector.Models;
 using EventCollector.Services;
 using Xunit;
@@ -58,7 +57,7 @@ public sealed class AtCoderOfficialContestSourceTests
     [Fact]
     public async Task 未来かつ期間内のコンテストだけを開催順に収集する()
     {
-        var source = new AtCoderOfficialContestSource(StubClient(UpcomingHtml), () => Now);
+        var source = new AtCoderOfficialContestSource(StubHttp.Client(UpcomingHtml), () => Now);
 
         IReadOnlyList<EventItem> events = await source.CollectAsync();
 
@@ -72,7 +71,7 @@ public sealed class AtCoderOfficialContestSourceTests
     [Fact]
     public async Task JST日付とURLとテーマと所要時間を整形する()
     {
-        var source = new AtCoderOfficialContestSource(StubClient(UpcomingHtml), () => Now);
+        var source = new AtCoderOfficialContestSource(StubHttp.Client(UpcomingHtml), () => Now);
 
         EventItem abc = (await source.CollectAsync())[0];
 
@@ -91,7 +90,7 @@ public sealed class AtCoderOfficialContestSourceTests
     [Fact]
     public async Task 名称のHTMLエンティティと連続空白を正規化する()
     {
-        var source = new AtCoderOfficialContestSource(StubClient(UpcomingHtml), () => Now);
+        var source = new AtCoderOfficialContestSource(StubHttp.Client(UpcomingHtml), () => Now);
 
         EventItem arc = (await source.CollectAsync())[1];
 
@@ -103,7 +102,7 @@ public sealed class AtCoderOfficialContestSourceTests
     public async Task 予定表が無ければ0件を返す()
     {
         var source = new AtCoderOfficialContestSource(
-            StubClient("<div id=\"contest-table-recent\"><tbody></tbody></div>"), () => Now);
+            StubHttp.Client("<div id=\"contest-table-recent\"><tbody></tbody></div>"), () => Now);
 
         Assert.Empty(await source.CollectAsync());
     }
@@ -112,23 +111,8 @@ public sealed class AtCoderOfficialContestSourceTests
     public async Task 非200応答は例外を投げる_失敗分離に委ねる()
     {
         var source = new AtCoderOfficialContestSource(
-            StubClient("Service Unavailable", HttpStatusCode.ServiceUnavailable), () => Now);
+            StubHttp.Client("Service Unavailable", HttpStatusCode.ServiceUnavailable), () => Now);
 
         await Assert.ThrowsAsync<HttpRequestException>(() => source.CollectAsync());
-    }
-
-    // 固定の本文・ステータスで応答する HttpClient を組み立てる。
-    private static HttpClient StubClient(string body, HttpStatusCode status = HttpStatusCode.OK) =>
-        new(new StubHandler(body, status));
-
-    /// <summary>URL に関係なく固定の本文・ステータスで応答するテスト用ハンドラ。</summary>
-    private sealed class StubHandler(string body, HttpStatusCode status) : HttpMessageHandler
-    {
-        protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request, CancellationToken cancellationToken) =>
-            Task.FromResult(new HttpResponseMessage(status)
-            {
-                Content = new StringContent(body, Encoding.UTF8, "text/html"),
-            });
     }
 }

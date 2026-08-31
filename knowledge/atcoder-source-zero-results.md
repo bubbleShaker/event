@@ -53,7 +53,8 @@ PY
 ## 設計上の含み
 
 この挙動があるため、`config/themes.md` の AtCoder グループから**コンテスト行だけ**を外し、
-勉強会・解説会・OMC は web_search に残してある（PR #40）。確定データにまだ無い先のイベント
+勉強会・解説会は web_search に残してある（PR #40）。OMC のコンテストも同じ理由で
+web_search から外し、専用源（`OmcContestSource`, Issue #61）が確定情報で拾う。確定データにまだ無い先のイベント
 （AWTF 等）は web_search が補完し、告知済みコンテストは API 源が確定情報で拾う、という役割分担になっている。
 
 ## 実測ログ（2026-07-08 の手動実行 / run 28905445370）
@@ -102,3 +103,33 @@ grep -c 'fixtime-full' /tmp/ac.html
 `AtCoder Regular Contest-- 224` と `--` 付きで表示。Kenkoooo 反映後の正規表記と食い違えば
 そのコンテストだけ重複表示されうる）。差分通知は自己修復するため実害は軽微だが、
 継続的に片方だけ重複が出るなら、この表記揺れを疑う。
+
+## OMC 源の追加（Issue #61）
+
+OMC は web_search では個別コンテストが拾えず、日付 `TBD` のプレースホルダにしかならなかった
+（`Online Math Contest (OMC)` / `Online Math Contest（OMC）` の 2 件が居座っていた）。
+公式サイト `https://onlinemathcontest.com/contests` の「予定されたコンテスト」節
+(`id="upcoming_contests"`)を直接 fetch する `OmcContestSource` を追加し、確定情報で収集する。
+取得〜行の反復〜期間フィルタは AtCoder 公式源と共通の `HtmlContestTableSource` に集約した。
+
+### 「OMC 源だけ 0 件が続く」ときの切り分け
+
+OMC は**平常時でも予定が 1 件前後**しか無いため、AtCoder より「本当に 0 件」と「壊れて 0 件」の
+区別が付きにくい。構造変化は例外にして失敗ログへ出す設計にしてあるが、手で確かめるなら次の通り。
+
+```bash
+# 1) そもそも 200 で取れているか
+curl -s -o /tmp/omc.html -w "HTTP %{http_code}\n" https://onlinemathcontest.com/contests
+# 2) 予定節に行があるか（0 なら告知済みの予定が本当に無いだけ＝正常）
+python3 - <<'EOF'
+h = open('/tmp/omc.html', encoding='utf-8').read()
+i = h.index('upcoming_contests'); j = h.index('<tbody>', i); k = h.index('</tbody>', j)
+print('予定表の行数:', h[j:k].count('<tr'))
+EOF
+```
+
+- 行があるのに 0 件なら `OmcContestSource` が例外を投げる（`予定表に行があるがどれも解析できなかった`）。
+  そのときは表の HTML 構造が変わっている。`ContestRegex`（`/contests/<slug>` の a 要素）・
+  `StartRegex`（`<td>yyyy-MM-dd HH:mm:ss</td>`）・`DurationRegex`（`80 分`）を疑う。
+- 所要時間は開始1時間前まで「開始1時間前に公開」と伏せられる回がある。そのときは終了時刻を持たず、
+  カレンダーには既定の 1 時間で載る（異常ではない）。
