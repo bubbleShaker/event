@@ -11,6 +11,7 @@ Markdown にまとめて差分を記録するプロジェクト。
 - `config/` — 収集テーマ（`themes.md`）・参加ログ（`participated.md`）
 - `src/EventCollector/` — 収集スクリプト（C# / .NET 8）
   - web_search によるテーマ収集に加え、AtCoder のコンテストは [Kenkoooo AtCoder Problems](https://kenkoooo.com/atcoder/resources/contests.json) の `contests.json` から確定情報（日付・URL）で収集する
+  - [OnlineMathContest（OMC）](https://onlinemathcontest.com/contests) の **開催前コンテスト**も、公式サイトの「予定されたコンテスト」表から確定情報（開催日時・URL）で収集する
 - `events.md` / `data/events.json` / `runs/` — 実行で生成される出力
 
 ## 収集テーマのカスタマイズ
@@ -76,7 +77,7 @@ ANTHROPIC_API_KEY=... dotnet run --project src/EventCollector
 - **テーマグループ（`themes.md` の `## 見出し`）ごとに色分け**して登録する。`themes.md` の全グループを
   母集合に、グループ名を決定的に colorId（`1`〜`11`）へ割り当てるため、同じグループは常に同じ色・
   別グループは（11 個までは）別色になる。ある回にそのグループのイベントが 0 件でも色はずれない。
-  AtCoder のコンテストは「AtCoder / 競技プログラミング」グループと同色になる。
+  AtCoder・OMC のコンテストは「AtCoder / 競技プログラミング」グループと同色になる。
 - イベントのキー（**正規化したイベント名 + 開催日**）から決定的な ID を作り、無ければ作成・あれば更新する。
   タイトルは web_search が表記を揺らす（全角/半角・空白・年号・記号）ため正規化して吸収し、**重複登録を防ぐ**。
   ただしイベント名が意味的に改名された場合（語の追加など）は別イベント扱いになり重複しうる（原理的限界）。

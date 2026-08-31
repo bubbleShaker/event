@@ -1,6 +1,6 @@
 # イベント一覧
 
-最終更新: 2026-08-24 01:42 / 124 件
+最終更新: 2026-08-24 01:42 / 123 件
 
 ## AWS公式イベント
 
@@ -472,12 +472,6 @@
 - **組合せゲーム 24 題**（2026-10-04 / Online）
   - 2026-10-04 13:00 JST 開催（約 300 分）。
   - https://atcoder.jp/contests/game-24
-
-## 競技数学
-
-- **OnlineMathContest(OMC)**（TBD / Online）
-  - OnlineMathContestは毎週2回程度オンラインで開催される競技数学のコンテスト
-  - https://twitter.com/OMathC_official
 
 ## 鉱物・化石・宝石展示即売会
 

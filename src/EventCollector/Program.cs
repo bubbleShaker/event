@@ -52,17 +52,27 @@ ICalendarSink calendarSink = await BuildCalendarSinkAsync();
 // 両源が同一コンテストを返した場合、公式源はタイトルを Kenkoooo と同じ表記へ正規化するため
 // EventItem.Key（名称＋開催日）が一致し重複排除される（実データ突き合わせ済み）。
 // Kenkoooo を先に置くことで、両方にある確定コンテストは JSON 側が採用される。
+// OMC（OnlineMathContest）も同様に、web_search では日付 TBD にしかならないため公式サイトから確定情報で拾う。
 IReadOnlyList<ThemeGroup> groups = themeStore.LoadGroups(themesPath);
 
 // テーマグループ（themes.md の ## 見出し）ごとにカレンダーの色を決める。母集合を登録イベントではなく
 // テーマ定義そのものにすることで、その回に 0 件のグループがあっても色がずれず安定する。
 ThemeColorPalette calendarPalette = ThemeColorPalette.FromGroupNames(groups.Select(g => g.Name));
 
+// AtCoder・OMC のような専用収集源はグループ名を自分で名乗るため、themes.md の見出しを改名すると
+// 色分けが無言で既定色に落ちる。起動時に突き合わせ、食い違いを気づけるようにする。
+foreach (string missing in ThemeGroups.All.Except(groups.Select(g => g.Name), StringComparer.Ordinal))
+{
+    Console.Error.WriteLine(
+        $"警告: 収集源が名乗るグループ「{missing}」が themes.md の見出しに無い。カレンダーの色分けが既定色になる。");
+}
+
 IReadOnlyList<IEventSource> sources =
 [
     .. groups.Select(g => (IEventSource)new ClaudeGroupSource(g)),
     new AtCoderContestSource(),
     new AtCoderOfficialContestSource(),
+    new OmcContestSource(),
 ];
 Console.WriteLine(
     $"テーマ群 {groups.Count} 件（テーマ計 {groups.Sum(g => g.Themes.Count)} 件）を読み込み。収集を開始します。");
