@@ -1,6 +1,6 @@
 # イベント一覧
 
-最終更新: 2026-08-31 04:52 / 127 件
+最終更新: 2026-09-07 03:57 / 124 件
 
 ## AWS公式イベント
 
@@ -14,10 +14,10 @@
   - トークセッション、スポンサーブース、AtCoder Japan Open観戦などを通じた参加者同士の交流イベント
   - https://info.atcoder.jp/conference
 
-## C# / .NET 関連の勉強会・カンファレンス
+## C#
 
-- **C# Kaigi 2026**（2026-09-19 / 東京）
-  - C#エンジニア・ファンのためのC#特化型カンファレンス
+- **C# Kaigi 2026**（2026-09-19 / Online）
+  - C#er のための C# 特化カンファレンス
   - https://csharpkaigi.connpass.com/event/394163/
 
 ## JAWS-UG AWS コミュニティ勉強会
@@ -28,21 +28,21 @@
 
 ## JAWS-UGコミュニティイベント
 
-- **JAWS SONIC & MIDNIGHT JAWS 2026**（2026-09-05,2026-09-06 / Online）
-  - JAWS-UGによる24時間オンラインリレーイベント、全国約8割の支部が参加し、初心者からベテランまで対象。
-  - https://jawssonic2026.jaws-ug.jp/
+- **JAWS FESTA 2026 in AKITA**（2026-11-07 / 秋田県）
+  - 秋のJAWS FESTAは東京以外の地方で行われる全国規模のイベント
+  - https://jawsfesta2026.jaws-ug.jp/
 
 ## JAWSコミュニティイベント
 
-- **JAWS SONIC 2026**（2026-09-05～2026-09-06 / N/A）
-  - JAWS-UGによる24時間ぶっ通しの全国規模イベント。
-  - https://jaws-ug.jp/
 - **JAWS FESTA 2026**（2026-11-07 / N/A）
   - JAWS-UGの秋の全国規模イベント。
   - https://jaws-ug.jp/
 
 ## サイエンスカフェ
 
+- **自閉症サイエンスカフェ**（2026-09-22 / 石川県金沢市）
+  - 自閉症に関する専門家との対話型イベント
+  - https://cafesci-portal.seesaa.net/
 - **自閉症サイエンスカフェ「自閉症」**（2026-09-22 / 石川（石川県政記念しいのき迎賓館3F セミナールームA））
   - 自閉症についての研究について金沢大学による対話型イベントです。
   - https://cafesci-portal.seesaa.net/
@@ -52,6 +52,12 @@
 - **サイエンスカフェ in 桐生4「自動車用エンジンの研究開発はまだ必要か？」**（2026-10-10 / 群馬（PLUS+アンカー 桐生市本町6-382））
   - 自動車用エンジンの研究開発について専門家と市民が気軽に議論する対話型イベントです。
   - https://cafesci-portal.seesaa.net/
+
+## ジオパーク関連イベント
+
+- **第16回日本ジオパーク全国大会桜島・錦江湾ジオパーク大会**（2026-11 / 鹿児島県）
+  - 桜島と錦江湾の地質遺産に関する全国大会。
+  - https://www.sakurajima-kinkowan-geo.jp/
 
 ## テクノロジーカフェ
 
@@ -67,9 +73,6 @@
 
 ## プログラミング全般
 
-- **Mobile Content Forum Hackathon**（2026-09-05 to 2026-09-06 / Hokkaido/Tohoku）
-  - ゲーム開発・モバイルアプリ開発・IoT/ハードウェアを対象としたハッカソン
-  - https://www.craftstadium.com/en/hackathon
 - **KSAC Innovation Challenge 2026**（2026-09-14 to 2026-09-16 / Online）
   - ビジネスイノベーション・ソーシャルインパクトをテーマにしたハッカソン
   - https://www.craftstadium.com/en/hackathon
@@ -82,8 +85,8 @@
 - **全日本AIハッカソン 2026 敗者復活戦**（2026-09 / Online）
   - 2026年9月にオンラインで実施される敗者復活戦
   - https://www.aifestival.jp/hackathon
-- **AI HACK 2026**（2026-09-19 / 東京）
-  - 2026年9月19日（土）～ 9月23日（水）に開催する賞金総額100万円のAIハッカソン
+- **AI HACK 2026**（2026-09-19 / N/A）
+  - 賞金最大100万円のAIハッカソン（敬老の日・国民の休日・秋分の日を含む5連休）
   - https://aihackathon.jp/
 - **Web×IoT メイカーズチャレンジ PLUS 岡山会場**（2026-09-19 / 岡山県）
   - Web標準技術を使ったIoTシステム開発のハッカソン。
@@ -113,31 +116,22 @@
   - 社会課題解決に向けたオープンデータ活用ハッカソン
   - https://odhackathon.metro.tokyo.lg.jp/
 
-## プログラミング技術ハッカソン
-
-- **Game DevelopmentMobileApp DevelopmentIdeathon（Kyoto会場）**（2026-09-05 / Kyoto）
-  - ゲーム開発・モバイル開発・IoT・ハードウェアをテーマにした本選、シリコンバレーツアーが優勝賞品。
-  - https://www.craftstadium.com/en/hackathon
-
 ## レザークラフト
 
-- **レザークラフトワークショップ**（2026-09-06 / ららぽーとエキスポシティ）
-  - レザークラフトワークショップ
-  - N/A
 - **レザークラフトワークショップ**（2026-09-12 / ららぽーとエキスポシティ）
   - レザークラフトワークショップ
   - N/A
 - **レザークラフトワークショップ**（2026-09-13 / ららぽーとエキスポシティ）
   - レザークラフトワークショップ
   - N/A
-- **Leathers Day TOKYO 2026**（2026-09-26～2026-09-27 / TOC五反田展示場）
-  - レザークラフト関連の見本市
-  - N/A
 
 ## レザークラフト・革製品の展示即売会
 
 - **Leathers Day YOKOHAMA**（2026-09-26 / 神奈川県東京都）
   - 革好きのための祭典で、レザー製品販売とレザーグッズが集約されたイベント。
+  - https://www.leathersday.com/
+- **Leathers Day TOKYO 2026**（2026-09-26 ~ 2026-09-27 / 東京都品川区）
+  - 80ブランド超の本物の革を触れ、試着し、トークショーや靴磨き大会、ライブペイント等が開催される革好きのための大規模イベント。
   - https://www.leathersday.com/
 
 ## レザークラフト・革製品の展示即売会・レザーフェス・革のクラフトマーケット
@@ -169,6 +163,9 @@
 
 ## 個人開発・インディー開発に関するイベント
 
+- **Game Devs' Night 2026**（2026-09-18 / 海浜幕張（千葉））
+  - ゲーム開発者向け交流会
+  - https://indiegamesjp.dev/?p=12510
 - **Tokyo Game Show 2026**（2026-09-19 / 千葉）
   - 2026年9月19日（土）～9月21日（月・祝）に幕張メッセで開催、インディーゲームのブース出展あり
   - N/A
@@ -176,7 +173,7 @@
   - インディゲーム制作者による展示会。
   - https://tokyogamedungeon.com/
 - **Indie Developers Conference 2026**（2026-11-28 / N/A）
-  - インディーゲーム開発者のためのカンファレンス
+  - オリジナルのゲーム作品を個人～少人数チームで制作している開発者のためのカンファレンス
   - https://indiedevconf.jp/
 
 ## 分析化学
@@ -215,11 +212,14 @@
   - 日本化学会が主催する産学連携フォーラム
   - https://www.chemistry.or.jp/
 
+## 化学イベント
+
+- **第16回CSJ化学フェスタ**（TBD / N/A）
+  - 化学に関する一般向けフェスタ
+  - https://www.chemistry.or.jp/
+
 ## 化学・セミナー
 
-- **日本化学会関東支部 オンラインセミナー（9月4日）**（2026-09-04 / Online）
-  - Zoomウェビナー形式で実施される化学関連のオンラインセミナー。
-  - https://kanto.csj.jp/
 - **日本化学会関東支部 オンラインセミナー（9月8日）**（2026-09-08 / Online）
   - Zoomウェビナー形式で実施される化学関連のオンラインセミナー。
   - https://kanto.csj.jp/
@@ -232,9 +232,6 @@
 
 ## 化学一般
 
-- **化学系学会オンラインシンポジウム**（2026-09-04 / Online）
-  - 日本化学会関東支部主催、複数学会協賛のZoomウェビナー形式シンポジウム
-  - https://kanto.csj.jp/event/
 - **化学系学会オンラインシンポジウム**（2026-09-08 / Online）
   - 日本化学会関東支部主催、複数学会協賛のZoomウェビナー形式シンポジウム
   - https://kanto.csj.jp/event/
@@ -256,12 +253,15 @@
 
 ## 化学学会セミナー
 
-- **日本化学会関東支部 9月4日(金) オンラインセミナー**（2026-09-04 / Online）
-  - 複数分野の化学系学会による合同オンラインセミナー
-  - https://kanto.csj.jp/event/
 - **日本化学会関東支部 9月8日(火) オンラインセミナー**（2026-09-08 / Online）
   - 複数分野の化学系学会による合同オンラインセミナー
   - https://kanto.csj.jp/event/
+
+## 化学学会・シンポジウム
+
+- **企業現場見学会2026**（2026-09-08 / N/A）
+  - 化学系企業の現場見学会
+  - https://kanto.csj.jp/
 
 ## 化学工学
 
@@ -285,6 +285,12 @@
 
 - **第133年日本地質学会学術大会（2026金沢大会）**（2026-09-13～2026-09-15 / 石川県）
   - 地質学に関する学術大会で、各種セッションでの研究発表が行われます。
+  - https://geosociety.jp/
+
+## 地質学フィールドイベント
+
+- **日本地質学会主催千葉フィールド巡検**（2026-10-11 / 千葉県）
+  - 千葉県の地質構造と地形を現地で学ぶ巡検（10月11日集合、12日解散予定）。
   - https://geosociety.jp/
 
 ## 地質学学会
@@ -368,12 +374,6 @@
   - 名古屋大学と大阪公立大学が共催する自由テーマの数学研究論文またはコンクール問題解答の提出形式の数学コンテスト
   - https://sites.google.com/view/jmathcon/home
 
-## 数学コンテスト（OnlineMathContest）
-
-- **OMCB085**（2026-09-04 / Online）
-  - OnlineMathContest（OMC）のコンテスト。2026-09-04 21:00 JST 開催（所要時間は開始直前に公開）。
-  - https://onlinemathcontest.com/contests/omcb085
-
 ## 文具・ステーショナリーの展示会・即売会
 
 - **文具女子博 pop-up in 広島2026**（2026-10-01~10-04 / 広島県広島市）
@@ -410,6 +410,12 @@
   - マイクロバブルを用いた洗浄技術に関するサイエンスカフェ
   - https://cafesci-portal.seesaa.net/
 
+## 物理・科学カンファレンス
+
+- **日本物理学会第81回年次大会**（2026-09-14:2026-09-17 / Online）
+  - 物理学の研究発表会および学術大会
+  - https://www.jps.or.jp/
+
 ## 物理学（学会）
 
 - **第81回年次大会（2026年）**（2026-09 / 東京）
@@ -434,18 +440,6 @@
   - 技術開発と環境問題についての意見交換カフェ
   - https://cafesci-portal.seesaa.net/
 
-## 科学教育・体験
-
-- **サイエンスバー「紙コップを使って何ができるかな？（1）」**（2026-09-05 / 埼玉県入間市）
-  - 紙コップを使った科学実験を楽しむ参加型イベント。
-  - https://cafesci-portal.seesaa.net/
-
-## 科学（発達神経科学）
-
-- **自閉症サイエンスカフェ**（2026-09-22 / 金沢市）
-  - 金沢大学子どものこころの発達研究センター主催のサイエンスカフェ
-  - https://cafesci-portal.seesaa.net/
-
 ## 競技プログラミング
 
 - **AtCoder World Tour Finals 2026**（2026-07 / 東京）
@@ -454,12 +448,6 @@
 
 ## 競技プログラミング（AtCoder）
 
-- **AtCoder Regular Contest-- 229**（2026-09-05 / Online）
-  - 2026-09-05 21:00 JST 開催（約 120 分）。
-  - https://atcoder.jp/contests/arc229
-- **AtCoder Beginner Contest 474**（2026-09-06 / Online）
-  - 2026-09-06 13:10 JST 開催（約 100 分）。
-  - https://atcoder.jp/contests/abc474
 - **AtCoder Beginner Contest 475**（2026-09-12 / Online）
   - 2026-09-12 21:00 JST 開催（約 100 分）。
   - https://atcoder.jp/contests/abc475
@@ -472,6 +460,9 @@
 - **AtCoder 企業対抗リーグ 2026 第2戦(オープンコンテスト)**（2026-09-18 / Online）
   - 2026-09-18 20:00 JST 開催（約 120 分）。
   - https://atcoder.jp/contests/c-league2026-2-open
+- **JIJプログラミングコンテスト 2026（AtCoder Beginner Contest 476）**（2026-09-19 / Online）
+  - 2026-09-19 21:00 JST 開催（約 100 分）。
+  - https://atcoder.jp/contests/abc476
 - **AtCoder Regular Contest++ 230**（2026-09-20 / Online）
   - 2026-09-20 21:00 JST 開催（約 150 分）。
   - https://atcoder.jp/contests/arc230
@@ -481,18 +472,24 @@
 - **UNICORNプログラミングコンテスト2026(AtCoder Beginner Contest 477)**（2026-09-26 / Online）
   - 2026-09-26 21:00 JST 開催（約 100 分）。
   - https://atcoder.jp/contests/abc477
+- **AtCoder Grand Contest 078**（2026-09-27 / Online）
+  - 2026-09-27 21:00 JST 開催（約 210 分）。
+  - https://atcoder.jp/contests/agc078
 - **組合せゲーム 24 題**（2026-10-04 / Online）
   - 2026-10-04 13:00 JST 開催（約 300 分）。
   - https://atcoder.jp/contests/game-24
+- **bogosort Programming Contest (Div. 1)**（2026-10-11 / Online）
+  - 2026-10-11 13:00 JST 開催（約 300 分）。
+  - https://atcoder.jp/contests/bogosortcontest_div1
+- **bogosort Programming Contest (Div. 2)**（2026-10-11 / Online）
+  - 2026-10-11 13:00 JST 開催（約 300 分）。
+  - https://atcoder.jp/contests/bogosortcontest_div2
 - **AAL Contest 001: Let's use segtree!**（2026-10-12 / Online）
   - 2026-10-12 13:00 JST 開催（約 300 分）。
   - https://atcoder.jp/contests/aalc001
 
 ## 鉱物・宝石展示即売会
 
-- **ミネラルザワールドin日本橋2026**（2026-09-04～09-06 / 東京都中央区日本橋）
-  - 宝石や鉱物、化石、ジュエリー、アクセサリーなどの展示即売会が東京で開催される。
-  - https://www.mineraltheworld.com/
 - **おかちまち ジュエリーマルシェ2026 in おかちまち(SEP)**（2026-09-11～09-13 / 東京都台東区）
   - 宝石・鉱物関連のジュエリーマルシェが開催される。
   - N/A
@@ -526,12 +523,12 @@
 - **なんばミネラルマルシェ**（TBD / 大阪府）
   - 全国で開催されるミネラルショー・鉱物展の情報サイト
   - https://www.mineralstone.info/
+- **石ふしぎ大発見展2026京都ミネラルショー**（TBD / 京都府）
+  - 西日本最大規模のミネラルショーで、世界の鉱物、化石、宝石、銘石が出品される。
+  - https://mineralshow.jp/
 
 ## 鉱物・鉱石・宝石展示会・即売会
 
-- **第7回神戸ミネラルマルシェ**（2026-09-04～2026-09-06 / 兵庫県）
-  - 天然石・鉱物・隕石・化石などの展示即売会
-  - https://www.mineralshow.net/marche/
 - **ジュエリーマルシェ in 御徒町 Sep**（2026-09-11～2026-09-13 / 東京都）
   - 天然石・鉱物・隕石・化石などの展示即売会
   - https://www.mineralshow.net/marche/
@@ -559,12 +556,6 @@
 - **第10回名古屋ミネラルマルシェ Autumn**（2026-10-16 / 愛知）
   - 天然石・鉱物・宝石の展示販売
   - https://www.mineralshow.net/marche/
-
-## 革細工・レザークラフトのワークショップ・体験教室・技法講習会
-
-- **革の相談会 in 浦和 2026**（2026-09-04 / 埼玉県浦和）
-  - レザークラフトに関する相談を中心に、各種工具や革の実物を展示・販売し、技法・工法などの質問に対応するイベント
-  - https://blog.phoenix-shop.jp/archives/36975
 
 ## 革製品の展示即売会・レザーフェス
 
